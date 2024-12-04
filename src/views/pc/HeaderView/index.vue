@@ -63,7 +63,7 @@ const openPDFViewr = (command: string) => {
     window.open(import.meta.env.BASE_URL + "pdfjs-4.8.69-dist/web/viewer.html");
   } else if (command === '七') {
     // 打开远程PDF样本
-    window.open(import.meta.env.VITE_BASE_API_URL + "pdfjs-4.8.69-dist/web/viewer.html?file=https://raw.githubusercontent.com/lionsom/imagesRepo/xishanlin/genealogy/莆田林氏西山本支族谱(卷一).pdf");
+    window.open(import.meta.env.VITE_BASE_API_URL + "pdfjs-4.8.69-dist/web/viewer.html?file=https://raw.githubusercontent.com/xishan-lin/resourcesRepo/main/genealogy/莆田林氏西山本支族谱(卷一).pdf");
   } else {
     router.push('/pdf-once-view');
   }
