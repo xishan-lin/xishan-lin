@@ -45,7 +45,7 @@ export default defineConfig(({ command, mode }) => {
     },
     envPrefix: 'VITE_BASE_',
     build: {
-      outDir: './dist123'
+      outDir: './dist'
     }
   };
 });
