@@ -23,7 +23,7 @@ export default defineConfig(({ command, mode }) => {
 
   return {
     // 配置服务器路径
-    base: '/', //'/xishan/',
+    base: '/xishan/',
     // base: process.env.NODE_ENV === "production" ? "/xishan/" : "/",
     plugins: [
       vue(),
@@ -45,7 +45,7 @@ export default defineConfig(({ command, mode }) => {
     },
     envPrefix: 'VITE_BASE_',
     build: {
-      outDir: './dist123'
+      outDir: './dist123/xishan'
     }
   };
 });
