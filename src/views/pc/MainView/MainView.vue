@@ -6,13 +6,18 @@ export default {
 
 <script setup lang="ts">
 
+const handleCarouselClick = (index: number) => {
+  console.log('AAAAAAAA = ', index)
+}
+
 </script>
 
 <template>
   <div>
     <el-carousel :interval="4000" type="card" height="200px">
-      <el-carousel-item v-for="item in 6" :key="item">
+      <el-carousel-item v-for="item in 6" :key="item" @click="handleCarouselClick(item)">
         <h3 text="2xl" justify="center">{{ item }}</h3>
+        <p class="title"> AAA </p>
       </el-carousel-item>
     </el-carousel>
   </div>
