@@ -8,35 +8,21 @@ defineOptions({
 
 const router = useRouter();
 
-// 注册类型 
-// account: 账号密码注册
-// phone: 手机号短信验证注册
-const registerType = ref<'account' | 'phone'>('account');
-
-// 账号密码注册表单
-const accountForm = reactive({
+// 合并注册表单
+const registerForm = reactive({
   username: '',
   password: '',
   confirmPassword: '',
-  agree: false
-});
-
-// 手机号注册表单
-const phoneForm = reactive({
   phone: '',
   verificationCode: '',
   agree: false
 });
 
 // 表单验证状态
-const accountErrors = reactive({
+const formErrors = reactive({
   username: '',
   password: '',
   confirmPassword: '',
-  agree: ''
-});
-
-const phoneErrors = reactive({
   phone: '',
   verificationCode: '',
   agree: ''
@@ -52,15 +38,15 @@ const sendBtnText = ref('获取验证码');
 // 发送验证码
 const sendVerificationCode = () => {
   // 验证手机号
-  if (!phoneForm.phone.trim()) {
-    phoneErrors.phone = '请输入手机号';
+  if (!registerForm.phone.trim()) {
+    formErrors.phone = '请输入手机号';
     return;
   }
   
   // 验证手机号格式
   const phoneRegex = /^1[3-9]\d{9}$/;
-  if (!phoneRegex.test(phoneForm.phone)) {
-    phoneErrors.phone = '请输入正确的手机号';
+  if (!phoneRegex.test(registerForm.phone)) {
+    formErrors.phone = '请输入正确的手机号';
     return;
   }
   
@@ -70,7 +56,7 @@ const sendVerificationCode = () => {
   sendBtnText.value = `${countdown.value}秒后重新获取`;
   
   // 模拟发送验证码
-  console.log('向手机号发送验证码：', phoneForm.phone);
+  console.log('向手机号发送验证码：', registerForm.phone);
   
   // 倒计时
   const timer = setInterval(() => {
@@ -85,91 +71,66 @@ const sendVerificationCode = () => {
   }, 1000);
 };
 
-// 账号密码注册
-const handleAccountRegister = () => {
+// 合并注册处理
+const handleRegister = () => {
   // 重置错误信息
-  Object.keys(accountErrors).forEach(key => {
-    accountErrors[key as keyof typeof accountErrors] = '';
+  Object.keys(formErrors).forEach(key => {
+    formErrors[key as keyof typeof formErrors] = '';
   });
   
   // 验证用户名
-  if (!accountForm.username.trim()) {
-    accountErrors.username = '请输入用户名';
+  if (!registerForm.username.trim()) {
+    formErrors.username = '请输入用户名';
     return;
   }
   
   // 验证密码
-  if (!accountForm.password.trim()) {
-    accountErrors.password = '请输入密码';
+  if (!registerForm.password.trim()) {
+    formErrors.password = '请输入密码';
     return;
   }
   
-  if (accountForm.password.length < 6) {
-    accountErrors.password = '密码长度不能少于6位';
+  if (registerForm.password.length < 6) {
+    formErrors.password = '密码长度不能少于6位';
     return;
   }
   
   // 验证确认密码
-  if (accountForm.password !== accountForm.confirmPassword) {
-    accountErrors.confirmPassword = '两次输入的密码不一致';
+  if (registerForm.password !== registerForm.confirmPassword) {
+    formErrors.confirmPassword = '两次输入的密码不一致';
     return;
   }
-  
-  // 验证同意协议
-  if (!accountForm.agree) {
-    accountErrors.agree = '请同意服务条款和隐私政策';
-    return;
-  }
-  
-  // 模拟账号密码注册
-  console.log('账号密码注册：', accountForm);
-  
-  // 模拟注册成功
-  router.push('/p/login');
-};
-
-// 手机号注册
-const handlePhoneRegister = () => {
-  // 重置错误信息
-  Object.keys(phoneErrors).forEach(key => {
-    phoneErrors[key as keyof typeof phoneErrors] = '';
-  });
   
   // 验证手机号
-  if (!phoneForm.phone.trim()) {
-    phoneErrors.phone = '请输入手机号';
+  if (!registerForm.phone.trim()) {
+    formErrors.phone = '请输入手机号';
     return;
   }
   
   // 验证手机号格式
   const phoneRegex = /^1[3-9]\d{9}$/;
-  if (!phoneRegex.test(phoneForm.phone)) {
-    phoneErrors.phone = '请输入正确的手机号';
+  if (!phoneRegex.test(registerForm.phone)) {
+    formErrors.phone = '请输入正确的手机号';
     return;
   }
   
   // 验证验证码
-  if (!phoneForm.verificationCode.trim()) {
-    phoneErrors.verificationCode = '请输入验证码';
+  if (!registerForm.verificationCode.trim()) {
+    formErrors.verificationCode = '请输入验证码';
     return;
   }
   
   // 验证同意协议
-  if (!phoneForm.agree) {
-    phoneErrors.agree = '请同意服务条款和隐私政策';
+  if (!registerForm.agree) {
+    formErrors.agree = '请同意服务条款和隐私政策';
     return;
   }
   
-  // 模拟手机号注册
-  console.log('手机号注册：', phoneForm);
+  // 模拟注册
+  console.log('用户注册信息：', registerForm);
   
   // 模拟注册成功
   router.push('/p/login');
-};
-
-// 切换注册类型
-const switchRegisterType = (type: 'account' | 'phone') => {
-  registerType.value = type;
 };
 
 // 跳转到登录页面
@@ -183,35 +144,17 @@ const goToLogin = () => {
     <div class="register-box">
       <h1 class="register-title">用户注册</h1>
       
-      <div class="register-tabs">
-        <div 
-          class="tab-item" 
-          :class="{ active: registerType === 'account' }"
-          @click="switchRegisterType('account')"
-        >
-          账号密码注册
-        </div>
-        <div 
-          class="tab-item" 
-          :class="{ active: registerType === 'phone' }"
-          @click="switchRegisterType('phone')"
-        >
-          手机号注册
-        </div>
-      </div>
-      
-      <!-- 账号密码注册表单 -->
-      <div v-if="registerType === 'account'" class="form-container">
+      <div class="form-container">
         <div class="form-group">
           <label for="username">用户名</label>
           <input 
             type="text" 
             id="username" 
-            v-model="accountForm.username"
+            v-model="registerForm.username"
             placeholder="请输入用户名"
-            @focus="accountErrors.username = ''"
+            @focus="formErrors.username = ''"
           />
-          <div class="error-message" v-if="accountErrors.username">{{ accountErrors.username }}</div>
+          <div class="error-message" v-if="formErrors.username">{{ formErrors.username }}</div>
         </div>
         
         <div class="form-group">
@@ -219,11 +162,11 @@ const goToLogin = () => {
           <input 
             type="password" 
             id="password" 
-            v-model="accountForm.password"
+            v-model="registerForm.password"
             placeholder="请输入密码"
-            @focus="accountErrors.password = ''"
+            @focus="formErrors.password = ''"
           />
-          <div class="error-message" v-if="accountErrors.password">{{ accountErrors.password }}</div>
+          <div class="error-message" v-if="formErrors.password">{{ formErrors.password }}</div>
         </div>
         
         <div class="form-group">
@@ -231,39 +174,23 @@ const goToLogin = () => {
           <input 
             type="password" 
             id="confirm-password" 
-            v-model="accountForm.confirmPassword"
+            v-model="registerForm.confirmPassword"
             placeholder="请再次输入密码"
-            @focus="accountErrors.confirmPassword = ''"
+            @focus="formErrors.confirmPassword = ''"
           />
-          <div class="error-message" v-if="accountErrors.confirmPassword">{{ accountErrors.confirmPassword }}</div>
+          <div class="error-message" v-if="formErrors.confirmPassword">{{ formErrors.confirmPassword }}</div>
         </div>
         
-        <div class="form-agreement">
-          <input 
-            type="checkbox" 
-            id="agree-account" 
-            v-model="accountForm.agree"
-            @change="accountErrors.agree = ''"
-          >
-          <label for="agree-account">我已阅读并同意<a href="javascript:void(0)">服务条款</a>和<a href="javascript:void(0)">隐私政策</a></label>
-          <div class="error-message" v-if="accountErrors.agree">{{ accountErrors.agree }}</div>
-        </div>
-        
-        <button class="register-button" @click="handleAccountRegister">注册</button>
-      </div>
-      
-      <!-- 手机号注册表单 -->
-      <div v-if="registerType === 'phone'" class="form-container">
         <div class="form-group">
           <label for="phone">手机号</label>
           <input 
             type="text" 
             id="phone" 
-            v-model="phoneForm.phone"
+            v-model="registerForm.phone"
             placeholder="请输入手机号"
-            @focus="phoneErrors.phone = ''"
+            @focus="formErrors.phone = ''"
           />
-          <div class="error-message" v-if="phoneErrors.phone">{{ phoneErrors.phone }}</div>
+          <div class="error-message" v-if="formErrors.phone">{{ formErrors.phone }}</div>
         </div>
         
         <div class="form-group">
@@ -272,9 +199,9 @@ const goToLogin = () => {
             <input 
               type="text" 
               id="verification-code" 
-              v-model="phoneForm.verificationCode"
+              v-model="registerForm.verificationCode"
               placeholder="请输入验证码"
-              @focus="phoneErrors.verificationCode = ''"
+              @focus="formErrors.verificationCode = ''"
             />
             <button 
               class="verification-code-button" 
@@ -284,21 +211,21 @@ const goToLogin = () => {
               {{ sendBtnText }}
             </button>
           </div>
-          <div class="error-message" v-if="phoneErrors.verificationCode">{{ phoneErrors.verificationCode }}</div>
+          <div class="error-message" v-if="formErrors.verificationCode">{{ formErrors.verificationCode }}</div>
         </div>
         
         <div class="form-agreement">
           <input 
             type="checkbox" 
-            id="agree-phone" 
-            v-model="phoneForm.agree"
-            @change="phoneErrors.agree = ''"
+            id="agree" 
+            v-model="registerForm.agree"
+            @change="formErrors.agree = ''"
           >
-          <label for="agree-phone">我已阅读并同意<a href="javascript:void(0)">服务条款</a>和<a href="javascript:void(0)">隐私政策</a></label>
-          <div class="error-message" v-if="phoneErrors.agree">{{ phoneErrors.agree }}</div>
+          <label for="agree">我已阅读并同意<a href="javascript:void(0)">服务条款</a>和<a href="javascript:void(0)">隐私政策</a></label>
+          <div class="error-message" v-if="formErrors.agree">{{ formErrors.agree }}</div>
         </div>
         
-        <button class="register-button" @click="handlePhoneRegister">注册</button>
+        <button class="register-button" @click="handleRegister">注册</button>
       </div>
       
       <div class="login-link">
@@ -330,27 +257,6 @@ const goToLogin = () => {
   text-align: center;
   margin-bottom: 30px;
   color: #333;
-}
-
-.register-tabs {
-  display: flex;
-  border-bottom: 1px solid #dcdfe6;
-  margin-bottom: 20px;
-}
-
-.tab-item {
-  flex: 1;
-  text-align: center;
-  padding: 12px 0;
-  cursor: pointer;
-  font-size: 14px;
-  color: #606266;
-  transition: all 0.3s;
-}
-
-.tab-item.active {
-  color: #409eff;
-  border-bottom: 2px solid #409eff;
 }
 
 .form-container {
