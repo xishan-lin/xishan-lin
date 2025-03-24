@@ -1,9 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
-// import HomeView from '../views/HomeView.vue'
 
 // 
 import pc from './pc'
-import mobile from './mobile'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -13,23 +11,24 @@ const router = createRouter({
       redirect: '/p'
     },
     ...pc,
-    ...mobile
   ]
 })
 
 /**
  * 全局路由守卫，路由跳转前的拦截
  */
-// router.beforeEach((to, from, next) => {
-//   // 登录校验
-//   if (to.name !== 'login' &&!localStorage.getItem('token')) {
-//     next({
-//       name: 'login'
-//     })
-//   } else {
-//     next()
-//   }
-// })
+router.beforeEach((to, from, next) => {
+  // 登录相关页面不需要验证
+  const publicPages = ['/p/login', '/p/register'];
+  const authRequired = !publicPages.includes(to.path);
+  
+  // 需要登录且未登录时重定向到登录页
+  if (authRequired && !localStorage.getItem('token')) {
+    next({ path: '/p/login' });
+  } else {
+    next();
+  }
+})
 
 // 路由切换时
 router.afterEach((to, from) => {
