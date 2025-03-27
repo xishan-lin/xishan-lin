@@ -42,7 +42,7 @@ const handleLogin = () => {
 
   // 模拟登录成功
   localStorage.setItem('token', 'demo-token')
-  router.push('/p') // 登录成功后跳转到首页
+  router.push('/') // 登录成功后跳转到首页
 }
 
 // 跳转到注册页面

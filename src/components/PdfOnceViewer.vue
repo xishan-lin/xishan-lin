@@ -6,15 +6,12 @@ export default {
 
 <script setup lang="ts">
 import { ref, onMounted, nextTick } from 'vue'
-import type { ComponentSize } from 'element-plus'
 // pdfjs-dist
 import * as PDFJS from 'pdfjs-dist/legacy/build/pdf.mjs'
 import * as PdfWorker from 'pdfjs-dist/legacy/build/pdf.worker.mjs'
 
 //-----------
 const currentPage3 = ref(1)
-const pageSize3 = ref(100)
-const size = ref<ComponentSize>('default')
 const background = ref(false)
 const disabled = ref(false)
 const handleSizeChange = (val: number) => {
@@ -113,7 +110,7 @@ const renderPage = (num: any) => {
   </el-scrollbar>
 
   <div class="bottom-container">
-    <el-pagination v-model:current-page="currentPage3" v-model:page-size="pageSize3" :size="size" :disabled="disabled"
+    <el-pagination v-model:current-page="currentPage3" :disabled="disabled"
       :background="background" layout="prev, pager, next, jumper" :total="pdfPages" @size-change="handleSizeChange"
       @current-change="handleCurrentChange" />
   </div>

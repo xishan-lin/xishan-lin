@@ -1,19 +1,4 @@
-const pc = [
-  {
-    path: '/p',
-    name: 'p',
-		component: () => import('@/views/index.vue')
-  },
-  {
-    path: '/p/login',
-    name: 'pc-login',
-    component: () => import('@/views/auth/LoginView/index.vue')
-  },
-  {
-    path: '/p/register',
-    name: 'pc-register',
-    component: () => import('@/views/auth/RegisterView/index.vue')
-  },
+const router = [
   {
     path: '/demo',
     name: 'demo',
@@ -36,4 +21,4 @@ const pc = [
   }
 ]
 
-export default pc;
+export default router;

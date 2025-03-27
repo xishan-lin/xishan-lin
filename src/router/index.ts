@@ -1,16 +1,22 @@
 import { createRouter, createWebHistory } from 'vue-router'
-
-// 
-import pc from './pc'
+//
+import auth from './auth'
+import demo from './demo'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
-      redirect: '/p'
+      redirect: '/index'
     },
-    ...pc,
+    {
+      path: '/index',
+      name: 'index',
+      component: () => import('@/views/index.vue')
+    },
+    ...auth,
+    ...demo
   ]
 })
 
@@ -19,21 +25,21 @@ const router = createRouter({
  */
 router.beforeEach((to, from, next) => {
   // 登录相关页面不需要验证
-  const publicPages = ['/p/login', '/p/register'];
-  const authRequired = !publicPages.includes(to.path);
-  
+  const publicPages = ['/login', '/register']
+  const authRequired = !publicPages.includes(to.path)
+
   // 需要登录且未登录时重定向到登录页
   if (authRequired && !localStorage.getItem('token')) {
-    next({ path: '/p/login' });
+    next({ path: '/login' })
   } else {
-    next();
+    next()
   }
 })
 
 // 路由切换时
 router.afterEach((to, from) => {
-  console.log('router from: ', from);
-  console.log('router to: ', to);
+  console.log('router from: ', from)
+  console.log('router to: ', to)
 })
 
 export default router

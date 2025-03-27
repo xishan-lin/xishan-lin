@@ -6,7 +6,7 @@ const router = useRouter()
 
 onMounted(() => {
   if (router.currentRoute.value.path === '/') {
-    router.replace('/p')
+    router.replace('/')
   }
 })
 
