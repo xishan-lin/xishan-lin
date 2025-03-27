@@ -39,7 +39,7 @@ const handleDocsClick = (item: any) => {
 <template>
   <div class="left-view">
     <!-- 新闻模块 -->
-    <div class="news-section">
+    <div class="module-card news-section">
       <div class="section-header">
         <h3>最新动态</h3>
         <el-link type="primary" href="/news">更多</el-link>
@@ -54,7 +54,7 @@ const handleDocsClick = (item: any) => {
     </div>
 
     <!-- 文档模块 -->
-    <div class="docs-section">
+    <div class="module-card docs-section">
       <div class="section-header">
         <h3>文档中心</h3>
         <el-link type="primary" href="/docs">更多</el-link>
@@ -76,10 +76,15 @@ const handleDocsClick = (item: any) => {
 
 <style scoped lang="scss">
 .left-view {
+  padding: 0px;
+}
+
+.module-card {
   padding: 16px;
   border-radius: 4px;
   background-color: #fff;
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+  margin-bottom: 24px;
 }
 
 .section-header {
@@ -130,6 +135,6 @@ const handleDocsClick = (item: any) => {
 }
 
 .docs-section {
-  margin-top: 20px;
+  // 移除margin-top，因为已经通过module-card的margin-bottom提供了间距
 }
 </style> 

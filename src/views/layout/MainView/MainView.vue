@@ -8,15 +8,36 @@ export default {
 import LeftView from './LeftView.vue'
 import RightView from './RightView.vue'
 
-const handleCarouselClick = (index: number) => {
-  console.log('AAAAAAAA = ', index)
+const carouselList = [
+  {
+    title: '系统重要更新公告',
+    imgsrc: 'https://img.yzcdn.cn/vant/apple-3.jpeg',
+    date: '2023-08-15',
+    link: '/news/1'
+  },
+  {
+    title: '新功能发布: 数据可视化模块上线',
+    imgsrc: 'https://img.yzcdn.cn/vant/apple-2.jpeg',
+    date: '2023-08-10',
+    link: '/news/2'
+  },
+  {
+    title: '关于系统维护的通知',
+    imgsrc: 'https://img.yzcdn.cn/vant/apple-1.jpeg',
+    date: '2023-08-05',
+    link: '/news/3'
+  }
+]
+
+const handleCarouselClick = (item: any) => {
+  console.log('AAAAAAAA = ', item)
 }
 </script>
 
 <template>
-  <div style="width: 100%; padding: 0 20px; margin-top: 20px;">
+  <div style="width: 100%; padding: 0 20px; margin-top: 20px">
     <el-carousel :interval="4000" type="card" height="200px">
-      <el-carousel-item v-for="item in 6" :key="item" @click="handleCarouselClick(item)">
+      <el-carousel-item v-for="item in carouselList" :key="item" @click="handleCarouselClick(item)">
         <h3 text="2xl" justify="center">{{ item }}</h3>
         <p class="title">AAA</p>
       </el-carousel-item>
@@ -74,7 +95,6 @@ const handleCarouselClick = (index: number) => {
   }
 }
 </style>
-
 
 <style scoped lang="scss">
 .el-carousel__item h3 {

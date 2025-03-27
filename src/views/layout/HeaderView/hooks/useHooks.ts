@@ -44,33 +44,7 @@ export default function useHooks() {
     }
   }
 
-  const handleChangeLanguage = (isZh: boolean) => {
-    if (isZh) {
-      changeLanguage('zh')
-      ElMessage({
-        message: '切换为中文! Success!!!》',
-        type: 'success',
-        offset: 50,
-        duration: 1500
-      })
-    } else {
-      changeLanguage('en')
-      ElMessage({
-        message: 'Switch to English. Success!!!',
-        type: 'success',
-        offset: 50,
-        duration: 1500
-      })
-    }
-  }
-
-  const changeTheme = (e: any) => {
-    console.log('changeTheme', e)
-  }
-
   return {
-    handleDropdownCommand,
-    handleChangeLanguage,
-    changeTheme
+    handleDropdownCommand
   }
 }
