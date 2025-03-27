@@ -6,15 +6,14 @@ export default {
 
 <script setup lang="ts">
 import { onMounted, ref, watch } from 'vue'
-import { ElMessage } from 'element-plus'
 // router
 import { useRoute, useRouter } from 'vue-router'
 // hooks
 import useHooks from './hooks/useHooks'
 // language
-import useLanguage from '@/language/hooks/useLanguage';
+import useLanguage from '@/language/hooks/useLanguage'
 //
-const { handleDropdownCommand, handleChangeLanguage, changeTheme } = useHooks();
+const { handleDropdownCommand, handleChangeLanguage } = useHooks()
 const { currentLocale } = useLanguage()
 
 // router
@@ -30,59 +29,51 @@ const srcList = [
   'https://fuss10.elemecdn.com/9/bb/e27858e973f5d7d3904835f46abbdjpeg.jpeg',
   'https://fuss10.elemecdn.com/d/e6/c4d93a3805b3ce3f323f7974e6f78jpeg.jpeg',
   'https://fuss10.elemecdn.com/3/28/bbf893f792f03a54408b3b7a7ebf0jpeg.jpeg',
-  'https://fuss10.elemecdn.com/2/11/6535bcfb26e4c79b48ddde44f4b6fjpeg.jpeg',
+  'https://fuss10.elemecdn.com/2/11/6535bcfb26e4c79b48ddde44f4b6fjpeg.jpeg'
 ]
 
 const currentLanguageName = ref('中文')
 watch(currentLocale, (newValue: any) => {
-  newValue === 'zh' ? currentLanguageName.value = '中文' : currentLanguageName.value = 'English';
-  newValue === 'zh' ? switchValue.value = true : switchValue.value = false;
+  newValue === 'zh' ? (currentLanguageName.value = '中文') : (currentLanguageName.value = 'English')
+  newValue === 'zh' ? (switchValue.value = true) : (switchValue.value = false)
 })
 
 onMounted(() => {
   //
-  console.log('currentIndex', currentLocale.value);
+  console.log('currentIndex', currentLocale.value)
 })
 
-const showLinks = () => {
-  router.push('/demo')
-}
-
-const avatarClick = () => {
-
-}
+const avatarClick = () => {}
 
 const openPDFViewr = (command: string) => {
-  console.log(command);
-  console.log(route, router);
+  console.log(command)
+  console.log(route, router)
   if (command === '五') {
-    router.push('/pdf-all-view');
+    router.push('/pdf-all-view')
   } else if (command === '六') {
     // 打开本地PDF样本
-    // window.open(import.meta.env.VITE_BASE_API_URL + "pdfjs-4.8.69-dist/web/viewer.html");
-    window.open(import.meta.env.BASE_URL + "pdfjs-4.8.69-dist/web/viewer.html");
+    window.open(import.meta.env.BASE_URL + 'pdfjs-4.8.69-dist/web/viewer.html')
   } else if (command === '七') {
     // 打开远程PDF样本
-    window.open(import.meta.env.VITE_BASE_API_URL + "pdfjs-4.8.69-dist/web/viewer.html?file=https://raw.githubusercontent.com/xishan-lin/resourcesRepo/main/genealogy/莆田林氏西山本支族谱(卷一).pdf");
+    window.open(
+      import.meta.env.VITE_BASE_API_URL +
+        'pdfjs-4.8.69-dist/web/viewer.html?file=https://raw.githubusercontent.com/xishan-lin/resourcesRepo/main/genealogy/莆田林氏西山本支族谱(卷一).pdf'
+    )
   } else {
-    router.push('/pdf-once-view');
+    router.push('/pdf-once-view')
   }
 }
-
 </script>
 
 <template>
   <div class="main-view">
     <div class="left-view">
-      <img src="@/assets/images/common/logo.svg" alt="">
+      <img src="@/assets/images/common/logo.svg" alt="" />
       <div class="title">
         {{ $t('title') }}
       </div>
     </div>
     <div class="right-view">
-
-      <el-button @click="showLinks" link>链接</el-button>
-
       <el-dropdown class="el-dropdown-cls" @command="openPDFViewr">
         <span class="el-dropdown-link">
           {{ $t('navi.books') }}
@@ -149,10 +140,20 @@ const openPDFViewr = (command: string) => {
       </el-dropdown>
 
       <!-- avatar -->
-      <el-image class="avatar-cls" :src="srcList[0]" :zoom-rate="1.2" :max-scale="7" :min-scale="0.2"
-        :preview-src-list="srcList" :initial-index="4" :z-index=9999 :preview-teleported=true fit="cover"
-        @click="avatarClick" circle />
-
+      <el-image
+        class="avatar-cls"
+        :src="srcList[0]"
+        :zoom-rate="1.2"
+        :max-scale="7"
+        :min-scale="0.2"
+        :preview-src-list="srcList"
+        :initial-index="4"
+        :z-index="9999"
+        :preview-teleported="true"
+        fit="cover"
+        @click="avatarClick"
+        circle
+      />
     </div>
   </div>
 </template>
@@ -177,7 +178,6 @@ const openPDFViewr = (command: string) => {
 
   padding: 0 20px;
   background-color: #f5f5f5;
-
 
   .left-view {
     display: flex;

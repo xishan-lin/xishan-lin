@@ -2,7 +2,6 @@ import { onMounted } from 'vue'
 import { ElNotification, ElMessage } from 'element-plus'
 // i18n
 import useLanguage from '@/language/hooks/useLanguage'
-import { useThemeStore } from '@/stores/themeStore'
 //
 const { changeLanguage } = useLanguage()
 
