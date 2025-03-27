@@ -5,41 +5,75 @@ export default {
 </script>
 
 <script setup lang="ts">
+import LeftView from './LeftView.vue'
+import RightView from './RightView.vue'
 
 const handleCarouselClick = (index: number) => {
   console.log('AAAAAAAA = ', index)
 }
-
 </script>
 
 <template>
-  <div>
+  <div style="width: 100%; padding: 0 20px; margin-top: 20px;">
     <el-carousel :interval="4000" type="card" height="200px">
       <el-carousel-item v-for="item in 6" :key="item" @click="handleCarouselClick(item)">
         <h3 text="2xl" justify="center">{{ item }}</h3>
-        <p class="title"> AAA </p>
+        <p class="title">AAA</p>
       </el-carousel-item>
     </el-carousel>
   </div>
 
+  <div class="main-view">
+    <!-- 左右布局容器 -->
+    <div class="main-container">
+      <!-- 左侧区域：新闻和文档链接 -->
+      <div class="left-section">
+        <LeftView />
+      </div>
 
-  <el-dropdown>
-    <span class="el-dropdown-link">
-      Dropdown List
-      <el-icon class="el-icon--right">
-        <arrow-down />
-      </el-icon>
-    </span>
-    <template #dropdown>
-      <el-dropdown-menu>
-        <el-dropdown-item command="日月">Action 1</el-dropdown-item>
-        <el-dropdown-item command="e">Action 2</el-dropdown-item>
-        <el-dropdown-item command="e">Action 3</el-dropdown-item>
-      </el-dropdown-menu>
-    </template>
-  </el-dropdown>
-
+      <!-- 右侧区域：页面入口列表 -->
+      <div class="right-section">
+        <RightView />
+      </div>
+    </div>
+  </div>
 </template>
+
+<style scoped lang="scss">
+.main-view {
+  width: 100%;
+  min-height: 600px;
+  padding: 20px 0;
+}
+
+.main-container {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  padding: 0 20px;
+}
+
+.left-section {
+  width: 300px;
+  flex-shrink: 0;
+}
+
+.right-section {
+  flex: 1;
+}
+
+/* 响应式布局 */
+@media screen and (max-width: 768px) {
+  .main-container {
+    flex-direction: column;
+  }
+
+  .left-section {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+}
+</style>
 
 
 <style scoped lang="scss">

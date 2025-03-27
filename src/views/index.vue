@@ -30,12 +30,9 @@ console.log('index : ', route, router)
 
       <!-- main-center -->
       <el-container class="main-center-cls">
-        <!-- <el-aside width="200px">Aside</el-aside> -->
         <el-main>
-          <!-- 跑马灯 -->
+          <!-- 主内容 -->
           <MainView />
-
-          <div class="aa" :style="{ width: '100px', height: '1500px', background: 'red' }">as</div>
         </el-main>
       </el-container>
 
