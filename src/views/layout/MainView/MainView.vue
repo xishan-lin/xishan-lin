@@ -7,28 +7,7 @@ export default {
 <script setup lang="ts">
 import LeftView from './LeftView.vue'
 import RightView from './RightView.vue'
-
-const carouselList = [
-  {
-    title: '系统重要更新公告',
-    imgsrc: 'https://img.yzcdn.cn/vant/apple-3.jpeg',
-    date: '2023-08-15',
-    link: '/news/1'
-  },
-  {
-    title: '新功能发布: 数据可视化模块上线',
-    imgsrc: 'https://img.yzcdn.cn/vant/apple-2.jpeg',
-    date: '2023-08-10',
-    link: '/news/2'
-  },
-  {
-    title: '关于系统维护的通知',
-    imgsrc: 'https://img.yzcdn.cn/vant/apple-1.jpeg',
-    date: '2023-08-05',
-    link: '/news/3'
-  }
-]
-
+import carouselData from '@/assets/data-ts/carousel-ts-json'
 const handleCarouselClick = (item: any) => {
   console.log('AAAAAAAA = ', item)
 }
@@ -37,9 +16,18 @@ const handleCarouselClick = (item: any) => {
 <template>
   <div style="width: 100%; padding: 0 20px; margin-top: 20px">
     <el-carousel :interval="4000" type="card" height="200px">
-      <el-carousel-item v-for="item in carouselList" :key="item" @click="handleCarouselClick(item)">
-        <h3 text="2xl" justify="center">{{ item }}</h3>
-        <p class="title">AAA</p>
+      <el-carousel-item
+        v-for="item in carouselData.dataList"
+        :key="item"
+        @click="handleCarouselClick(item)"
+      >
+        <div class="carousel-item-div">
+          <img :src="item.imgsrc" alt="" />
+          <div class="title-div">
+            <div class="title">{{ item.title }}</div>
+            <div class="date">{{ item.date }}</div>
+          </div>
+        </div>
       </el-carousel-item>
     </el-carousel>
   </div>
@@ -61,6 +49,46 @@ const handleCarouselClick = (item: any) => {
 </template>
 
 <style scoped lang="scss">
+.carousel-item-div {
+  width: 100%;
+  height: 100%;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .title-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    color: #fff;
+    font-weight: bold;
+
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+
+    .title {
+      font-size: 16px;
+      color: #fff;
+      font-weight: bold;
+      margin-left: 20px;
+    }
+
+    .date {
+      font-size: 12px;
+      color: #fff;
+      margin-right: 20px;
+    }
+  }
+}
+
 .main-view {
   width: 100%;
   min-height: 600px;

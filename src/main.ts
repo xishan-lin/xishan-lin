@@ -15,8 +15,13 @@ import 'element-plus/dist/index.css'
 // @element-plus/icons-vue
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 
-// import { loadEnv } from 'vite';
+// 导入数据
+import { data } from '@/assets/data-ts/test-ts-json'
+import pdfData from '@/assets/data-ts/pdf-ts-json'
+import carouselData from '@/assets/data-ts/carousel-ts-json'
+import testData from '@/assets/data-json/test-json'
 
+// import { loadEnv } from 'vite';
 
 const app = createApp(App)
 
@@ -25,12 +30,16 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
   app.component(key, component)
 }
 
-
+// 打印数据
+console.log('示例数据:', data)
+console.log('PDF数据:', pdfData)
+console.log('轮播图数据:', carouselData)
+console.log('测试数据:', testData)
+// 打印环境变量
 console.log('import.meta.env =', import.meta.env);
 console.log('import.meta.env.BASE_URL =', import.meta.env.BASE_URL);
 console.log('VITE_BASE_API_URL =', import.meta.env.VITE_BASE_API_URL);
 console.log('process.env.NODE_ENV =', import.meta.env.MODE);
-
 
 app.use(ElementPlus)
 app.use(createPinia())

@@ -7,7 +7,7 @@ export default {
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
-
+import mainListData from '@/assets/data-ts/main-list-ts-json'
 const router = useRouter()
 
 // 处理item点击事件，跳转到对应路由
@@ -17,87 +17,15 @@ const handleItemClick = (route: string) => {
 }
 
 // 模拟页面入口数据
-const pageEntries = ref([
-  {
-    id: 1,
-    title: '数据分析报表',
-    desc: '提供全面的数据可视化分析能力，帮助您快速洞察业务趋势和规律',
-    image: 'https://via.placeholder.com/120x80?text=数据分析',
-    date: '2023-08-15',
-    author: '张三',
-    route: '/data-analysis'
-  },
-  {
-    id: 2,
-    title: '项目管理工具',
-    desc: '高效的项目管理工具，协助团队规划、跟踪和管理各类项目进度',
-    image: 'https://via.placeholder.com/120x80?text=项目管理',
-    date: '2023-08-10',
-    author: '李四',
-    route: '/project-management'
-  },
-  {
-    id: 3,
-    title: '客户信息管理',
-    desc: '全方位管理客户信息，提高客户维护效率和服务质量',
-    image: 'https://via.placeholder.com/120x80?text=客户管理',
-    date: '2023-08-05',
-    author: '王五',
-    route: '/customer-management'
-  },
-  {
-    id: 4,
-    title: '文档协作平台',
-    desc: '实时多人协作的文档编辑平台，提升团队协作效率',
-    image: 'https://via.placeholder.com/120x80?text=文档协作',
-    date: '2023-07-30',
-    author: '赵六',
-    route: '/document-collaboration'
-  },
-  {
-    id: 5,
-    title: '系统设置中心',
-    desc: '集中管理系统各项设置，个性化配置系统功能和外观',
-    image: 'https://via.placeholder.com/120x80?text=系统设置',
-    date: '2023-07-25',
-    author: '钱七',
-    route: '/system-settings'
-  },
-  {
-    id: 6,
-    title: '系统设置中心',
-    desc: '集中管理系统各项设置，个性化配置系统功能和外观',
-    image: 'https://via.placeholder.com/120x80?text=系统设置',
-    date: '2023-07-25',
-    author: '钱七',
-    route: '/system-settings'
-  },
-  {
-    id: 7,
-    title: '系统设置中心',
-    desc: '集中管理系统各项设置，个性化配置系统功能和外观',
-    image: 'https://via.placeholder.com/120x80?text=系统设置',
-    date: '2023-07-25',
-    author: '钱七',
-    route: '/system-settings'
-  },
-  {
-    id: 8,
-    title: '系统设置中心',
-    desc: '集中管理系统各项设置，个性化配置系统功能和外观',
-    image: 'https://via.placeholder.com/120x80?text=系统设置',
-    date: '2023-07-25',
-    author: '钱七',
-    route: '/system-settings'
-  }
-])
+const pageEntries = ref(mainListData.dataList)
 </script>
 
 <template>
   <div class="right-view">
     <div class="section-header">
-      <h2>功能导航</h2>
+      <h2>大事记</h2>
     </div>
+
     <el-divider />
 
     <div class="page-entries">
@@ -106,11 +34,14 @@ const pageEntries = ref([
         :key="item.id"
         class="entry-card"
         shadow="hover"
-        @click="handleItemClick(item.route)"
+        @click="handleItemClick(item.link)"
       >
         <div class="card-content">
+          <div class="id-div">
+            <span class="id-text">{{ item.id }}</span>
+          </div>
           <div class="card-image">
-            <el-image :src="item.image" fit="cover"></el-image>
+            <el-image :src="item.imgSrc" fit="cover"></el-image>
           </div>
           <div class="card-info">
             <h3 class="card-title">{{ item.title }}</h3>
@@ -144,7 +75,7 @@ const pageEntries = ref([
   h2 {
     font-size: 20px;
     color: #303133;
-    margin: 0 0 10px 0;
+    margin: 0 0 0 0;
   }
 }
 
@@ -218,6 +149,23 @@ const pageEntries = ref([
 
   .el-icon {
     margin-right: 4px;
+  }
+}
+
+.id-div {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 8px;
+  background-color: #f5f7fa;
+  border-radius: 4px;
+  margin-bottom: 8px;
+  width: fit-content;
+
+  .id-text {
+    font-size: 12px;
+    color: #409eff;
+    font-weight: 600;
   }
 }
 </style>
