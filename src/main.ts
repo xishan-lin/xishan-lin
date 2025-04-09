@@ -19,7 +19,7 @@ import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 import { data } from '@/assets/data-ts/test-ts-json'
 import pdfData from '@/assets/data-ts/pdf-ts-json'
 import carouselData from '@/assets/data-ts/carousel-ts-json'
-import testData from '@/assets/data-json/test-json'
+import testData from '@/assets/data-json/test-json.json'
 
 // import { loadEnv } from 'vite';
 
