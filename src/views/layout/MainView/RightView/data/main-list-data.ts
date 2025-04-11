@@ -8,7 +8,7 @@ export default {
       date: "2023-08-15",
       link: "/news/1",
       fileSrc: "/news/1.md",
-      imgSrc: "https://raw.githubusercontent.com/xishan-lin/resourcesRepo/main/family-party/2021/001.JPG"
+      imgSrc: "https://cdn.jsdelivr.net/gh/xishan-lin/resourcesRepo@main/family-party/2021/001.jpg"
     },
     {
       id: 2,
@@ -18,7 +18,7 @@ export default {
       date: "2023-08-10",
       link: "/news/2",
       fileSrc: "/news/2.md",
-      imgSrc: "https://raw.githubusercontent.com/xishan-lin/resourcesRepo/main/family-party/2021/002.JPG"
+      imgSrc: "https://cdn.jsdelivr.net/gh/xishan-lin/resourcesRepo@main/family-party/2021/002.jpg"
     },
     {
       id: 3,
@@ -28,7 +28,7 @@ export default {
       date: "2023-08-05",
       link: "/news/3",
       fileSrc: "/news/3.md",
-      imgSrc: "https://raw.githubusercontent.com/xishan-lin/resourcesRepo/main/family-party/2021/003.JPG"
+      imgSrc: "https://raw.githubusercontent.com/xishan-lin/resourcesRepo/main/family-party/2021/003.jpg"
     },
     {
       id: 4,
@@ -38,7 +38,7 @@ export default {
       date: "2023-08-15",
       link: "/news/1",
       fileSrc: "/news/1.md",
-      imgSrc: "https://raw.githubusercontent.com/xishan-lin/resourcesRepo/main/family-party/2021/001.JPG"
+      imgSrc: "https://cdn.jsdelivr.net/gh/xishan-lin/resourcesRepo@main/family-party/2021/001.jpg"
     },
     {
       id: 5,
@@ -48,7 +48,7 @@ export default {
       date: "2023-08-10",
       link: "/news/2",
       fileSrc: "/news/2.md",
-      imgSrc: "https://raw.githubusercontent.com/xishan-lin/resourcesRepo/main/family-party/2021/002.JPG"
+      imgSrc: "https://cdn.jsdelivr.net/gh/xishan-lin/resourcesRepo@main/family-party/2021/002.jpg"
     },
     {
       id: 6,
@@ -58,7 +58,7 @@ export default {
       date: "2023-08-15",
       link: "/news/1",
       fileSrc: "/news/1.md",
-      imgSrc: "https://raw.githubusercontent.com/xishan-lin/resourcesRepo/main/family-party/2021/001.JPG"
+      imgSrc: "https://cdn.jsdelivr.net/gh/xishan-lin/resourcesRepo@main/family-party/2021/001.jpg"
     },
     {
       id: 7,
@@ -68,7 +68,7 @@ export default {
       date: "2023-08-10",
       link: "/news/2",
       fileSrc: "/news/2.md",
-      imgSrc: "https://raw.githubusercontent.com/xishan-lin/resourcesRepo/main/family-party/2021/002.JPG"
+      imgSrc: "https://cdn.jsdelivr.net/gh/xishan-lin/resourcesRepo@main/family-party/2021/002.jpg"
     },
     {
       id: 8,
@@ -78,7 +78,7 @@ export default {
       date: "2023-08-15",
       link: "/news/1",
       fileSrc: "/news/1.md",
-      imgSrc: "https://raw.githubusercontent.com/xishan-lin/resourcesRepo/main/family-party/2021/001.JPG"
+      imgSrc: "https://cdn.jsdelivr.net/gh/xishan-lin/resourcesRepo@main/family-party/2021/001.jpg"
     }
   ]
 }

@@ -7,7 +7,8 @@ export default {
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
-import mainListData from '@/assets/data-ts/main-list-ts-json'
+import mainListData from './data/main-list-data'
+
 const router = useRouter()
 
 // 处理item点击事件，跳转到对应路由
@@ -23,7 +24,7 @@ const pageEntries = ref(mainListData.dataList)
 <template>
   <div class="right-view">
     <div class="section-header">
-      <h2>大事记</h2>
+      <h2>最新动态</h2>
     </div>
 
     <el-divider />
@@ -169,3 +170,4 @@ const pageEntries = ref(mainListData.dataList)
   }
 }
 </style>
+@/views/layout/MainView/MainView/data/main-list-ts-json

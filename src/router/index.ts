@@ -30,7 +30,9 @@ router.beforeEach((to, from, next) => {
 
   // 需要登录且未登录时重定向到登录页
   if (authRequired && !localStorage.getItem('token')) {
-    next({ path: '/login' })
+    // 暂不用注册页面
+    // next({ path: '/login' })
+    next()
   } else {
     next()
   }

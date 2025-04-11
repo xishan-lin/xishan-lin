@@ -5,9 +5,10 @@ export default {
 </script>
 
 <script setup lang="ts">
-import LeftView from './LeftView.vue'
-import RightView from './RightView.vue'
-import carouselData from '@/assets/data-ts/carousel-ts-json'
+import LeftView from '../LeftView/LeftView.vue'
+import RightView from '../RightView/RightView.vue'
+import carouselData from './data/carousel-data'
+
 const handleCarouselClick = (item: any) => {
   console.log('AAAAAAAA = ', item)
 }
@@ -141,3 +142,4 @@ const handleCarouselClick = (item: any) => {
   background-color: #d3dce6;
 }
 </style>
+@/views/layout/MainView/MainView/carousel-ts-json

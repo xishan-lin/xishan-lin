@@ -8,7 +8,7 @@ export default {
 //
 import HeaderView from './layout/HeaderView/index.vue'
 import FooterView from './layout/FooterView/index.vue'
-import MainView from './layout/MainView/MainView.vue'
+import MainView from './layout/MainView/MainView/MainView.vue'
 //
 import { useRoute, useRouter } from 'vue-router'
 const route = useRoute()
