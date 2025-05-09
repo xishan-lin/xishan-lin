@@ -10,7 +10,11 @@
       node-key="id"
     >
       <template #default="{ data }">
-        <span>{{ data.label }}</span>
+        <div @click="showDetail(data)">
+          <span>{{ data.name }}</span>
+          <span v-if="data.specialChar">-{{ data.specialChar }}</span>
+        </div>
+        
       </template>
     </el-tree-v2>
   </div>
@@ -20,32 +24,42 @@
 import { ref, computed, onMounted, nextTick } from 'vue'
 import { ElTreeV2, ElInput } from 'element-plus'
 import { familyData } from './data/family-data'
+
 interface FamilyMember {
   id: number
-  label: string
-  children?: FamilyMember[]
+  name: string
+  formerName: string
+  avatar: string
+  specialChar?: string
+  isAlive: boolean
+  rank?: string
+  place: string
+  bornDate: string
+  deathDate: string
+  desc: string
+  spouse?: FamilyMember
+  children?: Partial<FamilyMember>[]
 }
 
 const filterText = ref('')
-
 // 示例家谱数据
 const treeData = ref<FamilyMember[]>(familyData)
 
 const defaultProps = {
   children: 'children',
-  label: 'label'
+  name: 'name'
 }
 
 // 递归过滤树
-function filterTree(data: FamilyMember[], filter: string): FamilyMember[] {
+function filterTree_name(data: FamilyMember[], filter: string): FamilyMember[] {
   if (!filter) return data
   return data
     .map((node) => {
-      if (node.label.includes(filter)) {
+      if (node.name.includes(filter)) {
         return node
       }
       if (node.children) {
-        const filteredChildren = filterTree(node.children, filter)
+        const filteredChildren = filterTree_name(node.children as FamilyMember[], filter)
         if (filteredChildren.length) {
           return { ...node, children: filteredChildren }
         }
@@ -55,7 +69,7 @@ function filterTree(data: FamilyMember[], filter: string): FamilyMember[] {
     .filter(Boolean) as FamilyMember[]
 }
 
-const filteredTreeData = computed(() => filterTree(treeData.value, filterText.value))
+const filteredTreeData = computed(() => filterTree_name(treeData.value, filterText.value))
 
 const treeHeight = ref(600)
 onMounted(() => {
@@ -69,6 +83,12 @@ onMounted(() => {
     treeHeight.value = total - filterHeight - marginBottom - 48
   })
 })
+
+
+const showDetail = (data: FamilyMember) => {
+  console.log(data)
+}
+
 </script>
 
 <style lang="scss" scoped>
