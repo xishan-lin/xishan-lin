@@ -59,6 +59,9 @@ const openPDFViewr = (command: string) => {
       </div>
     </div>
     <div class="right-view">
+
+      <el-button type="primary" @click="router.push('/family-tree')"> 家谱 </el-button>
+
       <el-dropdown class="el-dropdown-cls" @command="openPDFViewr">
         <span class="el-dropdown-link">
           {{ $t('navi.books') }}

@@ -7,13 +7,18 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: '/',
-      redirect: '/index'
+      path: '/index',
+      redirect: '/'
     },
     {
-      path: '/index',
+      path: '/',
       name: 'index',
       component: () => import('@/views/index.vue')
+    },
+    {
+      path: '/family-tree',
+      name: 'family-tree',
+      component: () => import('@/views/family-tree/FamilyTreeView.vue')
     },
     ...auth,
     ...demo

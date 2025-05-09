@@ -5,9 +5,6 @@ import { RouterView, useRouter } from 'vue-router'
 const router = useRouter()
 
 onMounted(() => {
-  if (router.currentRoute.value.path === '/') {
-    router.replace('/')
-  }
 })
 
 const themeMedia = window.matchMedia('(prefers-color-scheme: light)')
