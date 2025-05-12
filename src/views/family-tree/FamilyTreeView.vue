@@ -1,94 +1,91 @@
 <template>
   <div class="family-tree-view">
-    <el-input v-model="filterText" placeholder="输入姓名筛选" clearable class="filter-input" />
+    <div class="search-div">
+      <el-input
+        v-model="filterNameText"
+        placeholder="输入姓名筛选"
+        clearable
+        class="filter-input"
+      />
+      <el-input
+        v-model="filterRankText"
+        placeholder="输入排行筛选"
+        clearable
+        class="filter-input"
+      />
+    </div>
+
+    <div class="moreFilter">
+      <el-button class="more-btn" @click="showMoreFilter = !showMoreFilter" type="text">
+        更多筛选
+        <span :class="['arrow', showMoreFilter ? 'up' : 'down']"></span>
+      </el-button>
+      <div v-show="showMoreFilter" class="moreFilter-content">
+        <el-select v-model="generationType" placeholder="显示代数" class="generation-select">
+          <el-option
+            v-for="item in generationTypeOptions"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
+          />
+        </el-select>
+        <el-button size="small" @click="expandAll">全部展开</el-button>
+        <el-button size="small" @click="collapseAll">全部折叠</el-button>
+      </div>
+    </div>
+
     <el-tree-v2
+      ref="treeRef"
       :data="filteredTreeData"
       :props="defaultProps"
       :height="treeHeight"
-      :expand-on-click-node="false"
+      :expand-on-click-node="true"
       :highlight-current="true"
+      :indent="50"
       node-key="id"
     >
       <template #default="{ data }">
+        <div class="generation-info">
+          <span v-if="data.generationInAll" style="color: #409eff">[总:{{ data.generationInAll }}]</span>
+          <span v-if="data.generationInFuJian" style="color: #409eff">[入闽:{{ data.generationInFuJian }}]</span>
+          <span v-if="data.generationInPuTian" style="color: #409eff">[莆田:{{ data.generationInPuTian }}]</span>
+          <span v-if="data.generationInQueXia" style="color: #409eff">[阙下:{{ data.generationInQueXia }}]</span>
+          <span v-if="data.generationInXiShan" style="color: #409eff">[西山:{{ data.generationInXiShan }}]</span>
+        </div>
+
         <div @click="showDetail(data)">
           <span>{{ data.name }}</span>
           <span v-if="data.specialChar">-{{ data.specialChar }}</span>
         </div>
-        
       </template>
     </el-tree-v2>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { ref, computed, onMounted, nextTick } from 'vue'
-import { ElTreeV2, ElInput } from 'element-plus'
-import { familyData } from './data/family-data'
+import { ref } from 'vue'
+import { ElTreeV2, ElInput, ElButton } from 'element-plus'
+import { useFamilyTree } from './hooks/useFamilyTree'
 
-interface FamilyMember {
-  id: number
-  name: string
-  formerName: string
-  avatar: string
-  specialChar?: string
-  isAlive: boolean
-  rank?: string
-  place: string
-  bornDate: string
-  deathDate: string
-  desc: string
-  spouse?: FamilyMember
-  children?: Partial<FamilyMember>[]
-}
+const {
+  filterNameText,
+  filterRankText,
+  filteredTreeData,
+  treeHeight,
+  generationType,
+  generationTypeOptions,
+  treeRef,
+  expandAll,
+  collapseAll
+} = useFamilyTree()
 
-const filterText = ref('')
-// 示例家谱数据
-const treeData = ref<FamilyMember[]>(familyData)
+const defaultProps = {}
 
-const defaultProps = {
-  children: 'children',
-  name: 'name'
-}
-
-// 递归过滤树
-function filterTree_name(data: FamilyMember[], filter: string): FamilyMember[] {
-  if (!filter) return data
-  return data
-    .map((node) => {
-      if (node.name.includes(filter)) {
-        return node
-      }
-      if (node.children) {
-        const filteredChildren = filterTree_name(node.children as FamilyMember[], filter)
-        if (filteredChildren.length) {
-          return { ...node, children: filteredChildren }
-        }
-      }
-      return null
-    })
-    .filter(Boolean) as FamilyMember[]
-}
-
-const filteredTreeData = computed(() => filterTree_name(treeData.value, filterText.value))
-
-const treeHeight = ref(600)
-onMounted(() => {
-  nextTick(() => {
-    const total = window.innerHeight
-    const filterInput = document.querySelector('.filter-input') as HTMLElement
-    const filterHeight = filterInput?.offsetHeight || 0
-    const style = window.getComputedStyle(filterInput)
-    const marginBottom = parseFloat(style.marginBottom) || 0
-    // 减去顶部筛选栏高度 48为padding
-    treeHeight.value = total - filterHeight - marginBottom - 48
-  })
-})
-
-
-const showDetail = (data: FamilyMember) => {
+const showDetail = (data: any) => {
   console.log(data)
 }
 
+const showMoreFilter = ref(false)
 </script>
 
 <style lang="scss" scoped>
@@ -101,10 +98,56 @@ const showDetail = (data: FamilyMember) => {
   height: 100vh;
   box-sizing: border-box;
 
-  .filter-input {
-    margin-bottom: 16px;
-    width: 300px;
-    flex-shrink: 0;
+  .search-div {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    .filter-input {
+      width: 300px;
+      flex-shrink: 0;
+    }
+  }
+
+  .moreFilter {
+    position: relative;
+
+    .more-btn {
+      font-size: 14px;
+      color: #409eff;
+      cursor: pointer;
+      padding: 0 8px;
+      background: none;
+      border: none;
+      outline: none;
+      display: flex;
+      align-items: center;
+      .arrow {
+        display: inline-block;
+        margin-left: 4px;
+        border: solid #409eff;
+        border-width: 0 2px 2px 0;
+        padding: 3px;
+        transform: rotate(45deg);
+        transition: transform 0.2s;
+      }
+      .down {
+        transform: rotate(45deg);
+      }
+      .up {
+        transform: rotate(-135deg);
+      }
+    }
+    .moreFilter-content {
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+
+      .generation-select {
+        width: 100px;
+      }
+    }
   }
 
   .el-tree-v2 {
