@@ -18,7 +18,12 @@ const router = createRouter({
     {
       path: '/family-tree',
       name: 'family-tree',
-      component: () => import('@/views/family-tree/FamilyTreeView.vue')
+      component: () => import('@/views/family-tree/mainView/FamilyTreeView.vue')
+    },
+    {
+      path: '/family-tree-detail/:id',
+      name: 'family-tree-detail',
+      component: () => import('@/views/family-tree/personalDetailView/PersonalDetailView.vue')
     },
     ...auth,
     ...demo

@@ -16,7 +16,7 @@
     </div>
 
     <div class="moreFilter">
-      <el-button class="more-btn" @click="showMoreFilter = !showMoreFilter" type="text">
+      <el-button class="more-btn" @click="showMoreFilter = !showMoreFilter" text>
         更多筛选
         <span :class="['arrow', showMoreFilter ? 'up' : 'down']"></span>
       </el-button>
@@ -41,21 +41,33 @@
       :height="treeHeight"
       :expand-on-click-node="true"
       :highlight-current="true"
-      :indent="50"
+      :indent="40"
       node-key="id"
     >
       <template #default="{ data }">
-        <div class="generation-info">
-          <span v-if="data.generationInAll" style="color: #409eff">[总:{{ data.generationInAll }}]</span>
-          <span v-if="data.generationInFuJian" style="color: #409eff">[入闽:{{ data.generationInFuJian }}]</span>
-          <span v-if="data.generationInPuTian" style="color: #409eff">[莆田:{{ data.generationInPuTian }}]</span>
-          <span v-if="data.generationInQueXia" style="color: #409eff">[阙下:{{ data.generationInQueXia }}]</span>
-          <span v-if="data.generationInXiShan" style="color: #409eff">[西山:{{ data.generationInXiShan }}]</span>
-        </div>
+        <div class="tree-item-div">
+          <div @click="showDetail(data)">
+            <span>{{ data.name }}</span>
+            <span v-if="data.rankingChar"> - {{ data.rankingChar }}</span>
+          </div>
 
-        <div @click="showDetail(data)">
-          <span>{{ data.name }}</span>
-          <span v-if="data.specialChar">-{{ data.specialChar }}</span>
+          <div class="generation-info">
+            <span v-if="data.generationInAll" style="color: #409eff"
+              >[总:{{ data.generationInAll }}]</span
+            >
+            <span v-if="data.generationInFuJian" style="color: #409eff"
+              >[入闽:{{ data.generationInFuJian }}]</span
+            >
+            <span v-if="data.generationInPuTian" style="color: #409eff"
+              >[莆田:{{ data.generationInPuTian }}]</span
+            >
+            <span v-if="data.generationInQueXia" style="color: #409eff"
+              >[阙下:{{ data.generationInQueXia }}]</span
+            >
+            <span v-if="data.generationInXiShan" style="color: #409eff"
+              >[西山:{{ data.generationInXiShan }}]</span
+            >
+          </div>
         </div>
       </template>
     </el-tree-v2>
@@ -64,8 +76,11 @@
 
 <script lang="ts" setup>
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 import { ElTreeV2, ElInput, ElButton } from 'element-plus'
 import { useFamilyTree } from './hooks/useFamilyTree'
+
+const router = useRouter()
 
 const {
   filterNameText,
@@ -82,7 +97,7 @@ const {
 const defaultProps = {}
 
 const showDetail = (data: any) => {
-  console.log(data)
+  router.push({ name: 'family-tree-detail', params: { id: data.id } })
 }
 
 const showMoreFilter = ref(false)
@@ -150,9 +165,11 @@ const showMoreFilter = ref(false)
     }
   }
 
-  .el-tree-v2 {
-    flex: 1 1 0%;
-    min-height: 0;
+  .tree-item-div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    column-gap: 16px;
   }
 }
 </style>

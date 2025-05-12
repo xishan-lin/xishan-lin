@@ -4,6 +4,8 @@ export const familyXishanData = [
     name: '祖父', // 姓名
     formerName: '祖父', // 曾用名
     gender: '男', // 性别
+    phone: ['13800138000', '0514-88888888'], // 电话
+    address: '江苏省南京市江北新区xxxxx', // 地址
     birthplace: '江苏南京', // 出生地
     nativePlace: '江苏南京', // 籍贯（祖籍）
     avatar: 'https://img.yzcdn.cn/vant/ipad.png', // 头像
@@ -12,10 +14,8 @@ export const familyXishanData = [
     generationInPuTian: '67', // 代数 入莆田
     generationInQueXia: '60', // 代数 阙下
     generationInXiShan: '1', // 代数 西山
-    specialChar: '甲', // 排行字
-    rank: '始祖', // 排行
-    son: '1', // 子嗣
-    daughter: '1', // 女嗣
+    rankingChar: '甲', // 家族排行字
+    rankingCall: '始祖', // 家庭排行（长子、次子、长女.....）
     isAlive: true, // 是否健在
     bornDate: '1900-01-01', // 出生日期
     deathDate: '1980-01-01', // 死亡日期
@@ -24,12 +24,18 @@ export const familyXishanData = [
     degree: '本科', // 学历
     position: '公务员', // 职位
     desc: '杰卡斯都看见了撒接口里数据库快捷方式发多少手动封口机', // 描述
+    spouse: [], // 配偶
+    son: '1', // 子嗣
+    daughter: '1', // 女嗣
     children: [
+      // 子嗣详情
       {
         id: 100001,
         name: '祖父',
         formerName: '祖父',
         gender: '男',
+        phone: [],
+        address: '',
         birthplace: '江苏南京',
         nativePlace: '江苏南京',
         avatar: 'https://img.yzcdn.cn/vant/ipad.png',
@@ -38,10 +44,8 @@ export const familyXishanData = [
         generationInPuTian: '',
         generationInQueXia: '',
         generationInXiShan: '',
-        specialChar: '甲',
-        rank: '长子',
-        son: '2',
-        daughter: '1',
+        rankingChar: '甲',
+        rankingCall: '长子',
         isAlive: true,
         bornDate: '1900-01-01',
         deathDate: '1980-01-01',
@@ -50,39 +54,14 @@ export const familyXishanData = [
         degree: '',
         position: '',
         desc: '杰卡斯都看见了撒接口里数据库快捷方式发多少手动封口机',
-        spouse: {
-          id: 100002,
-          name: '祖母',
-          formerName: '祖母',
-          gender: '女',
-          birthplace: '江苏南京',
-          nativePlace: '江苏南京',
-          avatar: 'https://img.yzcdn.cn/vant/ipad.png',
-          generationInAll: '',
-          generationInFuJian: '',
-          generationInPuTian: '',
-          generationInQueXia: '',
-          generationInXiShan: '',
-          specialChar: '',
-          rank: '',
-          son: '0',
-          daughter: '0',
-          isAlive: true,
-          bornDate: '1900-01-01',
-          deathDate: '1980-01-01',
-          dieAge: '',
-          school: '',
-          degree: '',
-          position: '',
-          desc: '杰卡斯都看见了撒接口里数据库快捷方式发多少手动封口机',
-          children: []
-        },
-        children: [
+        spouse: [
           {
             id: 100002,
-            name: '父亲',
-            formerName: '父亲',
-            gender: '男',
+            name: '祖母',
+            formerName: '祖母',
+            gender: '女',
+            phone: [],
+            address: '',
             birthplace: '江苏南京',
             nativePlace: '江苏南京',
             avatar: 'https://img.yzcdn.cn/vant/ipad.png',
@@ -91,10 +70,42 @@ export const familyXishanData = [
             generationInPuTian: '',
             generationInQueXia: '',
             generationInXiShan: '',
-            specialChar: '乙',
-            rank: '次子',
-            son: '1',
-            daughter: '1',
+            rankingChar: '',
+            rankingCall: '',
+            isAlive: true,
+            bornDate: '1900-01-01',
+            deathDate: '1980-01-01',
+            dieAge: '',
+            school: '',
+            degree: '',
+            position: '',
+            desc: '杰卡斯都看见了撒接口里数据库快捷方式发多少手动封口机',
+            spouse: [],
+            son: '0',
+            daughter: '0',
+            children: []
+          }
+        ],
+        son: '2',
+        daughter: '1',
+        children: [
+          {
+            id: 100002,
+            name: '父亲',
+            formerName: '父亲',
+            gender: '男',
+            phone: [],
+            address: '',
+            birthplace: '江苏南京',
+            nativePlace: '江苏南京',
+            avatar: 'https://img.yzcdn.cn/vant/ipad.png',
+            generationInAll: '',
+            generationInFuJian: '',
+            generationInPuTian: '',
+            generationInQueXia: '',
+            generationInXiShan: '',
+            rankingChar: '乙',
+            rankingCall: '次子',
             isAlive: true,
             bornDate: '1920-01-01',
             deathDate: '1990-01-01',
@@ -103,12 +114,17 @@ export const familyXishanData = [
             degree: '',
             position: '',
             desc: '杰卡斯都看见了撒接口里数据库快捷方式发多少手动封口机',
+            spouse: [],
+            son: '1',
+            daughter: '1',
             children: [
               {
                 id: 3,
                 name: '我',
                 formerName: '',
                 gender: '',
+                phone: [],
+                address: '',
                 birthplace: '',
                 nativePlace: '',
                 avatar: '',
@@ -117,10 +133,8 @@ export const familyXishanData = [
                 generationInPuTian: '',
                 generationInQueXia: '',
                 generationInXiShan: '',
-                specialChar: '',
-                rank: '',
-                son: '0',
-                daughter: '0',
+                rankingChar: '',
+                rankingCall: '',
                 isAlive: true,
                 bornDate: '',
                 deathDate: '',
@@ -129,6 +143,9 @@ export const familyXishanData = [
                 degree: '',
                 position: '',
                 desc: '',
+                spouse: [],
+                son: '0',
+                daughter: '0',
                 children: []
               },
               {
@@ -136,6 +153,8 @@ export const familyXishanData = [
                 name: '妹妹',
                 formerName: '',
                 gender: '',
+                phone: [],
+                address: '',
                 birthplace: '',
                 nativePlace: '',
                 avatar: '',
@@ -144,10 +163,8 @@ export const familyXishanData = [
                 generationInPuTian: '',
                 generationInQueXia: '',
                 generationInXiShan: '',
-                specialChar: '',
-                rank: '',
-                son: '0',
-                daughter: '0',
+                rankingChar: '',
+                rankingCall: '',
                 isAlive: true,
                 bornDate: '',
                 deathDate: '',
@@ -156,6 +173,9 @@ export const familyXishanData = [
                 degree: '',
                 position: '',
                 desc: '',
+                spouse: [],
+                son: '0',
+                daughter: '0',
                 children: []
               }
             ]
@@ -173,8 +193,8 @@ export const familyXishanData = [
             generationInPuTian: '',
             generationInQueXia: '',
             generationInXiShan: '',
-            specialChar: '丙',
-            rank: '三子',
+            rankingChar: '丙',
+            rankingCall: '三子',
             son: '1',
             daughter: '0',
             isAlive: true,
@@ -199,8 +219,8 @@ export const familyXishanData = [
                 generationInPuTian: '',
                 generationInQueXia: '',
                 generationInXiShan: '',
-                specialChar: '',
-                rank: '',
+                rankingChar: '',
+                rankingCall: '',
                 son: '0',
                 daughter: '0',
                 isAlive: true,
@@ -228,8 +248,8 @@ export const familyXishanData = [
             generationInPuTian: '',
             generationInQueXia: '',
             generationInXiShan: '',
-            specialChar: '丁',
-            rank: '四子',
+            rankingChar: '丁',
+            rankingCall: '四子',
             son: '0',
             daughter: '2',
             isAlive: true,
@@ -254,8 +274,8 @@ export const familyXishanData = [
                 generationInPuTian: '',
                 generationInQueXia: '',
                 generationInXiShan: '',
-                specialChar: '',
-                rank: '',
+                rankingChar: '',
+                rankingCall: '',
                 son: '0',
                 daughter: '0',
                 isAlive: true,
@@ -281,8 +301,8 @@ export const familyXishanData = [
                 generationInPuTian: '',
                 generationInQueXia: '',
                 generationInXiShan: '',
-                specialChar: '',
-                rank: '',
+                rankingChar: '',
+                rankingCall: '',
                 son: '0',
                 daughter: '0',
                 isAlive: true,
@@ -312,8 +332,8 @@ export const familyXishanData = [
         generationInPuTian: '',
         generationInQueXia: '',
         generationInXiShan: '12',
-        specialChar: '戊',
-        rank: '长子',
+        rankingChar: '戊',
+        rankingCall: '长子',
         son: '2',
         daughter: '0',
         isAlive: true,
@@ -338,8 +358,8 @@ export const familyXishanData = [
             generationInPuTian: '',
             generationInQueXia: '',
             generationInXiShan: '',
-            specialChar: '己',
-            rank: '次子',
+            rankingChar: '己',
+            rankingCall: '次子',
             son: '0',
             daughter: '1',
             isAlive: true,
@@ -364,8 +384,8 @@ export const familyXishanData = [
                 generationInPuTian: '',
                 generationInQueXia: '',
                 generationInXiShan: '',
-                specialChar: '',
-                rank: '',
+                rankingChar: '',
+                rankingCall: '',
                 son: '0',
                 daughter: '0',
                 isAlive: true,
@@ -393,8 +413,8 @@ export const familyXishanData = [
             generationInPuTian: '',
             generationInQueXia: '',
             generationInXiShan: '',
-            specialChar: '庚',
-            rank: '三子',
+            rankingChar: '庚',
+            rankingCall: '三子',
             son: '1',
             daughter: '1',
             isAlive: true,
@@ -419,8 +439,8 @@ export const familyXishanData = [
                 generationInPuTian: '',
                 generationInQueXia: '',
                 generationInXiShan: '',
-                specialChar: '',
-                rank: '',
+                rankingChar: '',
+                rankingCall: '',
                 son: '0',
                 daughter: '0',
                 isAlive: true,
@@ -446,8 +466,8 @@ export const familyXishanData = [
                 generationInPuTian: '',
                 generationInQueXia: '',
                 generationInXiShan: '',
-                specialChar: '',
-                rank: '',
+                rankingChar: '',
+                rankingCall: '',
                 son: '0',
                 daughter: '0',
                 isAlive: true,
@@ -466,10 +486,4 @@ export const familyXishanData = [
       }
     ]
   }
-  // ...Array.from({ length: 100 }, (_, i) => ({
-  //   id: 16 + i,
-  //   name: `祖父${i + 2}`,
-  //   bornDate: '1900-01-01',
-  //   deathDate: '1980-01-01'
-  // }))
 ]

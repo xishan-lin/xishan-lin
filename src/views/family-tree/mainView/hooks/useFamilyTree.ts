@@ -9,7 +9,7 @@ export interface FamilyMember {
   generationInPuTian: string
   generationInQueXia: string
   generationInXiShan: string
-  specialChar: string
+  rankingChar: string
   children?: FamilyMember[]
 }
 
@@ -21,26 +21,30 @@ export function useFamilyTree() {
   // 树数据
   const treeData = ref<FamilyMember[]>(familyXishanData)
 
-  function filterTree_name(data: FamilyMember[], filter: string): FamilyMember[] {
-    if (!filter) return data
+  // 筛选树数据
+  function filterTree_combined(data: FamilyMember[], nameFilter: string, rankFilter: string): FamilyMember[] {
     return data
       .map((node) => {
-        if (node.name.includes(filter)) {
-          return node
-        }
+        const nameMatch = !nameFilter || node.name.includes(nameFilter)
+        const rankMatch = !rankFilter || (typeof node.rankingChar === 'string' && node.rankingChar.includes(rankFilter))
+        let children: FamilyMember[] | undefined
         if (node.children) {
-          const filteredChildren = filterTree_name(node.children as FamilyMember[], filter)
-          if (filteredChildren.length) {
-            return { ...node, children: filteredChildren }
-          }
+          children = filterTree_combined(node.children as FamilyMember[], nameFilter, rankFilter)
+        }
+        if ((nameMatch && rankMatch) || (children && children.length)) {
+          return { ...node, children: children || [] }
         }
         return null
       })
       .filter(Boolean) as FamilyMember[]
   }
 
-  const filteredTreeData = computed(() => filterTree_name(treeData.value, filterNameText.value))
+  // 计算筛选后的树数据
+  const filteredTreeData = computed(() =>
+    filterTree_combined(treeData.value, filterNameText.value, filterRankText.value)
+  )
 
+  // 计算树高度
   const treeHeight = ref(600)
   onMounted(() => {
     nextTick(() => {
