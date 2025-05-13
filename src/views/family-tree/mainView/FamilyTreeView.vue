@@ -3,9 +3,6 @@
     <div class="stats-panel" v-show="showStatsPanel">
       <div class="stats-header">
         <span>家谱统计</span>
-        <el-button class="hide-btn" @click="showStatsPanel = false" size="small" circle>
-          <el-icon><DArrowLeft /></el-icon>
-        </el-button>
       </div>
       <div class="stats-content">
         <div>总人数：{{ stats.total }}</div>
@@ -16,14 +13,10 @@
       </div>
     </div>
 
-    <el-button
-      v-if="!showStatsPanel"
-      class="show-btn"
-      @click="showStatsPanel = true"
-      size="small"
-      circle
-    >
-      <el-icon><DArrowRight /></el-icon>
+    <!-- 显示/隐藏家谱统计 -->
+    <el-button class="show-btn" @click="showStatsPanel = !showStatsPanel">
+      <el-icon v-if="showStatsPanel" size="20px"><DArrowLeft /></el-icon>
+      <el-icon v-else size="20px"><DArrowRight /></el-icon>
     </el-button>
 
     <div class="tree-main-panel">
@@ -51,15 +44,6 @@
           <span :class="['arrow', showMoreFilter ? 'up' : 'down']"></span>
         </el-button>
         <div v-show="showMoreFilter" class="moreFilter-content">
-          <el-select v-model="generationType" placeholder="显示代数" class="generation-select">
-            <el-option
-              v-for="item in generationTypeOptions"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value"
-            />
-          </el-select>
-
           <el-checkbox-group
             v-model="checkList_generationType"
             style="display: flex; align-items: center; gap: 30px"
@@ -139,7 +123,6 @@ const {
   filterRankText,
   filteredTreeData,
   treeHeight,
-  generationType,
   generationTypeOptions,
   getGenerationColor,
   treeRef,
@@ -181,7 +164,7 @@ onMounted(() => {
 
 const showMoreFilter = ref(true)
 
-const checkList_generationType = ref(['all', 'fuJian', 'puTian', 'queXia', 'xiShan'])
+const checkList_generationType = ref(['xiShan'])
 
 const defaultProps = {}
 
@@ -190,16 +173,11 @@ const showDetail = (data: any) => {
 }
 </script>
 
-
 <style lang="scss" scoped>
-
 :deep(.el-button--primary) {
   margin-left: 0px;
 }
-
-
 </style>
-
 
 <style lang="scss" scoped>
 .family-tree-view {
@@ -231,29 +209,6 @@ const showDetail = (data: any) => {
       font-weight: bold;
       font-size: 1.1rem;
       margin-bottom: 12px;
-      .hide-btn {
-        position: fixed;
-        left: 0;
-        top: 50%;
-        transform: translateY(-50%);
-        z-index: 1000;
-        height: 60px;
-        width: 32px;
-        border-radius: 0 16px 16px 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: #fff;
-        box-shadow: 2px 0 8px rgba(0, 0, 0, 0.08);
-        padding: 0;
-        transition: background 0.2s;
-      }
-      .hide-btn:hover {
-        background: #f5f7fa;
-      }
-      .hide-btn .el-icon {
-        font-size: 20px;
-      }
     }
     .stats-content {
       font-size: 1rem;
@@ -308,7 +263,7 @@ const showDetail = (data: any) => {
       font-size: 14px;
       color: #409eff;
       cursor: pointer;
-      padding: 0 8px;
+      padding: 0 0px;
       background: none;
       border: none;
       outline: none;

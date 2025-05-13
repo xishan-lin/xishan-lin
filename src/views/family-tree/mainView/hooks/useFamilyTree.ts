@@ -63,14 +63,12 @@ export function useFamilyTree() {
     })
   })
 
-  const generationType = ref('all')
-
   const generationTypeOptions = ref([
     { value: 'all', label: '总', color: '#409eff' },
     { value: 'fuJian', label: '入闽', color: '#67c23a' },
     { value: 'puTian', label: '莆田', color: '#e6a23c' },
     { value: 'queXia', label: '阙下', color: '#f56c6c' },
-    { value: 'xiShan', label: '西山', color: '#909399' }
+    { value: 'xiShan', label: '西山', color: '#409EFF' }
   ])
 
   function getGenerationColor(type: string) {
@@ -115,7 +113,6 @@ export function useFamilyTree() {
     treeData,
     filteredTreeData,
     treeHeight,
-    generationType,
     generationTypeOptions,
     getGenerationColor,
     treeRef,
