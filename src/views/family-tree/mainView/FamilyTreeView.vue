@@ -29,6 +29,11 @@
             :value="item.value"
           />
         </el-select>
+
+        <el-checkbox-group v-model="checkList_generationType">
+          <el-checkbox v-for="item in generationTypeOptions" :key="item.value" :label="item.label" :value="item.value" />
+        </el-checkbox-group>
+
         <el-button size="small" @click="expandAll">全部展开</el-button>
         <el-button size="small" @click="collapseAll">全部折叠</el-button>
       </div>
@@ -52,19 +57,19 @@
           </div>
 
           <div class="generation-info">
-            <span v-if="data.generationInAll" style="color: #409eff"
+            <span v-if="data.generationInAll && checkList_generationType.includes('all')" style="color: #409eff"
               >[总:{{ data.generationInAll }}]</span
             >
-            <span v-if="data.generationInFuJian" style="color: #409eff"
+            <span v-if="data.generationInFuJian && checkList_generationType.includes('fuJian')" style="color: #409eff"
               >[入闽:{{ data.generationInFuJian }}]</span
             >
-            <span v-if="data.generationInPuTian" style="color: #409eff"
+            <span v-if="data.generationInPuTian && checkList_generationType.includes('puTian')" style="color: #409eff"
               >[莆田:{{ data.generationInPuTian }}]</span
             >
-            <span v-if="data.generationInQueXia" style="color: #409eff"
+            <span v-if="data.generationInQueXia && checkList_generationType.includes('queXia')" style="color: #409eff"
               >[阙下:{{ data.generationInQueXia }}]</span
             >
-            <span v-if="data.generationInXiShan" style="color: #409eff"
+            <span v-if="data.generationInXiShan && checkList_generationType.includes('xiShan')" style="color: #409eff"
               >[西山:{{ data.generationInXiShan }}]</span
             >
           </div>
@@ -75,12 +80,14 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { ElTreeV2, ElInput, ElButton } from 'element-plus'
 import { useFamilyTree } from './hooks/useFamilyTree'
 
 const router = useRouter()
+
+const checkList_generationType = ref(['all', 'fuJian', 'puTian', 'queXia', 'xiShan'])
 
 const {
   filterNameText,
@@ -101,6 +108,10 @@ const showDetail = (data: any) => {
 }
 
 const showMoreFilter = ref(false)
+
+onMounted(() => {
+  expandAll()
+})
 </script>
 
 <style lang="scss" scoped>
@@ -155,9 +166,9 @@ const showMoreFilter = ref(false)
     }
     .moreFilter-content {
       margin-bottom: 8px;
-      display: flex;
-      align-items: center;
-      gap: 16px;
+      // display: flex;
+      // align-items: center;
+      // gap: 16px;
 
       .generation-select {
         width: 100px;
