@@ -22,11 +22,17 @@ export function useFamilyTree() {
   const treeData = ref<FamilyMember[]>(familyXishanData)
 
   // 筛选树数据
-  function filterTree_combined(data: FamilyMember[], nameFilter: string, rankFilter: string): FamilyMember[] {
+  function filterTree_combined(
+    data: FamilyMember[],
+    nameFilter: string,
+    rankFilter: string
+  ): FamilyMember[] {
     return data
       .map((node) => {
         const nameMatch = !nameFilter || node.name.includes(nameFilter)
-        const rankMatch = !rankFilter || (typeof node.rankingChar === 'string' && node.rankingChar.includes(rankFilter))
+        const rankMatch =
+          !rankFilter ||
+          (typeof node.rankingChar === 'string' && node.rankingChar.includes(rankFilter))
         let children: FamilyMember[] | undefined
         if (node.children) {
           children = filterTree_combined(node.children as FamilyMember[], nameFilter, rankFilter)
@@ -58,17 +64,24 @@ export function useFamilyTree() {
   })
 
   const generationType = ref('all')
-  const generationTypeOptions = [
-    { value: 'all', label: '总' },
-    { value: 'fuJian', label: '入闽' },
-    { value: 'puTian', label: '莆田' },
-    { value: 'queXia', label: '阙下' },
-    { value: 'xiShan', label: '西山' }
-  ]
+
+  const generationTypeOptions = ref([
+    { value: 'all', label: '总', color: '#409eff' },
+    { value: 'fuJian', label: '入闽', color: '#67c23a' },
+    { value: 'puTian', label: '莆田', color: '#e6a23c' },
+    { value: 'queXia', label: '阙下', color: '#f56c6c' },
+    { value: 'xiShan', label: '西山', color: '#909399' }
+  ])
+
+  function getGenerationColor(type: string) {
+    const item = generationTypeOptions.value.find((i) => i.value === type)
+    return item ? item.color : '#409eff'
+  }
+  
 
   // el-tree-v2 展开/折叠逻辑
   const treeRef = ref()
-  
+
   const expandAll = () => {
     nextTick(() => {
       if (treeRef.value && filteredTreeData.value) {
@@ -104,6 +117,7 @@ export function useFamilyTree() {
     treeHeight,
     generationType,
     generationTypeOptions,
+    getGenerationColor,
     treeRef,
     expandAll,
     collapseAll

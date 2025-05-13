@@ -30,9 +30,21 @@
           />
         </el-select>
 
-        <el-checkbox-group v-model="checkList_generationType">
-          <el-checkbox v-for="item in generationTypeOptions" :key="item.value" :label="item.label" :value="item.value" />
+        <!-- <div class="generation-checkbox-group"> -->
+        <el-checkbox-group
+          v-model="checkList_generationType"
+          style="display: flex; align-items: center; gap: 30px"
+        >
+          <div
+            v-for="item in generationTypeOptions"
+            :key="item.value"
+            style="display: flex; align-items: center; gap: 8px"
+          >
+            <el-checkbox :label="item.value">{{ item.label }}</el-checkbox>
+            <el-color-picker v-model="item.color" size="small" />
+          </div>
         </el-checkbox-group>
+        <!-- </div> -->
 
         <el-button size="small" @click="expandAll">全部展开</el-button>
         <el-button size="small" @click="collapseAll">全部折叠</el-button>
@@ -57,19 +69,29 @@
           </div>
 
           <div class="generation-info">
-            <span v-if="data.generationInAll && checkList_generationType.includes('all')" style="color: #409eff"
+            <span
+              v-if="data.generationInAll && checkList_generationType.includes('all')"
+              :style="{ color: getGenerationColor('all') }"
               >[总:{{ data.generationInAll }}]</span
             >
-            <span v-if="data.generationInFuJian && checkList_generationType.includes('fuJian')" style="color: #409eff"
+            <span
+              v-if="data.generationInFuJian && checkList_generationType.includes('fuJian')"
+              :style="{ color: getGenerationColor('fuJian') }"
               >[入闽:{{ data.generationInFuJian }}]</span
             >
-            <span v-if="data.generationInPuTian && checkList_generationType.includes('puTian')" style="color: #409eff"
+            <span
+              v-if="data.generationInPuTian && checkList_generationType.includes('puTian')"
+              :style="{ color: getGenerationColor('puTian') }"
               >[莆田:{{ data.generationInPuTian }}]</span
             >
-            <span v-if="data.generationInQueXia && checkList_generationType.includes('queXia')" style="color: #409eff"
+            <span
+              v-if="data.generationInQueXia && checkList_generationType.includes('queXia')"
+              :style="{ color: getGenerationColor('queXia') }"
               >[阙下:{{ data.generationInQueXia }}]</span
             >
-            <span v-if="data.generationInXiShan && checkList_generationType.includes('xiShan')" style="color: #409eff"
+            <span
+              v-if="data.generationInXiShan && checkList_generationType.includes('xiShan')"
+              :style="{ color: getGenerationColor('xiShan') }"
               >[西山:{{ data.generationInXiShan }}]</span
             >
           </div>
@@ -85,10 +107,6 @@ import { useRouter } from 'vue-router'
 import { ElTreeV2, ElInput, ElButton } from 'element-plus'
 import { useFamilyTree } from './hooks/useFamilyTree'
 
-const router = useRouter()
-
-const checkList_generationType = ref(['all', 'fuJian', 'puTian', 'queXia', 'xiShan'])
-
 const {
   filterNameText,
   filterRankText,
@@ -96,10 +114,22 @@ const {
   treeHeight,
   generationType,
   generationTypeOptions,
+  getGenerationColor,
   treeRef,
   expandAll,
   collapseAll
 } = useFamilyTree()
+
+onMounted(() => {
+  expandAll()
+})
+
+const router = useRouter()
+
+// 更多筛选
+const showMoreFilter = ref(true)
+
+const checkList_generationType = ref(['all', 'fuJian', 'puTian', 'queXia', 'xiShan'])
 
 const defaultProps = {}
 
@@ -107,11 +137,6 @@ const showDetail = (data: any) => {
   router.push({ name: 'family-tree-detail', params: { id: data.id } })
 }
 
-const showMoreFilter = ref(false)
-
-onMounted(() => {
-  expandAll()
-})
 </script>
 
 <style lang="scss" scoped>
@@ -173,6 +198,14 @@ onMounted(() => {
       .generation-select {
         width: 100px;
       }
+
+      // .generation-checkbox-group {
+      //   display: flex;
+      //   // justify-content: space-between;
+      //   // flex-wrap: wrap;
+      //   align-items: center;
+      //   gap: 16px;
+      // }
     }
   }
 
