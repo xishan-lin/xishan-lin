@@ -2,7 +2,7 @@
   <div class="family-tree-view">
     <div class="stats-panel" v-show="showStatsPanel">
       <div class="stats-header">
-        <span>家谱统计</span>
+        <span>家谱统计（含配偶）</span>
       </div>
       <div class="stats-content">
         <div>总人数：{{ stats.total }}</div>
@@ -44,6 +44,7 @@
           <span :class="['arrow', showMoreFilter ? 'up' : 'down']"></span>
         </el-button>
         <div v-show="showMoreFilter" class="moreFilter-content">
+          <!-- 代数 -->
           <el-checkbox-group
             v-model="checkList_generationType"
             style="display: flex; align-items: center; gap: 30px"
@@ -57,6 +58,15 @@
               <el-color-picker v-model="item.color" size="small" />
             </div>
           </el-checkbox-group>
+
+          <!-- 配偶 -->
+          <el-checkbox v-model="checked_spouse" label="配偶" size="large" />
+
+          <!-- 子 -->
+          <el-checkbox v-model="checked_son" label="子" size="large" />
+
+          <!-- 女 -->
+          <el-checkbox v-model="checked_daughter" label="女" size="large" />
         </div>
       </div>
 
@@ -68,7 +78,6 @@
         :expand-on-click-node="true"
         :highlight-current="true"
         :indent="40"
-        node-key="id"
       >
         <template #default="{ data }">
           <div class="tree-item-div">
@@ -77,6 +86,7 @@
               <span v-if="data.rankingChar"> - {{ data.rankingChar }}</span>
             </div>
 
+            <!-- 代数 -->
             <div class="generation-info">
               <span
                 v-if="data.generationInAll && checkList_generationType.includes('all')"
@@ -103,6 +113,35 @@
                 :style="{ color: getGenerationColor('xiShan') }"
                 >[西山:{{ data.generationInXiShan }}]</span
               >
+            </div>
+
+            <!-- 配偶 -->
+            <div class="spouse-info" v-if="data.spouse && data.spouse.length > 0 && checked_spouse" style="display: flex; align-items: center;">
+              <img
+                src="@/assets/images/common/icon-spouse.svg"
+                style="width: 24px; height: 17px; margin-right: 4px; display: inline-block; vertical-align: middle;"
+              />
+              <span v-for="spouse in data.spouse" :key="spouse.id" @click="showDetail(spouse)" style="cursor: pointer; color: #409eff;">
+                [{{ spouse.name }}]
+              </span>
+            </div>
+
+            <!-- 子 -->
+            <div class="son-daughter-info" v-if="data.son && data.son > 0 && checked_son" style="display: flex; align-items: center;">
+              <img
+                src="@/assets/images/common/icon-son.svg"
+                style="width: 24px; height: 17px; margin-right: 4px; display: inline-block; vertical-align: middle;"
+              />
+              <span>{{ data.son }}</span>
+            </div>
+
+            <!-- 女 -->
+            <div class="son-daughter-info" v-if="data.daughter && data.daughter > 0 && checked_daughter" style="display: flex; align-items: center;">
+              <img
+                src="@/assets/images/common/icon-daughter.svg"
+                style="width: 24px; height: 17px; margin-right: 4px; display: inline-block; vertical-align: middle;"
+              />
+              <span>{{ data.daughter }}</span>
             </div>
           </div>
         </template>
@@ -166,7 +205,15 @@ const showMoreFilter = ref(true)
 
 const checkList_generationType = ref(['xiShan'])
 
-const defaultProps = {}
+const checked_spouse = ref(true)
+const checked_son = ref(false)
+const checked_daughter = ref(false)
+
+const defaultProps = {
+  value: 'id',
+  label: 'name',
+  children: 'children'
+}
 
 const showDetail = (data: any) => {
   router.push({ name: 'family-tree-detail', params: { id: data.id } })

@@ -2,7 +2,7 @@ export const familyXishanData = [
   {
     id: 100000, // 编号
     name: '祖父', // 姓名
-    formerName: '祖父', // 曾用名
+    formerName: '祖父曾用名', // 曾用名
     gender: '男', // 性别
     isMaster: true, // 是否为户主
     phone: ['13800138000', '0514-88888888'], // 电话
@@ -58,9 +58,40 @@ export const familyXishanData = [
         desc: '热爱工程技术，性格严谨。',
         spouse: [
           {
-            id: 100002,
+            id: 10000211,
             name: '祖母',
             formerName: '祖母',
+            gender: '女',
+            isMaster: true,
+            phone: ['13700137000'],
+            address: '江苏省南京市鼓楼区xx路',
+            birthplace: '江苏南京',
+            nativePlace: '江苏南京',
+            avatar: 'https://img.yzcdn.cn/vant/ipad.png',
+            generationInAll: '159',
+            generationInFuJian: '78',
+            generationInPuTian: '68',
+            generationInQueXia: '61',
+            generationInXiShan: '2',
+            rankingChar: '乙',
+            rankingCall: '长媳',
+            isAlive: true,
+            bornDate: '1922-02-02',
+            deathDate: '2002-02-02',
+            dieAge: '80',
+            school: '南京师范大学',
+            degree: '本科',
+            position: '教师',
+            desc: '温柔贤淑，乐于助人。',
+            spouse: [],
+            son: '0',
+            daughter: '0',
+            children: [],
+          },
+          {
+            id: 10000212,
+            name: '祖母22',
+            formerName: '祖母22',
             gender: '女',
             isMaster: true,
             phone: ['13700137000'],

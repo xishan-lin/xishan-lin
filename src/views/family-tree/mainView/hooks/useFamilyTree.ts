@@ -4,6 +4,7 @@ import { familyXishanData } from '../data/family-xishan-data'
 export interface FamilyMember {
   id: number
   name: string
+  formerName: string
   generationInAll: string
   generationInFuJian: string
   generationInPuTian: string
