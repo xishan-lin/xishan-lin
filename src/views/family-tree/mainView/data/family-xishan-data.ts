@@ -9,7 +9,7 @@ export const familyXishanData = [
     address: '江苏省南京市江北新区xxxxx', // 地址
     birthplace: '江苏南京', // 出生地
     nativePlace: '江苏南京', // 籍贯（祖籍）
-    avatar: 'https://img.yzcdn.cn/vant/ipad.png', // 头像
+    avatar: 'https://cdn.jsdelivr.net/gh/xishan-lin/resourcesRepo@main/avatar/demo-1.jpg', // 头像
     generationInAll: '158', // 代数 总代数
     generationInFuJian: '77', // 代数 入闽
     generationInPuTian: '67', // 代数 入莆田
@@ -40,7 +40,7 @@ export const familyXishanData = [
         address: '江苏省南京市鼓楼区xx路',
         birthplace: '江苏南京',
         nativePlace: '江苏南京',
-        avatar: 'https://img.yzcdn.cn/vant/ipad.png',
+        avatar: 'https://cdn.jsdelivr.net/gh/xishan-lin/resourcesRepo@main/avatar/demo-2.jpg',
         generationInAll: '159',
         generationInFuJian: '78',
         generationInPuTian: '68',
@@ -67,7 +67,7 @@ export const familyXishanData = [
             address: '江苏省南京市鼓楼区xx路',
             birthplace: '江苏南京',
             nativePlace: '江苏南京',
-            avatar: 'https://img.yzcdn.cn/vant/ipad.png',
+            avatar: 'https://cdn.jsdelivr.net/gh/xishan-lin/resourcesRepo@main/avatar/demo-3.jpg',
             generationInAll: '159',
             generationInFuJian: '78',
             generationInPuTian: '68',
@@ -98,7 +98,7 @@ export const familyXishanData = [
             address: '江苏省南京市鼓楼区xx路',
             birthplace: '江苏南京',
             nativePlace: '江苏南京',
-            avatar: 'https://img.yzcdn.cn/vant/ipad.png',
+            avatar: 'https://cdn.jsdelivr.net/gh/xishan-lin/resourcesRepo@main/avatar/demo-8.gif',
             generationInAll: '159',
             generationInFuJian: '78',
             generationInPuTian: '68',
@@ -132,7 +132,7 @@ export const familyXishanData = [
             address: '江苏省南京市玄武区xx巷',
             birthplace: '江苏南京',
             nativePlace: '江苏南京',
-            avatar: 'https://img.yzcdn.cn/vant/ipad.png',
+            avatar: 'https://cdn.jsdelivr.net/gh/xishan-lin/resourcesRepo@main/avatar/demo-4.jpg',
             generationInAll: '160',
             generationInFuJian: '79',
             generationInPuTian: '69',
