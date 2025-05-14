@@ -4,7 +4,7 @@ export const familyXishanData = [
     name: '祖父', // 姓名
     formerName: '祖父曾用名', // 曾用名
     gender: '男', // 性别
-    isMaster: true, // 是否为户主，必须要在世
+    isMaster: true, // 是否为户主
     phone: ['13800138000', '0514-88888888'], // 电话
     address: '江苏省南京市江北新区xxxxx', // 地址
     birthplace: '江苏南京', // 出生地

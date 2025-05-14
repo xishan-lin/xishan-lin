@@ -62,7 +62,7 @@
 </template>
 
 <script lang="ts" setup>
-import { familyXishanData } from '../mainView/data/family-xishan-data'
+import { familyXishanData } from '../mainView/data/family-xishan-data-test'
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 import defaultAvatar from '@/assets/images/common/portrait.svg'
