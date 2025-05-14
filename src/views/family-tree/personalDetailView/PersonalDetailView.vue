@@ -2,38 +2,60 @@
   <div class="personal-detail" v-if="person">
     <div class="left">
       <div class="avatar">
-        <img :src="(person.avatar && person.avatar !== '') ? person.avatar : defaultAvatar" alt="头像" />
+        <img
+          :src="person.avatar && person.avatar !== '' ? person.avatar : defaultAvatar"
+          alt="头像"
+        />
       </div>
       <div class="basic-info">
         <h2>{{ person.name }}</h2>
         <p><span>性别：</span>{{ person.gender }}</p>
+        <p v-if="person.isAlive && age"><span>年龄：</span>{{ age }}</p>
+        <p v-if="!person.isAlive"><span>享年：</span>{{ dieAge }}</p>
         <p><span>出生日期：</span>{{ person.bornDate }}</p>
         <p><span>籍贯：</span>{{ person.nativePlace }}</p>
+        <p><span>出生地：</span>{{ person.birthplace }}</p>
+        <p><span>排行：</span>{{ person.rankingChar }}</p>
         <p><span>学历：</span>{{ person.degree }}</p>
-        <p><span>职位：</span>{{ person.position }}</p>
-        <p><span>是否健在：</span>{{ person.isAlive ? '是' : '否' }}</p>
-        <p v-if="!person.isAlive"><span>享年：</span>{{ person.dieAge }}</p>
       </div>
     </div>
     <div class="right">
       <h3>详细信息</h3>
-      <p v-if="person.phone"><span>手机号：</span>{{ person.phone }}</p>
-      <p v-if="person.email"><span>邮箱：</span>{{ person.email }}</p>
-      <p v-if="person.maritalStatus"><span>婚姻状况：</span>{{ person.maritalStatus }}</p>
+      <p><span>总代数：</span>第{{ person.generationInAll }}代</p>
+      <p><span>入闽代数：</span>第{{ person.generationInFuJian }}代</p>
+      <p><span>莆田代数：</span>第{{ person.generationInPuTian }}代</p>
+      <p><span>阙下代数：</span>第{{ person.generationInQueXia }}代</p>
+      <p><span>西山代数：</span>第{{ person.generationInXiShan }}代</p>
+      <p v-if="person.phone">
+        <span>手机号：</span>
+        {{ Array.isArray(person.phone) ? person.phone.join('、') : person.phone }}
+      </p>
+      <p v-if="person.address"><span>住址：</span>{{ person.address }}</p>
+      <p>
+        <span>婚姻状况</span>
+        <el-tooltip
+          class="box-item"
+          effect="dark"
+          content="根据是否有配偶自动判断：有配偶为已婚，无配偶为未婚"
+          placement="top"
+        >
+          <span class="tip-icon">?</span>
+        </el-tooltip>
+        <span>:</span>
+        {{ person.spouseName || (person.spouse && person.spouse.length > 0) ? '已婚' : '未婚' }}
+      </p>
       <p v-if="person.spouseName"><span>配偶：</span>{{ person.spouseName }}</p>
-      <p v-if="person.childrenNames">
+      <p v-if="person.children">
         <span>子女：</span
         >{{
-          Array.isArray(person.childrenNames)
-            ? person.childrenNames.join('，')
-            : person.childrenNames
+          Array.isArray(person.children)
+            ? person.children.map((child: any) => child.name).join('，')
+            : ''
         }}
       </p>
-      <p v-if="person.company"><span>工作单位：</span>{{ person.company }}</p>
-      <p v-if="person.address"><span>住址：</span>{{ person.address }}</p>
-      <p v-if="person.hobbies"><span>兴趣爱好：</span>{{ person.hobbies }}</p>
-      <p v-if="person.achievements"><span>主要成就：</span>{{ person.achievements }}</p>
-      <p><span>描述：</span>{{ person.desc }}</p>
+      <p v-if="person.position"><span>职位：</span>{{ person.position }}</p>
+      <p v-if="person.achievements"><span>主要成就：</span>{{ person.achievements.join('、') }}</p>
+      <p><span>个人简介：</span>{{ person.desc }}</p>
     </div>
   </div>
   <div v-else class="not-found">未找到该成员信息</div>
@@ -66,6 +88,32 @@ function findPersonById(data: any[], id: number): any | null {
 }
 
 const person = computed(() => findPersonById(familyXishanData, id.value))
+
+// 计算年龄（仅在世时显示）
+const age = computed(() => {
+  if (!person.value || !person.value.isAlive) return null
+  // 假设 bornDate 格式为 'YYYY-MM-DD' 或 'YYYY/MM/DD' 或 'YYYY'
+  if (!person.value.bornDate) return null
+  const yearMatch = person.value.bornDate.match(/\d{4}/)
+  if (!yearMatch) return null
+  const birthYear = parseInt(yearMatch[0], 10)
+  if (isNaN(birthYear)) return null
+  const nowYear = new Date().getFullYear()
+  return nowYear - birthYear + 1
+})
+
+// 计算享年（仅不在世时显示）
+const dieAge = computed(() => {
+  if (!person.value || person.value.isAlive) return null
+  if (!person.value.bornDate || !person.value.deathDate) return null
+  const birthYearMatch = person.value.bornDate.match(/\d{4}/)
+  const dieYearMatch = person.value.deathDate.match(/\d{4}/)
+  if (!birthYearMatch || !dieYearMatch) return null
+  const birthYear = parseInt(birthYearMatch[0], 10)
+  const dieYear = parseInt(dieYearMatch[0], 10)
+  if (isNaN(birthYear) || isNaN(dieYear)) return null
+  return dieYear - birthYear + 1
+})
 
 console.log('Detail ====> ', person.value)
 </script>
@@ -144,5 +192,26 @@ console.log('Detail ====> ', person.value)
   color: #888;
   margin-top: 80px;
   font-size: 1.2rem;
+}
+.tip-icon {
+  display: inline-block;
+  color: #999;
+  background: #f3f4f6;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  line-height: 18px;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 16px;
+  cursor: pointer;
+  border: 1px solid #e5e7eb;
+  transition:
+    color 0.2s,
+    background 0.2s;
+}
+.tip-icon:hover {
+  color: #2563eb;
+  background: #e0e7ef;
 }
 </style>

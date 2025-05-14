@@ -87,7 +87,7 @@
             </div>
 
             <!-- 代数 -->
-            <div class="generation-info">
+            <div class="generation-info" v-if="checkList_generationType.length > 0">
               <span
                 v-if="data.generationInAll && checkList_generationType.includes('all')"
                 :style="{ color: getGenerationColor('all') }"

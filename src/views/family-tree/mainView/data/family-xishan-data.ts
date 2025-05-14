@@ -20,10 +20,10 @@ export const familyXishanData = [
     isAlive: true, // 是否健在
     bornDate: '1900-01-01', // 出生日期
     deathDate: '1980-01-01', // 死亡日期
-    dieAge: '81', // 享年
     school: '南京大学', // 学校
     degree: '本科', // 学历
     position: '公务员', // 职位
+    achievements: ['主要成就1', '主要成就2', '主要成就3'], // 主要成就
     desc: '杰卡斯都看见了撒接口里数据库快捷方式发多少手动封口机', // 描述
     spouse: [], // 配偶
     son: '1', // 子嗣
@@ -51,7 +51,6 @@ export const familyXishanData = [
         isAlive: true,
         bornDate: '1920-01-01',
         deathDate: '1990-01-01',
-        dieAge: '70',
         school: '东南大学',
         degree: '硕士',
         position: '工程师',
@@ -78,7 +77,6 @@ export const familyXishanData = [
             isAlive: true,
             bornDate: '1922-02-02',
             deathDate: '2002-02-02',
-            dieAge: '80',
             school: '南京师范大学',
             degree: '本科',
             position: '教师',
@@ -109,7 +107,6 @@ export const familyXishanData = [
             isAlive: true,
             bornDate: '1922-02-02',
             deathDate: '2002-02-02',
-            dieAge: '80',
             school: '南京师范大学',
             degree: '本科',
             position: '教师',
@@ -143,7 +140,6 @@ export const familyXishanData = [
             isAlive: true,
             bornDate: '1950-03-03',
             deathDate: '2020-03-03',
-            dieAge: '70',
             school: '南京理工大学',
             degree: '博士',
             position: '大学教授',
@@ -172,7 +168,6 @@ export const familyXishanData = [
                 isAlive: true,
                 bornDate: '1980-05-05',
                 deathDate: '',
-                dieAge: '',
                 school: '南京大学',
                 degree: '硕士',
                 position: '软件工程师',
@@ -203,7 +198,6 @@ export const familyXishanData = [
                 isAlive: false,
                 bornDate: '1983-08-08',
                 deathDate: '',
-                dieAge: '',
                 school: '南京师范大学',
                 degree: '本科',
                 position: '设计师',
@@ -237,7 +231,6 @@ export const familyXishanData = [
             isAlive: true,
             bornDate: '1952-06-06',
             deathDate: '',
-            dieAge: '',
             school: '河海大学',
             degree: '本科',
             position: '医生',
@@ -263,7 +256,6 @@ export const familyXishanData = [
                 isAlive: true,
                 bornDate: '1985-09-09',
                 deathDate: '',
-                dieAge: '',
                 school: '南京医科大学',
                 degree: '本科',
                 position: '医生',
@@ -294,7 +286,6 @@ export const familyXishanData = [
             isAlive: true,
             bornDate: '1955-10-10',
             deathDate: '',
-            dieAge: '',
             school: '南京艺术学院',
             degree: '本科',
             position: '艺术家',
@@ -320,7 +311,6 @@ export const familyXishanData = [
                 isAlive: true,
                 bornDate: '1988-11-11',
                 deathDate: '',
-                dieAge: '',
                 school: '南京艺术学院',
                 degree: '本科',
                 position: '舞蹈老师',
@@ -348,7 +338,6 @@ export const familyXishanData = [
                 isAlive: true,
                 bornDate: '1990-12-12',
                 deathDate: '',
-                dieAge: '',
                 school: '南京理工大学',
                 degree: '本科',
                 position: '工程师',
@@ -382,7 +371,6 @@ export const familyXishanData = [
         isAlive: false,
         bornDate: '1910-04-04',
         deathDate: '1995-04-04',
-        dieAge: '85',
         school: '复旦大学',
         degree: '本科',
         position: '企业家',
@@ -408,7 +396,6 @@ export const familyXishanData = [
             isAlive: true,
             bornDate: '1940-07-07',
             deathDate: '',
-            dieAge: '',
             school: '上海交通大学',
             degree: '硕士',
             position: '工程师',
@@ -434,7 +421,6 @@ export const familyXishanData = [
                 isAlive: true,
                 bornDate: '1970-10-10',
                 deathDate: '',
-                dieAge: '',
                 school: '南京大学',
                 degree: '本科',
                 position: '教师',
@@ -465,7 +451,6 @@ export const familyXishanData = [
             isAlive: true,
             bornDate: '1945-08-08',
             deathDate: '',
-            dieAge: '',
             school: '南京师范大学',
             degree: '本科',
             position: '医生',
@@ -491,7 +476,6 @@ export const familyXishanData = [
                 isAlive: true,
                 bornDate: '1975-09-09',
                 deathDate: '',
-                dieAge: '',
                 school: '南京大学',
                 degree: '硕士',
                 position: '工程师',
@@ -519,7 +503,6 @@ export const familyXishanData = [
                 isAlive: false,
                 bornDate: '1978-12-12',
                 deathDate: '2000-01-01',
-                dieAge: '22',
                 school: '南京艺术学院',
                 degree: '本科',
                 position: '设计师',
