@@ -12,6 +12,14 @@ import { useRoute, useRouter } from 'vue-router'
 import useHooks from './hooks/useHooks'
 // language
 import useLanguage from '@/language/hooks/useLanguage'
+import { ElMessage } from 'element-plus'
+import {
+  isLocked,
+  setLock,
+  checkValidChar,
+  ERROR_LIMIT,
+  useErrorCount
+} from '@/hooks/useFamilyTreeVerify'
 //
 const { handleDropdownCommand } = useHooks()
 const { currentLocale } = useLanguage()
@@ -48,9 +56,63 @@ const openPDFViewr = (command: string) => {
     router.push('/pdf-once-view')
   }
 }
+
+const showDialog = ref(false)
+const inputValue = ref('')
+
+const errorCount = useErrorCount()
+
+const handleFamilyTreeClick = () => {
+  if (isLocked()) {
+    ElMessage.error('验证已被锁定，请1小时后再试')
+    return
+  }
+  showDialog.value = true
+  inputValue.value = ''
+  errorCount.value = 0
+}
+
+const handleDialogConfirm = () => {
+  if (!checkValidChar(inputValue.value)) {
+    if (inputValue.value.length !== 1) {
+      ElMessage.error('请输入一个字')
+    } else {
+      ElMessage.error('排行不在允许范围内')
+    }
+    errorCount.value++
+  } else {
+    showDialog.value = false
+    router.push('/family-tree')
+    return
+  }
+  if (errorCount.value >= ERROR_LIMIT) {
+    setLock()
+    showDialog.value = false
+    ElMessage.error('错误次数过多，请1小时后再试')
+  }
+}
 </script>
 
 <template>
+  <el-dialog
+    v-model="showDialog"
+    title="请输入您的排行"
+    width="300px"
+    :close-on-click-modal="false"
+  >
+    <el-input
+      v-model="inputValue"
+      maxlength="1"
+      show-word-limit
+      placeholder="只能输入一个字"
+      @keyup.enter="handleDialogConfirm"
+    />
+    <template #footer>
+      <el-button @click="showDialog = false">取消</el-button>
+      <el-button type="primary" @click="handleDialogConfirm">确定</el-button>
+    </template>
+  </el-dialog>
+
   <div class="main-view">
     <div class="left-view">
       <img src="@/assets/images/common/icon.jpg" alt="" />
@@ -59,8 +121,7 @@ const openPDFViewr = (command: string) => {
       </div>
     </div>
     <div class="right-view">
-
-      <el-button type="primary" @click="router.push('/family-tree')"> 家谱 </el-button>
+      <el-button type="primary" @click="handleFamilyTreeClick"> 家谱 </el-button>
 
       <!-- <el-dropdown class="el-dropdown-cls" @command="openPDFViewr">
         <span class="el-dropdown-link">

@@ -8,15 +8,13 @@
         <span class="password-label">提取码：</span>
         <span class="password" @click="copyPassword(item.password)">{{ item.password }}</span>
       </div>
-      <div v-if="copyTip" class="copy-tip">{{ copyTip }}</div>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue';
+import { ElMessage } from 'element-plus';
 
-const copyTip = ref('');
 const downloadLinks = [
   {
     title: '邗江三百吟_林苏门_第1冊.pdf',
@@ -42,10 +40,7 @@ const downloadLinks = [
 
 function copyPassword(password: string) {
   navigator.clipboard.writeText(password).then(() => {
-    copyTip.value = '提取码已复制！';
-    setTimeout(() => {
-      copyTip.value = '';
-    }, 1200);
+    ElMessage.success('提取码已复制！');
   });
 }
 </script>

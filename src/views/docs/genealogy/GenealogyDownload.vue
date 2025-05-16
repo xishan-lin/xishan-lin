@@ -4,85 +4,99 @@
     <h1>《林氏西山本支宗谱》下载</h1>
     <div v-if="!isAuthorized" class="input-container">
       <label for="rankInput">请输入您的排行：</label>
-      <input
+      <el-input
         id="rankInput"
-        v-model="inputRank"
+        v-model="inputValue"
         maxlength="1"
+        show-word-limit
         @keyup.enter="checkRank"
         placeholder="只能输入一个字"
+        style="width: 180px"
       />
       <button @click="checkRank">确认</button>
-      <div v-if="errorMsg" class="error-msg">{{ errorMsg }}</div>
     </div>
     <div v-else class="main-container">
       <div v-for="(item, idx) in downloadLinks" :key="idx" class="download-item">
         <span class="title">{{ item.title }}：</span>
-        <a :href="item.link" target="_blank" rel="noopener" class="download-link">{{ item.link }}</a>
+        <a :href="item.link" target="_blank" rel="noopener" class="download-link">{{
+          item.link
+        }}</a>
         <span class="password-label">密码：</span>
         <span class="password" @click="copyPassword(item.password)">{{ item.password }}</span>
       </div>
-      <div v-if="copyTip" class="copy-tip">{{ copyTip }}</div>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue';
+import { ref } from 'vue'
+import { ElInput, ElMessage } from 'element-plus'
+import {
+  isLocked,
+  setLock,
+  checkValidChar,
+  ERROR_LIMIT,
+  useErrorCount
+} from '@/hooks/useFamilyTreeVerify'
 
-const inputRank = ref('');
-const isAuthorized = ref(false);
-const errorMsg = ref('');
-const copyTip = ref('');
-const validRanks = '甲第壮三山祥开石竺清芬承百世秀衍金华';
+const inputValue = ref('')
+const isAuthorized = ref(false)
+const errorCount = useErrorCount()
 
 const downloadLinks = [
   {
     title: '林氏西山本支宗谱（总）',
     link: 'https://pan.baidu.com/s/1x73EgtX2MWnNSxH8Bo__7Q',
-    password: '6nu5',
+    password: '6nu5'
   },
   {
     title: '林氏西山本支宗谱（卷一）',
     link: 'https://pan.baidu.com/s/1sU37qwIDV_WG_A5sOLOVgw',
-    password: '7lt6',
+    password: '7lt6'
   },
   {
     title: '林氏西山本支宗谱（卷二）',
     link: 'https://pan.baidu.com/s/1-m8OJKE8ijPlBfzzM3z7wg',
-    password: 'mbjm',
+    password: 'mbjm'
   },
   {
     title: '林氏西山本支宗谱（卷三）',
     link: 'https://pan.baidu.com/s/1zuo6-noPIodd-_9AR0CE1g',
-    password: '9ji2',
+    password: '9ji2'
   },
   {
     title: '林氏西山本支宗谱（卷四）',
     link: 'https://pan.baidu.com/s/1VTKImcqlIC2N44mHpbbpjQ',
-    password: 'hi1h',
-  },
-];
+    password: 'hi1h'
+  }
+]
 
 function checkRank() {
-  if (inputRank.value.length !== 1) {
-    errorMsg.value = '只能输入一个字';
-    return;
+  if (isLocked()) {
+    ElMessage.error('验证已被锁定，请1小时后再试')
+    return
   }
-  if (validRanks.includes(inputRank.value)) {
-    isAuthorized.value = true;
-    errorMsg.value = '';
+  if (!checkValidChar(inputValue.value)) {
+    if (inputValue.value.length !== 1) {
+      ElMessage.error('只能输入一个字')
+    } else {
+      ElMessage.error('排行不正确，请重新输入')
+    }
+    errorCount.value++
   } else {
-    errorMsg.value = '排行不正确，请重新输入';
+    isAuthorized.value = true
+    return
+  }
+  if (errorCount.value >= ERROR_LIMIT) {
+    setLock()
+    ElMessage.error('错误次数过多，请1小时后再试')
   }
 }
 
 function copyPassword(password: string) {
   navigator.clipboard.writeText(password).then(() => {
-    copyTip.value = '密码已复制！';
-    setTimeout(() => {
-      copyTip.value = '';
-    }, 1200);
-  });
+    ElMessage.success('密码已复制！')
+  })
 }
 </script>
 
@@ -93,7 +107,7 @@ function copyPassword(password: string) {
   padding: 24px;
   background: #fff;
   border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 
   h1 {
     background-color: transparent;
@@ -102,7 +116,6 @@ function copyPassword(password: string) {
     font-weight: 600;
     margin-bottom: 24px;
   }
-
 
   .input-container {
     display: flex;
@@ -132,10 +145,6 @@ function copyPassword(password: string) {
       &:hover {
         background: #155fd3;
       }
-    }
-    .error-msg {
-      color: #e74c3c;
-      font-size: 14px;
     }
   }
   .main-container {
@@ -174,19 +183,6 @@ function copyPassword(password: string) {
       &:hover {
         background: #ffe6c7;
       }
-    }
-    .copy-tip {
-      color: #27ae60;
-      font-size: 14px;
-      margin-top: 8px;
-      text-align: left;
-      animation: fadeInOut 1.2s;
-    }
-    @keyframes fadeInOut {
-      0% { opacity: 0; }
-      10% { opacity: 1; }
-      90% { opacity: 1; }
-      100% { opacity: 0; }
     }
   }
 }

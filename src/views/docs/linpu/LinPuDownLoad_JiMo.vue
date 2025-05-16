@@ -9,15 +9,13 @@
         <span class="password-label">提取码：</span>
         <span class="password" @click="copyPassword(item.password)">{{ item.password }}</span>
       </div>
-      <div v-if="copyTip" class="copy-tip">{{ copyTip }}</div>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue';
+import { ElMessage } from 'element-plus';
 
-const copyTip = ref('');
 const downloadLinks = [
   {
     title: '即墨縣志_林溥_同治十二年_1873.pdf',
@@ -28,10 +26,7 @@ const downloadLinks = [
 
 function copyPassword(password: string) {
   navigator.clipboard.writeText(password).then(() => {
-    copyTip.value = '提取码已复制！';
-    setTimeout(() => {
-      copyTip.value = '';
-    }, 1200);
+    ElMessage.success('提取码已复制！');
   });
 }
 </script>
@@ -89,13 +84,6 @@ function copyPassword(password: string) {
       &:hover {
         background: #ffe6c7;
       }
-    }
-    .copy-tip {
-      color: #27ae60;
-      font-size: 14px;
-      margin-top: 8px;
-      text-align: left;
-      animation: fadeInOut 1.2s;
     }
     @keyframes fadeInOut {
       0% { opacity: 0; }
