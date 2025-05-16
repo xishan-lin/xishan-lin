@@ -5,6 +5,12 @@ export const validChars = '甲第壮三山祥开石竺清芬承百世秀衍金�
 export const ERROR_LIMIT = 3
 export const LOCK_KEY = 'familyTreeVerifyLock'
 export const LOCK_DURATION = 60 * 60 * 1000 // 1小时
+export const VERIFY_PASS_KEY = 'familyTreeVerifyPass'
+export const VERIFY_PASS_DURATION = 60 * 60 * 1000 // 1小时
+// 统一提示
+export const MESSAGE_VERIFY_SUCCESS = '验证通过'
+export const MESSAGE_VERIFY_ERROR = '验证失败'
+export const MESSAGE_VERIFY_LOCKED = '验证已被锁定，请1小时后再试'
 
 export function isLocked() {
   const lock = localStorage.getItem(LOCK_KEY)
@@ -30,4 +36,22 @@ export function checkValidChar(char: string) {
 export function useErrorCount() {
   const errorCount = ref(0)
   return errorCount
+}
+
+// 验证码通过后，记录通过时间
+export function setVerifySuccess() {
+  const until = Date.now() + VERIFY_PASS_DURATION
+  localStorage.setItem(VERIFY_PASS_KEY, JSON.stringify({ until }))
+}
+
+// 判断验证码是否在有效期内
+export function isVerifyValid() {
+  const pass = localStorage.getItem(VERIFY_PASS_KEY)
+  if (!pass) return false
+  try {
+    const { until } = JSON.parse(pass)
+    return Date.now() < until
+  } catch {
+    return false
+  }
 } 

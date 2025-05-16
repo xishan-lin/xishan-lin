@@ -1,5 +1,5 @@
 <template>
-  <div class="family-tree-view">
+  <div v-if="isVerified" class="family-tree-view">
     <div class="stats-panel" v-show="showStatsPanel">
       <div class="stats-header">
         <span>家谱统计（含配偶）</span>
@@ -148,6 +148,7 @@
       </el-tree-v2>
     </div>
   </div>
+  <div v-else class="not-verified">未通过验证，无法查看内容</div>
 </template>
 
 <script lang="ts" setup>
@@ -155,6 +156,7 @@ import { ref, onMounted, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { ElTreeV2, ElInput, ElButton } from 'element-plus'
 import { useFamilyTree } from './hooks/useFamilyTree'
+import { isVerifyValid } from '@/hooks/useFamilyTreeVerify'
 
 const {
   treeData,
@@ -197,10 +199,6 @@ function countStats(data: any[]) {
 
 const stats = computed(() => countStats(treeData.value))
 
-onMounted(() => {
-  expandAll()
-})
-
 const showMoreFilter = ref(true)
 
 const checkList_generationType = ref(['xiShan'])
@@ -218,6 +216,15 @@ const defaultProps = {
 const showDetail = (data: any) => {
   router.push({ name: 'family-tree-detail', params: { id: data.id } })
 }
+
+onMounted(() => {
+  // 这里可以替换为实际的验证逻辑
+  if (isVerifyValid()) {
+    expandAll()
+  }
+})
+
+const isVerified = computed(() => isVerifyValid())
 </script>
 
 <style lang="scss" scoped>
@@ -347,5 +354,16 @@ const showDetail = (data: any) => {
     justify-content: space-between;
     column-gap: 16px;
   }
+}
+
+.not-verified {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: #888;
+  background: #f8fafc;
 }
 </style>

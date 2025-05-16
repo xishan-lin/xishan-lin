@@ -9,11 +9,11 @@
         v-model="inputValue"
         maxlength="1"
         show-word-limit
-        @keyup.enter="checkRank"
+        @keyup.enter="handleDownloadClick"
         placeholder="只能输入一个字"
         style="width: 180px"
       />
-      <button @click="checkRank">确认</button>
+      <button @click="handleDownloadClick">确认</button>
     </div>
     <div v-else class="main-container">
       <div v-for="(item, idx) in downloadLinks" :key="idx" class="download-item">
@@ -36,7 +36,12 @@ import {
   setLock,
   checkValidChar,
   ERROR_LIMIT,
-  useErrorCount
+  useErrorCount,
+  setVerifySuccess,
+  isVerifyValid,
+  MESSAGE_VERIFY_SUCCESS,
+  MESSAGE_VERIFY_ERROR,
+  MESSAGE_VERIFY_LOCKED
 } from '@/hooks/useFamilyTreeVerify'
 
 const inputValue = ref('')
@@ -71,26 +76,28 @@ const downloadLinks = [
   }
 ]
 
-function checkRank() {
-  if (isLocked()) {
-    ElMessage.error('验证已被锁定，请1小时后再试')
-    return
-  }
-  if (!checkValidChar(inputValue.value)) {
-    if (inputValue.value.length !== 1) {
-      ElMessage.error('只能输入一个字')
-    } else {
-      ElMessage.error('排行不正确，请重新输入')
-    }
-    errorCount.value++
-  } else {
+const handleDownloadClick = () => {
+  if (isVerifyValid()) {
+    // 1小时内已验证通过，直接显示下载链接
     isAuthorized.value = true
     return
   }
-  if (errorCount.value >= ERROR_LIMIT) {
-    setLock()
-    ElMessage.error('错误次数过多，请1小时后再试')
+  if (isLocked()) {
+    ElMessage.error(MESSAGE_VERIFY_LOCKED)
+    return
   }
+  if (!checkValidChar(inputValue.value)) {
+    ElMessage.error(MESSAGE_VERIFY_ERROR)
+    errorCount.value++
+    if (errorCount.value >= ERROR_LIMIT) {
+      setLock()
+    }
+    return
+  }
+  // 验证通过，记录通过时间
+  setVerifySuccess()
+  ElMessage.success(MESSAGE_VERIFY_SUCCESS)
+  isAuthorized.value = true
 }
 
 function copyPassword(password: string) {

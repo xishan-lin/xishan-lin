@@ -18,7 +18,12 @@ import {
   setLock,
   checkValidChar,
   ERROR_LIMIT,
-  useErrorCount
+  useErrorCount,
+  setVerifySuccess,
+  isVerifyValid,
+  MESSAGE_VERIFY_SUCCESS,
+  MESSAGE_VERIFY_ERROR,
+  MESSAGE_VERIFY_LOCKED
 } from '@/hooks/useFamilyTreeVerify'
 //
 const { handleDropdownCommand } = useHooks()
@@ -63,8 +68,13 @@ const inputValue = ref('')
 const errorCount = useErrorCount()
 
 const handleFamilyTreeClick = () => {
+  if (isVerifyValid()) {
+    // 1小时内已验证通过，直接进入
+    router.push('/family-tree')
+    return
+  }
   if (isLocked()) {
-    ElMessage.error('验证已被锁定，请1小时后再试')
+    ElMessage.error(MESSAGE_VERIFY_LOCKED)
     return
   }
   showDialog.value = true
@@ -74,22 +84,19 @@ const handleFamilyTreeClick = () => {
 
 const handleDialogConfirm = () => {
   if (!checkValidChar(inputValue.value)) {
-    if (inputValue.value.length !== 1) {
-      ElMessage.error('请输入一个字')
-    } else {
-      ElMessage.error('排行不在允许范围内')
-    }
+    ElMessage.error(MESSAGE_VERIFY_ERROR)
     errorCount.value++
-  } else {
-    showDialog.value = false
-    router.push('/family-tree')
+    if (errorCount.value >= ERROR_LIMIT) {
+      setLock()
+      showDialog.value = false
+    }
     return
   }
-  if (errorCount.value >= ERROR_LIMIT) {
-    setLock()
-    showDialog.value = false
-    ElMessage.error('错误次数过多，请1小时后再试')
-  }
+  // 验证通过，记录通过时间
+  setVerifySuccess()
+  showDialog.value = false
+  ElMessage.success(MESSAGE_VERIFY_SUCCESS)
+  router.push('/family-tree')
 }
 </script>
 
