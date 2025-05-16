@@ -7,12 +7,12 @@ export default {
 <script setup lang="ts">
 // 定义页脚数据
 const companyInfo = {
-  name: '西山木木',
-  copyright: `© ${new Date().getFullYear()} 西山木木 版权所有`,
-  icp: '粤ICP备XXXXXXXX号',
+  name: '林氏扬州西山本支',
+  copyright: `© ${new Date().getFullYear()} 林氏扬州西山本支 版权所有`,
+  icp: '暂未备案', //'苏ICP备2025000000号',
   address: '江苏省仪征市陈集镇',
-  phone: '400-123-4567',
-  email: 'contact@example.com'
+  phone: '',
+  email: 'lionsom.linx@gmail.com'
 }
 </script>
 
@@ -22,22 +22,25 @@ const companyInfo = {
       <!-- 左侧内容 -->
       <div class="footer-left">
         <div class="footer-logo">
-          <img src="@/assets/images/common/logo.svg" alt="公司logo" />
+          <img src="@/assets/images/common/icon.jpg" alt="公司logo" />
           <div class="company-name">{{ companyInfo.name }}</div>
         </div>
       </div>
 
-      <!-- 右侧内容 -->
+      <!-- 右侧内容（包含二维码和联系方式） -->
       <div class="footer-right">
-        <div class="info-section">
-          <h4>联系我们</h4>
-          <p><i class="icon-phone"></i> {{ companyInfo.phone }}</p>
-          <p><i class="icon-email"></i> {{ companyInfo.email }}</p>
+        <!-- 二维码部分 -->
+        <div class="qrcode-section">
+          <img src="@/assets/images/common/qrcode_for_wechat.jpg" alt="公众号二维码" />
+          <div class="qrcode-desc">关注公众号</div>
         </div>
-
-        <div class="info-section">
-          <h4>地址</h4>
-          <p><i class="icon-location"></i> {{ companyInfo.address }}</p>
+        <!-- 联系方式和地址部分 -->
+        <div class="info-wrapper">
+          <div class="info-section">
+            <p v-if="companyInfo.phone"><i class="icon-phone"></i>联系方式：{{ companyInfo.phone }}</p>
+            <p v-if="companyInfo.email"><i class="icon-email"></i>邮箱：{{ companyInfo.email }}</p>
+            <p v-if="companyInfo.address"><i class="icon-location"></i> {{ companyInfo.address }}</p>
+          </div>
         </div>
       </div>
     </div>
@@ -69,7 +72,7 @@ const companyInfo = {
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
-    padding: 0 20px;
+    padding: 0 30px;
 
     // 左侧样式
     .footer-left {
@@ -134,48 +137,35 @@ const companyInfo = {
     // 右侧样式
     .footer-right {
       display: flex;
-      gap: 50px; // 减少间距（原为60px）
-      align-self: center;
+      gap: 40px; // 调整间距
+      align-items: center;
 
-      .info-section {
-        min-width: 180px;
+      .qrcode-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-width: 120px;
+        margin-right: 10px;
 
-        h4 {
-          font-size: 16px;
-          margin-bottom: 8px;
-          position: relative;
-          display: inline-block; // 添加内联块显示，使下划线宽度与文本匹配
-          padding-bottom: 6px;
-
-          &:after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 100%;
-            height: 2px;
-            background-color: #42b983;
-            transition: width 0.3s ease; // 添加过渡效果
-            transition: height 0.3s ease; // 添加过渡效果
-          }
-
-          &:hover:after {
-            height: 4px;
-          }
+        img {
+          width: 90px;
+          height: 90px;
+          border-radius: 8px;
+          box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+          background: #fff;
         }
-
-        p {
-          margin: 6px 0; // 减小间距（原为8px）
-          font-size: 14px;
+        .qrcode-desc {
+          margin-top: 8px;
+          font-size: 13px;
           color: #e0e0e0;
-          display: flex;
-          align-items: center;
-
-          i {
-            margin-right: 8px;
-            font-size: 16px;
-          }
+          text-align: center;
         }
+      }
+      .info-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
       }
     }
   }

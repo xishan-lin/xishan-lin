@@ -53,7 +53,7 @@ const openPDFViewr = (command: string) => {
 <template>
   <div class="main-view">
     <div class="left-view">
-      <img src="@/assets/images/common/logo.svg" alt="" />
+      <img src="@/assets/images/common/icon.jpg" alt="" />
       <div class="title">
         {{ $t('title') }}
       </div>
@@ -141,7 +141,8 @@ const openPDFViewr = (command: string) => {
       line-height: var(--header-height);
       margin-left: 15px;
       background-color: transparent;
-      width: 100px;
+      font-size: 20px;
+      font-weight: 600;
     }
   }
 

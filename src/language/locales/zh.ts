@@ -1,5 +1,5 @@
 const zh = {
-  title: '西山',
+  title: '林氏扬州西山本支',
   navi: {
     home: '首页',
     books: '《书籍》',

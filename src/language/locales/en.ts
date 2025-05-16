@@ -1,5 +1,5 @@
 const en = {
-  title: 'XiShan',
+  title: 'Lin Family of XiShan in Yangzhou',
   navi: {
     home: 'HomePage',
     books: 'BOOKS',
