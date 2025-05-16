@@ -29,6 +29,7 @@ export const familyXishanData = [
     position: '', // 职位
     achievements: ['西山始祖'], // 主要成就
     desc: '显公: 公元1530年 【总第135代 入闽46代 莆田第35代 阙下第29代 涵江房22代 西山始祖】 始居凤阳桐城镇', // 描述
+    isSpouse: false, // 是否为配偶
     spouse: [], // 配偶
     son: '', // 亲生子嗣
     daughter: '', // 亲生女嗣
@@ -63,6 +64,7 @@ export const familyXishanData = [
         position: '', // 职位
         achievements: ['始居扬州西山(陈集)'], // 主要成就
         desc: '鸾公:  总第137代  入闽48代  莆田第37代  阙下第31代 涵江房24代 西山第3代 始居扬州西山(陈集)', // 描述
+        isSpouse: false, // 是否为配偶
         spouse: [], // 配偶
         son: '', // 亲生子嗣
         daughter: '', // 亲生女嗣
@@ -98,6 +100,7 @@ export const familyXishanData = [
         position: '', // 职位
         achievements: ['始居扬州西山(陈集)'], // 主要成就
         desc: '凤公:  总第137代  入闽48代  莆田第37代  阙下第31代 涵江房24代 西山第3代 始居扬州西山(陈集)', // 描述
+        isSpouse: false, // 是否为配偶
         spouse: [], // 配偶
         son: '', // 亲生子嗣
         daughter: '', // 亲生女嗣
@@ -133,6 +136,7 @@ export const familyXishanData = [
         position: '', // 职位
         achievements: [], // 主要成就
         desc: '', // 描述
+        isSpouse: false, // 是否为配偶
         spouse: [], // 配偶
         son: '', // 亲生子嗣
         daughter: '', // 亲生女嗣
@@ -167,6 +171,7 @@ export const familyXishanData = [
             position: '', // 职位
             achievements: [], // 主要成就
             desc: '', // 描述
+            isSpouse: false, // 是否为配偶
             spouse: [], // 配偶
             son: '', // 亲生子嗣
             daughter: '', // 亲生女嗣
@@ -202,11 +207,13 @@ export const familyXishanData = [
             position: '', // 职位
             achievements: [], // 主要成就
             desc: '', // 描述
+            isSpouse: false, // 是否为配偶
             spouse: [
               {
                 id: 10000006, // 编号
                 name: '丁氏', // 姓名
                 gender: '女', // 性别
+                isSpouse: true, // 是否为配偶
               }
             ], // 配偶
             son: '', // 亲生子嗣
@@ -243,6 +250,7 @@ export const familyXishanData = [
             position: '', // 职位
             achievements: [], // 主要成就
             desc: '', // 描述
+            isSpouse: false, // 是否为配偶
             spouse: [], // 配偶
             son: '', // 亲生子嗣
             daughter: '', // 亲生女嗣
@@ -278,11 +286,13 @@ export const familyXishanData = [
             position: '', // 职位
             achievements: [], // 主要成就
             desc: '', // 描述
+            isSpouse: false, // 是否为配偶
             spouse: [
               {
                 id: 10000009, // 编号
                 name: '瞿氏', // 姓名
                 gender: '女', // 性别
+                isSpouse: true, // 是否为配偶
               }
             ], // 配偶
             son: '', // 亲生子嗣
@@ -319,11 +329,13 @@ export const familyXishanData = [
             position: '', // 职位
             achievements: [], // 主要成就
             desc: '', // 描述
+            isSpouse: false, // 是否为配偶
             spouse: [
               {
                 id: 10000011, // 编号
                 name: '赵氏', // 姓名
                 gender: '女', // 性别
+                isSpouse: true, // 是否为配偶
               }
             ], // 配偶
             son: '', // 亲生子嗣

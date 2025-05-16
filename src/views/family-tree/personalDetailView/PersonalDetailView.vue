@@ -21,12 +21,12 @@
       </div>
       <div class="right">
         <h3>详细信息</h3>
-        <p><span>总：</span>第 {{ person.generationInAll }} 代</p>
-        <p><span>入闽：</span>第 {{ person.generationInFuJian }} 代</p>
-        <p><span>莆田：</span>第 {{ person.generationInPuTian }} 代</p>
-        <p><span>阙下：</span>第 {{ person.generationInQueXia }} 代</p>
-        <p><span>涵江：</span>第 {{ person.generationInHanJiang }} 代</p>
-        <p><span>西山：</span>第 {{ person.generationInXiShan }} 代</p>
+        <p v-if="!person.isSpouse"><span>总：</span>第 {{ person.generationInAll }} 代</p>
+        <p v-if="!person.isSpouse"><span>入闽：</span>第 {{ person.generationInFuJian }} 代</p>
+        <p v-if="!person.isSpouse"><span>莆田：</span>第 {{ person.generationInPuTian }} 代</p>
+        <p v-if="!person.isSpouse"><span>阙下：</span>第 {{ person.generationInQueXia }} 代</p>
+        <p v-if="!person.isSpouse"><span>涵江：</span>第 {{ person.generationInHanJiang }} 代</p>
+        <p v-if="!person.isSpouse"><span>西山：</span>第 {{ person.generationInXiShan }} 代</p>
         <p v-if="person.phone && person.phone.length > 0">
           <span>手机号：</span>
           {{ Array.isArray(person.phone) ? person.phone.join('、') : person.phone }}

@@ -28,6 +28,7 @@ const demoData = {
   position: '公务员', // 职位
   achievements: ['主要成就1', '主要成就2', '主要成就3'], // 主要成就
   desc: '杰卡斯都看见了撒接口里数据库快捷方式发多少手动封口机', // 描述
+  isSpouse: false, // 是否为配偶
   spouse: [], // 配偶
   son: '', // 亲生子嗣
   daughter: '', // 亲生女嗣
@@ -65,6 +66,7 @@ const enptyDemoData = {
   position: '', // 职位
   achievements: [], // 主要成就
   desc: '', // 描述
+  isSpouse: false, // 是否为配偶
   spouse: [], // 配偶
   son: '', // 亲生子嗣
   daughter: '', // 亲生女嗣
