@@ -1,5 +1,5 @@
 import { ref, computed, onMounted, nextTick } from 'vue'
-import { familyXishanData } from '../data/family-xishan-data-test'
+import { familyXishanData } from '../data/family-xishan-data'
 
 export interface FamilyMember {
   id: number
@@ -9,6 +9,7 @@ export interface FamilyMember {
   generationInFuJian: string
   generationInPuTian: string
   generationInQueXia: string
+  generationInHanJiang: string
   generationInXiShan: string
   rankingChar: string
   children?: FamilyMember[]
@@ -69,6 +70,7 @@ export function useFamilyTree() {
     { value: 'fuJian', label: '入闽', color: '#67c23a' },
     { value: 'puTian', label: '莆田', color: '#e6a23c' },
     { value: 'queXia', label: '阙下', color: '#f56c6c' },
+    { value: 'hanJiang', label: '涵江', color: '#67c23a' },
     { value: 'xiShan', label: '西山', color: '#409EFF' }
   ])
 

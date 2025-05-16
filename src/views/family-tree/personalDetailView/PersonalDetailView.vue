@@ -11,28 +11,28 @@
         <div class="basic-info">
           <h2>{{ person.name }}</h2>
           <p><span>性别：</span>{{ person.gender }}</p>
-          <p v-if="person.isAlive && age"><span>年龄：</span>{{ age }}</p>
-          <p v-if="!person.isAlive"><span>享年：</span>{{ dieAge }}</p>
-          <p><span>出生日期：</span>{{ person.bornDate }}</p>
-          <p><span>籍贯：</span>{{ person.nativePlace }}</p>
-          <p><span>出生地：</span>{{ person.birthplace }}</p>
-          <p><span>排行：</span>{{ person.rankingChar }}</p>
-          <p><span>学历：</span>{{ person.degree }}</p>
+          <p><span>排行：</span>{{ person.rankingChar || '未知' }}</p>
+          <p><span>出生日期：</span>{{ person.bornDate || '未知' }}</p>
+          <p v-if="person.isAlive && age"><span>年龄：</span>{{ age || '未知' }}</p>
+          <p v-if="!person.isAlive"><span>享年：</span>{{ dieAge || '未知' }}</p>
+          <p><span>籍贯：</span>{{ person.nativePlace || '未知' }}</p>
+          <p><span>出生地：</span>{{ person.birthplace || '未知' }}</p>
         </div>
       </div>
       <div class="right">
         <h3>详细信息</h3>
-        <p><span>总代数：</span>第{{ person.generationInAll }}代</p>
-        <p><span>入闽代数：</span>第{{ person.generationInFuJian }}代</p>
-        <p><span>莆田代数：</span>第{{ person.generationInPuTian }}代</p>
-        <p><span>阙下代数：</span>第{{ person.generationInQueXia }}代</p>
-        <p><span>西山代数：</span>第{{ person.generationInXiShan }}代</p>
-        <p v-if="person.phone">
+        <p><span>总：</span>第 {{ person.generationInAll }} 代</p>
+        <p><span>入闽：</span>第 {{ person.generationInFuJian }} 代</p>
+        <p><span>莆田：</span>第 {{ person.generationInPuTian }} 代</p>
+        <p><span>阙下：</span>第 {{ person.generationInQueXia }} 代</p>
+        <p><span>涵江：</span>第 {{ person.generationInHanJiang }} 代</p>
+        <p><span>西山：</span>第 {{ person.generationInXiShan }} 代</p>
+        <p v-if="person.phone && person.phone.length > 0">
           <span>手机号：</span>
           {{ Array.isArray(person.phone) ? person.phone.join('、') : person.phone }}
         </p>
         <p v-if="person.address"><span>住址：</span>{{ person.address }}</p>
-        <p>
+        <!-- <p>
           <span>婚姻状况</span>
           <el-tooltip
             class="box-item"
@@ -43,10 +43,9 @@
             <span class="tip-icon">?</span>
           </el-tooltip>
           <span>:</span>
-          {{ person.spouseName || (person.spouse && person.spouse.length > 0) ? '已婚' : '未婚' }}
-        </p>
-        <p v-if="person.spouseName"><span>配偶：</span>{{ person.spouseName }}</p>
-        <p v-if="person.children">
+          {{ (person.spouse && person.spouse.length > 0) ? '已婚' : '未婚' }}
+        </p> -->
+        <p v-if="person.children && person.children.length > 0">
           <span>子女：</span
           >{{
             Array.isArray(person.children)
@@ -54,9 +53,10 @@
               : ''
           }}
         </p>
+        <p v-if="person.degree"><span>学历：</span>{{ person.degree }}</p>
         <p v-if="person.position"><span>职位：</span>{{ person.position }}</p>
-        <p v-if="person.achievements"><span>主要成就：</span>{{ person.achievements.join('、') }}</p>
-        <p><span>个人简介：</span>{{ person.desc }}</p>
+        <p v-if="person.achievements && person.achievements.length > 0"><span>主要成就：</span>{{ person.achievements.join('、') }}</p>
+        <p v-if="person.desc"><span>个人简介：</span>{{ person.desc }}</p>
       </div>
     </div>
     <div v-else class="not-found">未找到该成员信息</div>
@@ -65,8 +65,8 @@
 </template>
 
 <script lang="ts" setup>
-import { familyXishanData } from '../mainView/data/family-xishan-data-test'
-import { computed, ref, onMounted } from 'vue'
+import { familyXishanData } from '../mainView/data/family-xishan-data'
+import { computed, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import defaultAvatar from '@/assets/images/common/portrait.svg'
 import { isVerifyValid } from '@/hooks/useFamilyTreeVerify'

@@ -109,6 +109,11 @@
                 >[阙下:{{ data.generationInQueXia }}]</span
               >
               <span
+                v-if="data.generationInHanJiang && checkList_generationType.includes('hanJiang')"
+                :style="{ color: getGenerationColor('hanJiang') }"
+                >[涵江:{{ data.generationInHanJiang }}]</span
+              >
+              <span
                 v-if="data.generationInXiShan && checkList_generationType.includes('xiShan')"
                 :style="{ color: getGenerationColor('xiShan') }"
                 >[西山:{{ data.generationInXiShan }}]</span

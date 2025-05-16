@@ -1,520 +1,337 @@
 export const familyXishanData = [
   {
-    id: 100000, // 编号
-    name: '祖父', // 姓名
-    formerName: '祖父曾用名', // 曾用名
+    id: 10000000, // 编号
+    name: '林显公', // 姓名
+    formerName: '', // 曾用名
+    alias: '', // 别名
+    zi: '', // 字
+    hao: '', // 号
     gender: '男', // 性别
-    isMaster: true, // 是否为户主，必须要在世
-    phone: ['13800138000', '0514-88888888'], // 电话
-    address: '江苏省南京市江北新区xxxxx', // 地址
-    birthplace: '江苏南京', // 出生地
-    nativePlace: '江苏南京', // 籍贯（祖籍）
-    avatar: 'https://cdn.jsdelivr.net/gh/xishan-lin/resourcesRepo@main/avatar/demo-1.jpg', // 头像
-    generationInAll: '158', // 代数 总代数
-    generationInFuJian: '77', // 代数 入闽
-    generationInPuTian: '67', // 代数 入莆田
-    generationInQueXia: '60', // 代数 阙下
+    isMaster: false, // 是否为户主，必须要在世
+    phone: [], // 电话
+    address: '凤阳桐城镇', // 地址
+    birthplace: '福建莆田', // 出生地
+    nativePlace: '福建莆田', // 籍贯（祖籍）
+    avatar: 'https://cdn.jsdelivr.net/gh/xishan-lin/resourcesRepo@main/avatar/lin-2.jpg', // 头像
+    generationInAll: '135', // 代数 总代数
+    generationInFuJian: '46', // 代数 入闽
+    generationInPuTian: '35', // 代数 入莆田
+    generationInQueXia: '29', // 代数 阙下
+    generationInHanJiang: '22', // 代数 涵江
     generationInXiShan: '1', // 代数 西山
-    rankingChar: '甲', // 家族排行字
+    rankingChar: '', // 家族排行字
     rankingCall: '始祖', // 家庭排行（长子、次子、长女.....）
-    isAlive: true, // 是否健在
-    bornDate: '1900-01-01', // 出生日期
-    deathDate: '1980-01-01', // 死亡日期
-    school: '南京大学', // 学校
-    degree: '本科', // 学历
-    position: '公务员', // 职位
-    achievements: ['主要成就1', '主要成就2', '主要成就3'], // 主要成就
-    desc: '杰卡斯都看见了撒接口里数据库快捷方式发多少手动封口机', // 描述
+    isAlive: false, // 是否健在
+    bornDate: '1530-01-01', // 出生日期
+    deathDate: '', // 死亡日期
+    school: '', // 学校
+    degree: '', // 学历
+    position: '', // 职位
+    achievements: ['西山始祖'], // 主要成就
+    desc: '显公: 公元1530年 【总第135代 入闽46代 莆田第35代 阙下第29代 涵江房22代 西山始祖】 始居凤阳桐城镇', // 描述
     spouse: [], // 配偶
-    son: '1', // 子嗣
-    daughter: '1', // 女嗣
+    son: '', // 亲生子嗣
+    daughter: '', // 亲生女嗣
     children: [
-      // 子嗣详情
       {
-        id: 100001,
-        name: '祖父长子',
-        formerName: '祖父长子',
-        gender: '男',
-        isMaster: true,
-        phone: ['13900139000'],
-        address: '江苏省南京市鼓楼区xx路',
-        birthplace: '江苏南京',
-        nativePlace: '江苏南京',
-        avatar: 'https://cdn.jsdelivr.net/gh/xishan-lin/resourcesRepo@main/avatar/demo-2.jpg',
-        generationInAll: '159',
-        generationInFuJian: '78',
-        generationInPuTian: '68',
-        generationInQueXia: '61',
-        generationInXiShan: '2',
-        rankingChar: '甲',
-        rankingCall: '长子',
-        isAlive: true,
-        bornDate: '1920-01-01',
-        deathDate: '1990-01-01',
-        school: '东南大学',
-        degree: '硕士',
-        position: '工程师',
-        desc: '热爱工程技术，性格严谨。',
-        spouse: [
-          {
-            id: 10000211,
-            name: '祖母',
-            formerName: '祖母',
-            gender: '女',
-            isMaster: true,
-            phone: ['13700137000'],
-            address: '江苏省南京市鼓楼区xx路',
-            birthplace: '江苏南京',
-            nativePlace: '江苏南京',
-            avatar: 'https://cdn.jsdelivr.net/gh/xishan-lin/resourcesRepo@main/avatar/demo-3.jpg',
-            generationInAll: '159',
-            generationInFuJian: '78',
-            generationInPuTian: '68',
-            generationInQueXia: '61',
-            generationInXiShan: '2',
-            rankingChar: '乙',
-            rankingCall: '长媳',
-            isAlive: true,
-            bornDate: '1922-02-02',
-            deathDate: '2002-02-02',
-            school: '南京师范大学',
-            degree: '本科',
-            position: '教师',
-            desc: '温柔贤淑，乐于助人。',
-            spouse: [],
-            son: '0',
-            daughter: '0',
-            children: [],
-          },
-          {
-            id: 10000212,
-            name: '祖母22',
-            formerName: '祖母22',
-            gender: '女',
-            isMaster: true,
-            phone: ['13700137000'],
-            address: '江苏省南京市鼓楼区xx路',
-            birthplace: '江苏南京',
-            nativePlace: '江苏南京',
-            avatar: 'https://cdn.jsdelivr.net/gh/xishan-lin/resourcesRepo@main/avatar/demo-8.gif',
-            generationInAll: '159',
-            generationInFuJian: '78',
-            generationInPuTian: '68',
-            generationInQueXia: '61',
-            generationInXiShan: '2',
-            rankingChar: '乙',
-            rankingCall: '长媳',
-            isAlive: true,
-            bornDate: '1922-02-02',
-            deathDate: '2002-02-02',
-            school: '南京师范大学',
-            degree: '本科',
-            position: '教师',
-            desc: '温柔贤淑，乐于助人。',
-            spouse: [],
-            son: '0',
-            daughter: '0',
-            children: [],
-          }
-        ],
-        son: '2',
-        daughter: '1',
-        children: [
-          {
-            id: 100002,
-            name: '父亲',
-            formerName: '父亲',
-            gender: '男',
-            phone: ['13600136000'],
-            address: '江苏省南京市玄武区xx巷',
-            birthplace: '江苏南京',
-            nativePlace: '江苏南京',
-            avatar: 'https://cdn.jsdelivr.net/gh/xishan-lin/resourcesRepo@main/avatar/demo-4.jpg',
-            generationInAll: '160',
-            generationInFuJian: '79',
-            generationInPuTian: '69',
-            generationInQueXia: '62',
-            generationInXiShan: '3',
-            rankingChar: '乙',
-            rankingCall: '次子',
-            isAlive: true,
-            bornDate: '1950-03-03',
-            deathDate: '2020-03-03',
-            school: '南京理工大学',
-            degree: '博士',
-            position: '大学教授',
-            desc: '学识渊博，治学严谨。',
-            spouse: [],
-            son: '1',
-            daughter: '1',
-            children: [
-              {
-                id: 3,
-                name: '我',
-                formerName: '小明',
-                gender: '男',
-                phone: ['13500135000'],
-                address: '江苏省南京市建邺区xx小区',
-                birthplace: '江苏南京',
-                nativePlace: '江苏南京',
-                avatar: 'https://img.yzcdn.cn/vant/ipad.png',
-                generationInAll: '161',
-                generationInFuJian: '80',
-                generationInPuTian: '70',
-                generationInQueXia: '63',
-                generationInXiShan: '4',
-                rankingChar: '丙',
-                rankingCall: '长子',
-                isAlive: true,
-                bornDate: '1980-05-05',
-                deathDate: '',
-                school: '南京大学',
-                degree: '硕士',
-                position: '软件工程师',
-                desc: '热爱编程，喜欢运动。',
-                spouse: [],
-                son: '0',
-                daughter: '0',
-                children: [],
-                isMaster: true
-              },
-              {
-                id: 4,
-                name: '妹妹',
-                formerName: '小红',
-                gender: '女',
-                phone: ['13400134000'],
-                address: '江苏省南京市建邺区xx小区',
-                birthplace: '江苏南京',
-                nativePlace: '江苏南京',
-                avatar: 'https://img.yzcdn.cn/vant/ipad.png',
-                generationInAll: '161',
-                generationInFuJian: '80',
-                generationInPuTian: '70',
-                generationInQueXia: '63',
-                generationInXiShan: '4',
-                rankingChar: '丁',
-                rankingCall: '长女',
-                isAlive: false,
-                bornDate: '1983-08-08',
-                deathDate: '',
-                school: '南京师范大学',
-                degree: '本科',
-                position: '设计师',
-                desc: '爱好绘画，性格开朗。',
-                spouse: [],
-                son: '0',
-                daughter: '0',
-                children: [],
-                isMaster: true
-              }
-            ],
-            isMaster: true
-          },
-          {
-            id: 100003,
-            name: '叔叔',
-            formerName: '叔叔',
-            gender: '男',
-            birthplace: '江苏南京',
-            nativePlace: '江苏南京',
-            avatar: 'https://img.yzcdn.cn/vant/ipad.png',
-            generationInAll: '160',
-            generationInFuJian: '79',
-            generationInPuTian: '69',
-            generationInQueXia: '62',
-            generationInXiShan: '3',
-            rankingChar: '丙',
-            rankingCall: '三子',
-            son: '1',
-            daughter: '0',
-            isAlive: true,
-            bornDate: '1952-06-06',
-            deathDate: '',
-            school: '河海大学',
-            degree: '本科',
-            position: '医生',
-            desc: '医术精湛，乐于助人。',
-            children: [
-              {
-                id: 6,
-                name: '堂弟',
-                formerName: '小军',
-                gender: '男',
-                birthplace: '江苏南京',
-                nativePlace: '江苏南京',
-                avatar: 'https://img.yzcdn.cn/vant/ipad.png',
-                generationInAll: '161',
-                generationInFuJian: '80',
-                generationInPuTian: '70',
-                generationInQueXia: '63',
-                generationInXiShan: '4',
-                rankingChar: '戊',
-                rankingCall: '长子',
-                son: '0',
-                daughter: '0',
-                isAlive: true,
-                bornDate: '1985-09-09',
-                deathDate: '',
-                school: '南京医科大学',
-                degree: '本科',
-                position: '医生',
-                desc: '热爱医学，喜欢运动。',
-                children: [],
-                isMaster: true
-              }
-            ],
-            isMaster: true
-          },
-          {
-            id: 100004,
-            name: '姑姑',
-            formerName: '姑姑',
-            gender: '女',
-            birthplace: '江苏南京',
-            nativePlace: '江苏南京',
-            avatar: 'https://img.yzcdn.cn/vant/ipad.png',
-            generationInAll: '160',
-            generationInFuJian: '79',
-            generationInPuTian: '69',
-            generationInQueXia: '62',
-            generationInXiShan: '3',
-            rankingChar: '丁',
-            rankingCall: '四女',
-            son: '0',
-            daughter: '2',
-            isAlive: true,
-            bornDate: '1955-10-10',
-            deathDate: '',
-            school: '南京艺术学院',
-            degree: '本科',
-            position: '艺术家',
-            desc: '擅长绘画，热爱生活。',
-            children: [
-              {
-                id: 8,
-                name: '表姐',
-                formerName: '小丽',
-                gender: '女',
-                birthplace: '江苏南京',
-                nativePlace: '江苏南京',
-                avatar: 'https://img.yzcdn.cn/vant/ipad.png',
-                generationInAll: '161',
-                generationInFuJian: '80',
-                generationInPuTian: '70',
-                generationInQueXia: '63',
-                generationInXiShan: '4',
-                rankingChar: '己',
-                rankingCall: '长女',
-                son: '0',
-                daughter: '0',
-                isAlive: true,
-                bornDate: '1988-11-11',
-                deathDate: '',
-                school: '南京艺术学院',
-                degree: '本科',
-                position: '舞蹈老师',
-                desc: '热爱舞蹈，性格活泼。',
-                children: [],
-                isMaster: true
-              },
-              {
-                id: 9,
-                name: '表弟',
-                formerName: '小刚',
-                gender: '男',
-                birthplace: '江苏南京',
-                nativePlace: '江苏南京',
-                avatar: 'https://img.yzcdn.cn/vant/ipad.png',
-                generationInAll: '161',
-                generationInFuJian: '80',
-                generationInPuTian: '70',
-                generationInQueXia: '63',
-                generationInXiShan: '4',
-                rankingChar: '庚',
-                rankingCall: '长子',
-                son: '0',
-                daughter: '0',
-                isAlive: true,
-                bornDate: '1990-12-12',
-                deathDate: '',
-                school: '南京理工大学',
-                degree: '本科',
-                position: '工程师',
-                desc: '喜欢科技，爱好运动。',
-                children: [],
-                isMaster: true
-              }
-            ],
-            isMaster: true
-          }
-        ],
+        id: 10000001, // 编号
+        name: '林鸾公', // 姓名
+        formerName: '', // 曾用名
+        alias: '', // 别名
+        zi: '', // 字
+        hao: '', // 号
+        gender: '男', // 性别
+        isMaster: false, // 是否为户主，必须要在世
+        phone: [], // 电话
+        address: '', // 地址
+        birthplace: '', // 出生地
+        nativePlace: '', // 籍贯（祖籍）
+        avatar: 'https://cdn.jsdelivr.net/gh/xishan-lin/resourcesRepo@main/avatar/lin-2.jpg', // 头像
+        generationInAll: '137', // 代数 总代数
+        generationInFuJian: '48', // 代数 入闽
+        generationInPuTian: '37', // 代数 入莆田
+        generationInQueXia: '31', // 代数 阙下
+        generationInHanJiang: '24', // 代数 涵江
+        generationInXiShan: '3', // 代数 西山
+        rankingChar: '', // 家族排行字
+        rankingCall: '', // 家庭排行（长子、次子、长女.....）
+        isAlive: false, // 是否健在
+        bornDate: '', // 出生日期
+        deathDate: '', // 死亡日期
+        school: '', // 学校
+        degree: '', // 学历
+        position: '', // 职位
+        achievements: ['始居扬州西山(陈集)'], // 主要成就
+        desc: '鸾公:  总第137代  入闽48代  莆田第37代  阙下第31代 涵江房24代 西山第3代 始居扬州西山(陈集)', // 描述
+        spouse: [], // 配偶
+        son: '', // 亲生子嗣
+        daughter: '', // 亲生女嗣
+        children: [] // 子孙：可能有间隔几代人的情况
       },
       {
-        id: 100005,
-        name: '外祖父',
-        formerName: '外祖父',
-        gender: '男',
-        isMaster: true,
-        birthplace: '江苏南京',
-        nativePlace: '江苏南京',
-        avatar: 'https://img.yzcdn.cn/vant/ipad.png',
-        generationInAll: '58',
-        generationInFuJian: '30',
-        generationInPuTian: '20',
-        generationInQueXia: '15',
-        generationInXiShan: '12',
-        rankingChar: '戊',
-        rankingCall: '长子',
-        son: '2',
-        daughter: '0',
-        isAlive: false,
-        bornDate: '1910-04-04',
-        deathDate: '1995-04-04',
-        school: '复旦大学',
-        degree: '本科',
-        position: '企业家',
-        desc: '为人正直，事业有成。',
+        id: 10000002, // 编号
+        name: '林凤公', // 姓名
+        formerName: '', // 曾用名
+        alias: '', // 别名
+        zi: '', // 字
+        hao: '', // 号
+        gender: '男', // 性别
+        isMaster: false, // 是否为户主，必须要在世
+        phone: [], // 电话
+        address: '', // 地址
+        birthplace: '', // 出生地
+        nativePlace: '', // 籍贯（祖籍）
+        avatar: 'https://cdn.jsdelivr.net/gh/xishan-lin/resourcesRepo@main/avatar/lin-2.jpg', // 头像
+        generationInAll: '137', // 代数 总代数
+        generationInFuJian: '48', // 代数 入闽
+        generationInPuTian: '37', // 代数 入莆田
+        generationInQueXia: '31', // 代数 阙下
+        generationInHanJiang: '24', // 代数 涵江
+        generationInXiShan: '3', // 代数 西山
+        rankingChar: '', // 家族排行字
+        rankingCall: '', // 家庭排行（长子、次子、长女.....）
+        isAlive: false, // 是否健在
+        bornDate: '', // 出生日期
+        deathDate: '', // 死亡日期
+        school: '', // 学校
+        degree: '', // 学历
+        position: '', // 职位
+        achievements: ['始居扬州西山(陈集)'], // 主要成就
+        desc: '凤公:  总第137代  入闽48代  莆田第37代  阙下第31代 涵江房24代 西山第3代 始居扬州西山(陈集)', // 描述
+        spouse: [], // 配偶
+        son: '', // 亲生子嗣
+        daughter: '', // 亲生女嗣
+        children: [] // 子孙：可能有间隔几代人的情况
+      },
+      {
+        id: 10000003, // 编号
+        name: '挂靠节点', // 姓名
+        formerName: '', // 曾用名
+        alias: '', // 别名
+        zi: '', // 字
+        hao: '', // 号
+        gender: '男', // 性别
+        isMaster: false, // 是否为户主，必须要在世
+        phone: [], // 电话
+        address: '', // 地址
+        birthplace: '', // 出生地
+        nativePlace: '', // 籍贯（祖籍）
+        avatar: 'https://cdn.jsdelivr.net/gh/xishan-lin/resourcesRepo@main/avatar/lin-2.jpg', // 头像
+        generationInAll: '137', // 代数 总代数
+        generationInFuJian: '48', // 代数 入闽
+        generationInPuTian: '37', // 代数 入莆田
+        generationInQueXia: '31', // 代数 阙下
+        generationInHanJiang: '24', // 代数 涵江
+        generationInXiShan: '3', // 代数 西山
+        rankingChar: '', // 家族排行字
+        rankingCall: '', // 家庭排行（长子、次子、长女.....）
+        isAlive: false, // 是否健在
+        bornDate: '', // 出生日期
+        deathDate: '', // 死亡日期
+        school: '', // 学校
+        degree: '', // 学历
+        position: '', // 职位
+        achievements: [], // 主要成就
+        desc: '', // 描述
+        spouse: [], // 配偶
+        son: '', // 亲生子嗣
+        daughter: '', // 亲生女嗣
         children: [
           {
-            id: 100006,
-            name: '舅舅',
-            formerName: '舅舅',
-            gender: '男',
-            birthplace: '江苏南京',
-            nativePlace: '江苏南京',
-            avatar: 'https://img.yzcdn.cn/vant/ipad/ipad.png',
-            generationInAll: '59',
-            generationInFuJian: '31',
-            generationInPuTian: '21',
-            generationInQueXia: '16',
-            generationInXiShan: '13',
-            rankingChar: '己',
-            rankingCall: '次子',
-            son: '0',
-            daughter: '1',
-            isAlive: true,
-            bornDate: '1940-07-07',
-            deathDate: '',
-            school: '上海交通大学',
-            degree: '硕士',
-            position: '工程师',
-            desc: '擅长机械设计，性格开朗。',
-            children: [
-              {
-                id: 12,
-                name: '表妹',
-                formerName: '小芳',
-                gender: '女',
-                birthplace: '江苏南京',
-                nativePlace: '江苏南京',
-                avatar: 'https://img.yzcdn.cn/vant/ipad.png',
-                generationInAll: '60',
-                generationInFuJian: '32',
-                generationInPuTian: '22',
-                generationInQueXia: '17',
-                generationInXiShan: '14',
-                rankingChar: '庚',
-                rankingCall: '长女',
-                son: '0',
-                daughter: '0',
-                isAlive: true,
-                bornDate: '1970-10-10',
-                deathDate: '',
-                school: '南京大学',
-                degree: '本科',
-                position: '教师',
-                desc: '热爱教育，喜欢阅读。',
-                children: [],
-                isMaster: true
-              }
-            ],
-            isMaster: true
+            id: 10000004, // 编号
+            name: '林兴第', // 姓名
+            formerName: '', // 曾用名
+            alias: '', // 别名
+            zi: '', // 字
+            hao: '', // 号
+            gender: '男', // 性别
+            isMaster: false, // 是否为户主，必须要在世
+            phone: [], // 电话
+            address: '', // 地址
+            birthplace: '', // 出生地
+            nativePlace: '', // 籍贯（祖籍）
+            avatar: 'https://cdn.jsdelivr.net/gh/xishan-lin/resourcesRepo@main/avatar/lin-2.jpg', // 头像
+            generationInAll: '166', // 代数 总代数
+            generationInFuJian: '77', // 代数 入闽
+            generationInPuTian: '67', // 代数 入莆田
+            generationInQueXia: '60', // 代数 阙下
+            generationInHanJiang: '36', // 代数 涵江
+            generationInXiShan: '15', // 代数 西山
+            rankingChar: '', // 家族排行字
+            rankingCall: '第', // 家庭排行
+            isAlive: false, // 是否健在
+            bornDate: '', // 出生日期
+            deathDate: '', // 死亡日期
+            school: '', // 学校
+            degree: '', // 学历
+            position: '', // 职位
+            achievements: [], // 主要成就
+            desc: '', // 描述
+            spouse: [], // 配偶
+            son: '', // 亲生子嗣
+            daughter: '', // 亲生女嗣
+            children: [] // 子孙
           },
           {
-            id: 100007,
-            name: '母亲',
-            formerName: '母亲',
-            gender: '女',
-            birthplace: '江苏南京',
-            nativePlace: '江苏南京',
-            avatar: 'https://img.yzcdn.cn/vant/ipad.png',
-            generationInAll: '59',
-            generationInFuJian: '31',
-            generationInPuTian: '21',
-            generationInQueXia: '16',
-            generationInXiShan: '13',
-            rankingChar: '庚',
-            rankingCall: '三女',
-            son: '1',
-            daughter: '1',
-            isAlive: true,
-            bornDate: '1945-08-08',
-            deathDate: '',
-            school: '南京师范大学',
-            degree: '本科',
-            position: '医生',
-            desc: '医术精湛，关爱家人。',
-            children: [
+            id: 10000005, // 编号
+            name: '林宝第', // 姓名
+            formerName: '', // 曾用名
+            alias: '', // 别名
+            zi: '', // 字
+            hao: '', // 号
+            gender: '男', // 性别
+            isMaster: false, // 是否为户主，必须要在世
+            phone: [], // 电话
+            address: '', // 地址
+            birthplace: '', // 出生地
+            nativePlace: '', // 籍贯（祖籍）
+            avatar: 'https://cdn.jsdelivr.net/gh/xishan-lin/resourcesRepo@main/avatar/lin-2.jpg', // 头像
+            generationInAll: '166', // 代数 总代数
+            generationInFuJian: '77', // 代数 入闽
+            generationInPuTian: '67', // 代数 入莆田
+            generationInQueXia: '60', // 代数 阙下
+            generationInHanJiang: '36', // 代数 涵江
+            generationInXiShan: '15', // 代数 西山
+            rankingChar: '', // 家族排行字
+            rankingCall: '第', // 家庭排行
+            isAlive: false, // 是否健在
+            bornDate: '', // 出生日期
+            deathDate: '', // 死亡日期
+            school: '', // 学校
+            degree: '', // 学历
+            position: '', // 职位
+            achievements: [], // 主要成就
+            desc: '', // 描述
+            spouse: [
               {
-                id: 14,
-                name: '我',
-                formerName: '小明',
-                gender: '男',
-                birthplace: '江苏南京',
-                nativePlace: '江苏南京',
-                avatar: 'https://img.yzcdn.cn/vant/ipad.png',
-                generationInAll: '60',
-                generationInFuJian: '32',
-                generationInPuTian: '22',
-                generationInQueXia: '17',
-                generationInXiShan: '14',
-                rankingChar: '辛',
-                rankingCall: '长子',
-                son: '0',
-                daughter: '0',
-                isAlive: true,
-                bornDate: '1975-09-09',
-                deathDate: '',
-                school: '南京大学',
-                degree: '硕士',
-                position: '工程师',
-                desc: '热爱科技，喜欢运动。',
-                children: [],
-                isMaster: true
-              },
-              {
-                id: 15,
-                name: '妹妹',
-                formerName: '小红',
-                gender: '女',
-                birthplace: '江苏南京',
-                nativePlace: '江苏南京',
-                avatar: 'https://img.yzcdn.cn/vant/ipad.png',
-                generationInAll: '60',
-                generationInFuJian: '32',
-                generationInPuTian: '22',
-                generationInQueXia: '17',
-                generationInXiShan: '14',
-                rankingChar: '壬',
-                rankingCall: '长女',
-                son: '0',
-                daughter: '0',
-                isAlive: false,
-                bornDate: '1978-12-12',
-                deathDate: '2000-01-01',
-                school: '南京艺术学院',
-                degree: '本科',
-                position: '设计师',
-                desc: '热爱艺术，性格温和。',
-                children: [],
-                isMaster: true
+                id: 10000006, // 编号
+                name: '丁氏', // 姓名
+                gender: '女', // 性别
               }
-            ],
-            isMaster: true
+            ], // 配偶
+            son: '', // 亲生子嗣
+            daughter: '', // 亲生女嗣
+            children: [] // 子孙
+          },
+          {
+            id: 10000007, // 编号
+            name: '林保第', // 姓名
+            formerName: '', // 曾用名
+            alias: '', // 别名
+            zi: '', // 字
+            hao: '', // 号
+            gender: '男', // 性别
+            isMaster: false, // 是否为户主，必须要在世
+            phone: [], // 电话
+            address: '', // 地址
+            birthplace: '', // 出生地
+            nativePlace: '', // 籍贯（祖籍）
+            avatar: 'https://cdn.jsdelivr.net/gh/xishan-lin/resourcesRepo@main/avatar/lin-2.jpg', // 头像
+            generationInAll: '166', // 代数 总代数
+            generationInFuJian: '77', // 代数 入闽
+            generationInPuTian: '67', // 代数 入莆田
+            generationInQueXia: '60', // 代数 阙下
+            generationInHanJiang: '36', // 代数 涵江
+            generationInXiShan: '15', // 代数 西山
+            rankingChar: '', // 家族排行字
+            rankingCall: '第', // 家庭排行
+            isAlive: false, // 是否健在
+            bornDate: '', // 出生日期
+            deathDate: '', // 死亡日期
+            school: '', // 学校
+            degree: '', // 学历
+            position: '', // 职位
+            achievements: [], // 主要成就
+            desc: '', // 描述
+            spouse: [], // 配偶
+            son: '', // 亲生子嗣
+            daughter: '', // 亲生女嗣
+            children: [] // 子孙
+          },
+          {
+            id: 10000008, // 编号
+            name: '林国第', // 姓名
+            formerName: '', // 曾用名
+            alias: '', // 别名
+            zi: '', // 字
+            hao: '', // 号
+            gender: '男', // 性别
+            isMaster: false, // 是否为户主，必须要在世
+            phone: [], // 电话
+            address: '', // 地址
+            birthplace: '', // 出生地
+            nativePlace: '', // 籍贯（祖籍）
+            avatar: 'https://cdn.jsdelivr.net/gh/xishan-lin/resourcesRepo@main/avatar/lin-2.jpg', // 头像
+            generationInAll: '166', // 代数 总代数
+            generationInFuJian: '77', // 代数 入闽
+            generationInPuTian: '67', // 代数 入莆田
+            generationInQueXia: '60', // 代数 阙下
+            generationInHanJiang: '36', // 代数 涵江
+            generationInXiShan: '15', // 代数 西山
+            rankingChar: '', // 家族排行字
+            rankingCall: '第', // 家庭排行
+            isAlive: false, // 是否健在
+            bornDate: '', // 出生日期
+            deathDate: '', // 死亡日期
+            school: '', // 学校
+            degree: '', // 学历
+            position: '', // 职位
+            achievements: [], // 主要成就
+            desc: '', // 描述
+            spouse: [
+              {
+                id: 10000009, // 编号
+                name: '瞿氏', // 姓名
+                gender: '女', // 性别
+              }
+            ], // 配偶
+            son: '', // 亲生子嗣
+            daughter: '', // 亲生女嗣
+            children: [] // 子孙
+          },
+          {
+            id: 10000010, // 编号
+            name: '林端第', // 姓名
+            formerName: '', // 曾用名
+            alias: '', // 别名
+            zi: '', // 字
+            hao: '', // 号
+            gender: '男', // 性别
+            isMaster: false, // 是否为户主，必须要在世
+            phone: [], // 电话
+            address: '', // 地址
+            birthplace: '', // 出生地
+            nativePlace: '', // 籍贯（祖籍）
+            avatar: 'https://cdn.jsdelivr.net/gh/xishan-lin/resourcesRepo@main/avatar/lin-2.jpg', // 头像
+            generationInAll: '166', // 代数 总代数
+            generationInFuJian: '77', // 代数 入闽
+            generationInPuTian: '67', // 代数 入莆田
+            generationInQueXia: '60', // 代数 阙下
+            generationInHanJiang: '36', // 代数 涵江
+            generationInXiShan: '15', // 代数 西山
+            rankingChar: '', // 家族排行字
+            rankingCall: '第', // 家庭排行
+            isAlive: false, // 是否健在
+            bornDate: '', // 出生日期
+            deathDate: '', // 死亡日期
+            school: '', // 学校
+            degree: '', // 学历
+            position: '', // 职位
+            achievements: [], // 主要成就
+            desc: '', // 描述
+            spouse: [
+              {
+                id: 10000011, // 编号
+                name: '赵氏', // 姓名
+                gender: '女', // 性别
+              }
+            ], // 配偶
+            son: '', // 亲生子嗣
+            daughter: '', // 亲生女嗣
+            children: [] // 子孙
           }
-        ],
+        ] // 子孙：可能有间隔几代人的情况
       }
-    ]
+    ] // 子孙、可能有间隔几代人的情况
   }
 ]
