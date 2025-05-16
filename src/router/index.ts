@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 //
 import auth from './auth'
 import demo from './demo'
+import docs from './docs'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -26,7 +27,8 @@ const router = createRouter({
       component: () => import('@/views/family-tree/personalDetailView/PersonalDetailView.vue')
     },
     ...auth,
-    ...demo
+    ...demo,
+    ...docs
   ]
 })
 

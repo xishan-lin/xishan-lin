@@ -5,16 +5,24 @@ export default {
 </script>
 
 <script setup lang="ts">
-import LinksData from './data/links-data'
-import docsData from './data/docs-data';
+import externalLinksData from './data/external-links-data'
+import docsData from './data/docs-data'
+import router from '@/router'
+import externalDocsData from './data/external-docs-data'
 
 const handleDocsClick = (item: any) => {
   console.log('点击了文档项：', item)
   // 这里可以添加路由跳转逻辑
+  router.push(item.link)
 }
 
 const handleNewsLinkClick = (item: any) => {
   console.log('点击了新闻链接：', item)
+  window.open(item.link, '_blank')
+}
+
+const handleExternalDocsClick = (item: any) => {
+  console.log('点击了外部文档链接：', item)
   window.open(item.link, '_blank')
 }
 </script>
@@ -25,7 +33,7 @@ const handleNewsLinkClick = (item: any) => {
     <div class="module-card docs-section">
       <div class="section-header">
         <h3>文档中心</h3>
-        <el-link type="primary" href="/docs">更多</el-link>
+        <!-- <el-link type="primary" href="/docs">更多</el-link> -->
       </div>
       <el-divider />
       <ul class="docs-list">
@@ -40,15 +48,37 @@ const handleNewsLinkClick = (item: any) => {
       </ul>
     </div>
 
+    <!-- 外部文档链接 -->
+    <div class="module-card external-docs-section">
+      <div class="section-header">
+        <h3>外部文档链接</h3>
+      </div>
+      <el-divider />
+      <ul class="external-docs-list">
+        <li
+          v-for="item in externalDocsData.dataList"
+          :key="item.id"
+          @click="handleExternalDocsClick(item)"
+        >
+          <el-link :underline="false">
+            <el-icon class="doc-icon">
+              <component :is="item.icon"></component>
+            </el-icon>
+            {{ item.title }}
+          </el-link>
+        </li>
+      </ul>
+    </div>
+
     <!-- 新闻链接 -->
     <div class="module-card news-links-section">
       <div class="section-header">
-        <h3>新闻链接</h3>
-        <el-link type="primary" href="/news-links">更多</el-link>
+        <h3>外部链接</h3>
+        <!-- <el-link type="primary" href="/news-links">更多</el-link> -->
       </div>
       <el-divider />
       <ul class="news-links-list">
-        <li v-for="item in LinksData.dataList" :key="item.id" @click="handleNewsLinkClick(item)">
+        <li v-for="item in externalLinksData.dataList" :key="item.id" @click="handleNewsLinkClick(item)">
           <el-link :underline="false">
             <el-icon class="link-icon">
               <component :is="item.icon"></component>
@@ -60,6 +90,14 @@ const handleNewsLinkClick = (item: any) => {
     </div>
   </div>
 </template>
+
+
+<style scoped lang="scss">
+:deep(.el-divider--horizontal) {
+  margin: 5px 0px;
+}
+</style>
+
 
 <style scoped lang="scss">
 .left-view {
@@ -118,7 +156,7 @@ const handleNewsLinkClick = (item: any) => {
 .link-icon {
   margin-right: 8px;
   vertical-align: middle;
-  color: #409EFF;
+  color: #409eff;
 }
 
 .news-links-list {
@@ -144,4 +182,31 @@ const handleNewsLinkClick = (item: any) => {
 .docs-section {
   // 移除margin-top，因为已经通过module-card的margin-bottom提供了间距
 }
-</style> 
+
+.external-docs-list {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+
+  li {
+    padding: 10px 0;
+    border-bottom: 1px solid #ebeef5;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    &:hover {
+      background-color: #f5f7fa;
+    }
+  }
+}
+
+.external-docs-section {
+  // 可根据需要添加样式
+}
+</style>

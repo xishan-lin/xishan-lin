@@ -62,7 +62,7 @@ const openPDFViewr = (command: string) => {
 
       <el-button type="primary" @click="router.push('/family-tree')"> 家谱 </el-button>
 
-      <el-dropdown class="el-dropdown-cls" @command="openPDFViewr">
+      <!-- <el-dropdown class="el-dropdown-cls" @command="openPDFViewr">
         <span class="el-dropdown-link">
           {{ $t('navi.books') }}
           <el-icon class="el-icon--right">
@@ -80,7 +80,7 @@ const openPDFViewr = (command: string) => {
             <el-dropdown-item command="七">《全卷》远程</el-dropdown-item>
           </el-dropdown-menu>
         </template>
-      </el-dropdown>
+      </el-dropdown> -->
 
       <!-- language 方式二 -->
       <el-dropdown class="el-dropdown-cls" @command="handleDropdownCommand">
