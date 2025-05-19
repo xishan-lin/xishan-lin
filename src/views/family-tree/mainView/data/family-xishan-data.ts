@@ -108,7 +108,7 @@ export const familyXishanData = [
       },
       {
         id: 10000003, // 编号
-        name: '挂靠节点', // 姓名
+        name: '临时挂靠节点', // 姓名
         formerName: '', // 曾用名
         alias: '', // 别名
         zi: '', // 字

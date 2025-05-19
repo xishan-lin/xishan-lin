@@ -48,10 +48,10 @@ const handleExternalDocsClick = (item: any) => {
       </ul>
     </div>
 
-    <!-- 外部文档链接 -->
+    <!-- 相关阅读 -->
     <div class="module-card external-docs-section">
       <div class="section-header">
-        <h3>外部文档链接</h3>
+        <h3>相关阅读</h3>
       </div>
       <el-divider />
       <ul class="external-docs-list">

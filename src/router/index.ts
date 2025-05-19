@@ -26,6 +26,16 @@ const router = createRouter({
       name: 'family-tree-detail',
       component: () => import('@/views/family-tree/personalDetailView/PersonalDetailView.vue')
     },
+    {
+      path: '/article/:id',
+      name: 'article',
+      component: () => import('@/views/article/ArticleDetail.vue')
+    },
+    {
+      path: '/contact',
+      name: 'contact',
+      component: () => import('@/views/contactView/ContactView.vue')
+    },
     ...auth,
     ...demo,
     ...docs
