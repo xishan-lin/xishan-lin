@@ -18,7 +18,7 @@ import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 // 导入数据
 import { data } from '@/assets/data-ts/test-ts-json'
 import pdfData from '@/assets/data-ts/pdf-ts-json'
-import testData from '@/assets/data-json/test-json.json'
+// import testData from '@/assets/data-json/test-json.json'
 
 // import { loadEnv } from 'vite';
 
@@ -32,7 +32,7 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
 // 打印数据
 console.log('示例数据:', data)
 console.log('PDF数据:', pdfData)
-console.log('测试数据:', testData)
+// console.log('测试数据:', testData)
 // 打印环境变量
 console.log('import.meta.env =', import.meta.env);
 console.log('import.meta.env.BASE_URL =', import.meta.env.BASE_URL);
