@@ -7,74 +7,47 @@
       <span class="date">更新时间：{{ formatDate(article.updatedAt) }}</span>
     </div>
     <div class="content" v-html="article.content"></div>
+    <div class="article-nav" style="display: flex; justify-content: space-between; margin-top: 40px;">
+      <button :disabled="id <= 1" @click="goToArticle(id - 1)">上一篇</button>
+      <button :disabled="id >= 10" @click="goToArticle(id + 1)">下一篇</button>
+    </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { ref, onMounted, computed } from 'vue';
-import { useRoute } from 'vue-router'
+import { ref, onMounted, watch, computed } from 'vue';
+import { useRoute, useRouter } from 'vue-router'
 
-// 通过路由参数获取 id
 const route = useRoute()
+const router = useRouter();
 const id = computed(() => Number(route.params.id))
+const article = ref<any>(null);
 
-interface Article {
-  title: string;
-  author: string;
-  createdAt: string;
-  updatedAt: string;
-  content: string; // HTML字符串，包含图片、视频等
+async function loadArticle(id: number) {
+  try {
+    const module = await import(`./inform-list-data/demo${id}.ts`);
+    article.value = module.article;
+  } catch (e) {
+    article.value = { title: '未找到', author: '', createdAt: '', updatedAt: '', content: '未找到对应文章' };
+  }
 }
 
-const article = ref<Article>({
-  title: '示例文章标题',
-  author: '张三',
-  createdAt: '2024-06-01T10:00:00Z',
-  updatedAt: '2024-06-02T12:00:00Z',
-  content: `
-    <video controls style="max-width:100%;margin:16px 0;">
-      <source src="https://player.bilibili.com/player.html?bvid=BV1GWojYDEo3&page=1" type="video/mp4">      
-      您的浏览器不支持 video 标签。
-    </video>
-    
-    <iframe src="https://player.bilibili.com/player.html?bvid=BV1GWojYDEo3&page=1" style="max-width:100%;margin:16px 0;" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
-    
-    `,
-  // content: `
-  //   <p>这是文章的主体内容，可以包含图片和视频。</p>
-  //   <img src="https://via.placeholder.com/600x300" alt="示例图片" style="max-width:100%;margin:16px 0;" />
-
-  //   <video controls style="max-width:100%;margin:16px 0;">
-  //     <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
-  //     您的浏览器不支持 video 标签。
-  //   </video>
-
-  //   <img src="https://cdn.jsdelivr.net/gh/xishan-lin/resourcesRepo@main/image-demos/001.jpg" alt="示例图片" style="max-width:100%;margin:16px 0;" />
-
-  //   <video controls style="max-width:100%;margin:16px 0;">
-  //     <source src="https://cdn.jsdelivr.net/gh/xishan-lin/resourcesRepo@main/video-demos/001.mp4" type="video/mp4">      
-  //     您的浏览器不支持 video 标签。
-  //   </video>
-
-  //   <video controls style="max-width:100%;margin:16px 0;">
-  //     <source src="https://player.bilibili.com/player.html?bvid=BV1GWojYDEo3&page=1" type="video/mp4">      
-  //     您的浏览器不支持 video 标签。
-  //   </video>
-
-  //   <iframe src="//player.bilibili.com/player.html?bvid=BV1GWojYDEo3&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
-
-  //   <p>更多内容……</p>
-  // `,
-});
+watch(id, (newId) => {
+  loadArticle(newId);
+}, { immediate: true });
 
 function formatDate(dateStr: string): string {
   const date = new Date(dateStr);
   return date.toLocaleString();
 }
 
+function goToArticle(newId: number) {
+  if (newId < 1 || newId > 10) return;
+  router.push({ name: route.name as string, params: { id: newId } });
+}
+
 onMounted(() => {
-  // 这里可以添加获取文章详情的逻辑
-  console.log('id.value =====> ', id.value)
+  loadArticle(id.value);
 });
 </script>
 

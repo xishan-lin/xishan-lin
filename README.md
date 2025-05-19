@@ -5,6 +5,7 @@
     * 示例：
         * 原地址：https://raw.githubusercontent.com/xishan-lin/resourcesRepo/main/family-party/2021/001.jpg
         * 提速地址：https://cdn.jsdelivr.net/gh/xishan-lin/resourcesRepo@main/family-party/2021/001.jpg
+* 视频仓库：哔哩哔哩
 * 后端托管：Vercel Functions
   * https://voxsay.com/posts/getting-started-of-vercel-serverless-functions/
   * https://vercel.com/docs/functions
