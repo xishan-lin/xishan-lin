@@ -32,7 +32,7 @@ const handleExternalDocsClick = (item: any) => {
     <!-- 文档中心 -->
     <div class="module-card docs-section">
       <div class="section-header">
-        <h3>文档中心</h3>
+        <h3>家族古籍</h3>
         <!-- <el-link type="primary" href="/docs">更多</el-link> -->
       </div>
       <el-divider />

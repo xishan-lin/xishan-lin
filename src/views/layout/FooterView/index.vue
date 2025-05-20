@@ -5,6 +5,12 @@ export default {
 </script>
 
 <script setup lang="ts">
+import { ref, computed } from 'vue'
+import { ElMessage } from 'element-plus'
+import { useErrorCount, isLocked, setLock, setVerifySuccess, isVerifyValid, validChars, MESSAGE_VERIFY_SUCCESS, MESSAGE_VERIFY_ERROR, MESSAGE_VERIFY_LOCKED } from '@/hooks/useFamilyTreeVerify'
+import qrcodeForLinx from '@/assets/images/common/qrcode_for_linx.jpg'
+import qrcodeForLinxBlur from '@/assets/images/common/qrcode_for_linx_blur.jpg'
+
 // 定义页脚数据
 const companyInfo = {
   name: '林氏扬州西山本支',
@@ -14,6 +20,33 @@ const companyInfo = {
   phone: '',
   email: 'lionsom.linx@gmail.com'
 }
+
+const showQrcodeDialog = ref(false)
+const qrcodeCode = ref('')
+const personalQrcodeVisible = ref(isVerifyValid())
+const errorCount = useErrorCount()
+
+const checkQrcodeCode = () => {
+  if (isLocked()) {
+    ElMessage.error(MESSAGE_VERIFY_LOCKED)
+    return
+  }
+  // 只允许输入一个字且在家谱字辈中
+  if (qrcodeCode.value.length !== 1 || !validChars.includes(qrcodeCode.value)) {
+    errorCount.value++
+    if (errorCount.value >= 3) setLock()
+    ElMessage.error(MESSAGE_VERIFY_ERROR)
+    return
+  }
+  setVerifySuccess()
+  personalQrcodeVisible.value = true
+  showQrcodeDialog.value = false
+  qrcodeCode.value = ''
+  errorCount.value = 0
+  ElMessage.success(MESSAGE_VERIFY_SUCCESS)
+}
+
+const personalQrcodeImg = computed(() => personalQrcodeVisible.value ? qrcodeForLinx : qrcodeForLinxBlur)
 </script>
 
 <template>
@@ -30,9 +63,20 @@ const companyInfo = {
       <!-- 右侧内容（包含二维码和联系方式） -->
       <div class="footer-right">
         <!-- 二维码部分 -->
-        <div class="qrcode-section">
-          <img src="@/assets/images/common/qrcode_for_wechat.jpg" alt="公众号二维码" />
-          <div class="qrcode-desc">关注公众号</div>
+        <div class="qrcode-section-wrapper">
+          <!-- 个人二维码 -->
+          <div class="qrcode-section personal-qrcode" @click="!personalQrcodeVisible && (showQrcodeDialog = true)" style="cursor:pointer;">
+            <div class="qrcode-img-wrapper">
+              <img :src="personalQrcodeImg" alt="个人二维码" />
+              <div v-if="!personalQrcodeVisible" class="qrcode-tip-center">点击联系</div>
+            </div>
+            <div class="qrcode-desc">维护人员二维码</div>
+          </div>
+          <!-- 公众号二维码 -->
+          <div class="qrcode-section">
+            <img src="@/assets/images/common/qrcode_for_wechat.jpg" alt="公众号二维码" />
+            <div class="qrcode-desc">关注公众号</div>
+          </div>
         </div>
         <!-- 联系方式和地址部分 -->
         <div class="info-wrapper">
@@ -45,6 +89,25 @@ const companyInfo = {
       </div>
     </div>
   </div>
+
+  <el-dialog
+    title="请输入您的排行"
+    v-model="showQrcodeDialog"
+    width="300px"
+    :close-on-click-modal="false"
+  >
+    <el-input
+      v-model="qrcodeCode"
+      maxlength="1"
+      show-word-limit
+      placeholder="只能输入一个字"
+      @keyup.enter="checkQrcodeCode"
+    />
+    <template #footer>
+      <el-button @click="showQrcodeDialog = false">取消</el-button>
+      <el-button type="primary" @click="checkQrcodeCode">确定</el-button>
+    </template>
+  </el-dialog>
 
   <div class="copyright">
     <div class="copyright-content">
@@ -137,9 +200,15 @@ const companyInfo = {
     // 右侧样式
     .footer-right {
       display: flex;
-      gap: 40px; // 调整间距
+      gap: 40px;
       align-items: center;
-
+      .qrcode-section-wrapper {
+        display: flex;
+        align-items: center;
+      }
+      .personal-qrcode {
+        margin-right: 10px;
+      }
       .qrcode-section {
         display: flex;
         flex-direction: column;
@@ -147,7 +216,6 @@ const companyInfo = {
         justify-content: center;
         min-width: 120px;
         margin-right: 10px;
-
         img {
           width: 90px;
           height: 90px;
@@ -209,5 +277,24 @@ const companyInfo = {
       }
     }
   }
+}
+
+.qrcode-img-wrapper {
+  position: relative;
+  display: inline-block;
+}
+.qrcode-tip-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(44, 62, 80, 0.7);
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  pointer-events: none;
+  white-space: nowrap;
+  z-index: 2;
 }
 </style>
