@@ -5,20 +5,35 @@ export default {
 </script>
 
 <script setup lang="ts">
-import { ref } from 'vue'
 import { useRouter } from 'vue-router'
-import mainListData from './data/main-list-data'
+import { ref, computed } from 'vue'
 
+// 文章列表数据
+import { articlesListData } from '@/assets/articles-list-data/articles-list-data'
+import type { ArticleListItemType } from '@/assets/articles-list-data/ArticleListItemType'
+
+// 路由
 const router = useRouter()
 
 // 处理item点击事件，跳转到对应路由
-const handleItemClick = (route: string) => {
-  console.log('跳转到路由：', route)
-  router.push(route)
+const handleItemClick = (item: ArticleListItemType) => {
+  router.push({
+    path: `/article/${item.id}`
+  })
 }
 
-// 模拟页面入口数据
-const pageEntries = ref(mainListData.dataList)
+// 分页相关
+const currentPage = ref(1)
+const pageSize = 5
+
+const pagedArticles = computed(() => {
+  const start = (currentPage.value - 1) * pageSize
+  return articlesListData.slice(start, start + pageSize)
+})
+
+const handlePageChange = (page: number) => {
+  currentPage.value = page
+}
 </script>
 
 <template>
@@ -31,18 +46,18 @@ const pageEntries = ref(mainListData.dataList)
 
     <div class="page-entries">
       <el-card
-        v-for="item in pageEntries"
+        v-for="item in pagedArticles"
         :key="item.id"
         class="entry-card"
         shadow="hover"
-        @click="handleItemClick(item.link)"
+        @click="handleItemClick(item)"
       >
         <div class="card-content">
           <div class="id-div">
             <span class="id-text">{{ item.id }}</span>
           </div>
           <div class="card-image">
-            <el-image :src="item.imgSrc" fit="cover"></el-image>
+            <el-image :src="item.avatar" fit="cover"></el-image>
           </div>
           <div class="card-info">
             <h3 class="card-title">{{ item.title }}</h3>
@@ -50,7 +65,7 @@ const pageEntries = ref(mainListData.dataList)
             <div class="card-meta">
               <span class="meta-item">
                 <el-icon><Calendar /></el-icon>
-                {{ item.date }}
+                {{ item.createdAt }}
               </span>
               <span class="meta-item">
                 <el-icon><User /></el-icon>
@@ -61,6 +76,16 @@ const pageEntries = ref(mainListData.dataList)
         </div>
       </el-card>
     </div>
+
+    <!-- 分页组件 -->
+    <el-pagination
+      v-model:current-page="currentPage"
+      :page-size="pageSize"
+      :total="articlesListData.length"
+      layout="prev, pager, next, jumper"
+      @current-change="handlePageChange"
+      style="margin-top: 24px; justify-content: center; display: flex"
+    />
   </div>
 </template>
 

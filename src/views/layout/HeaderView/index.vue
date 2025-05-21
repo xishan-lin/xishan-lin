@@ -128,6 +128,9 @@ const handleDialogConfirm = () => {
       </div>
     </div>
     <div class="right-view">
+
+      <el-button type="primary" @click="router.push('/show-md/1')"> Markdown </el-button>
+
       <el-button type="primary" @click="handleFamilyTreeClick"> 家谱 </el-button>
 
       <!-- <el-dropdown class="el-dropdown-cls" @command="openPDFViewr">

@@ -29,7 +29,7 @@ const router = createRouter({
     {
       path: '/article/:id',
       name: 'article',
-      component: () => import('@/views/article/ArticleDetail.vue')
+      component: () => import('@/views/detail-view/ShowDetail.vue')
     },
     {
       path: '/contact',

@@ -7,26 +7,36 @@ export default {
 <script setup lang="ts">
 import LeftView from '../LeftView/LeftView.vue'
 import RightView from '../RightView/RightView.vue'
-import carouselData from './data/carousel-data'
+import { useRouter } from 'vue-router'
 
-const handleCarouselClick = (item: any) => {
-  console.log('AAAAAAAA = ', item)
+// 文章列表数据
+import { articlesListData } from '@/assets/articles-list-data/articles-list-data'
+import type { ArticleListItemType } from '@/assets/articles-list-data/ArticleListItemType'
+// 轮播图数据id
+const carouselData_Ids = [1, 2, 3, 4]
+// 从文章列表数据中筛选出轮播图数据
+const carouselData = articlesListData.filter((item) => carouselData_Ids.includes(item.id))
+
+// 路由
+const router = useRouter()
+
+// 轮播图点击事件
+const handleCarouselClick = (item: ArticleListItemType) => {
+  router.push({
+    path: `/article/${item.id}`
+  })
 }
 </script>
 
 <template>
   <div style="width: 100%; padding: 0 20px; margin-top: 20px">
     <el-carousel :interval="4000" type="card" height="200px">
-      <el-carousel-item
-        v-for="item in carouselData.dataList"
-        :key="item"
-        @click="handleCarouselClick(item)"
-      >
+      <el-carousel-item v-for="item in carouselData" :key="item" @click="handleCarouselClick(item)">
         <div class="carousel-item-div">
-          <img :src="item.imgsrc" alt="" />
+          <img :src="item.avatar" alt="" />
           <div class="title-div">
             <div class="title">{{ item.title }}</div>
-            <div class="date">{{ item.date }}</div>
+            <div class="date">{{ item.createdAt }}</div>
           </div>
         </div>
       </el-carousel-item>

@@ -68,9 +68,9 @@ const personalQrcodeImg = computed(() => personalQrcodeVisible.value ? qrcodeFor
           <div class="qrcode-section personal-qrcode" @click="!personalQrcodeVisible && (showQrcodeDialog = true)" style="cursor:pointer;">
             <div class="qrcode-img-wrapper">
               <img :src="personalQrcodeImg" alt="个人二维码" />
-              <div v-if="!personalQrcodeVisible" class="qrcode-tip-center">点击联系</div>
+              <div v-if="!personalQrcodeVisible" class="qrcode-tip-center">点击查看</div>
             </div>
-            <div class="qrcode-desc">维护人员二维码</div>
+            <div class="qrcode-desc">联系维护人员</div>
           </div>
           <!-- 公众号二维码 -->
           <div class="qrcode-section">
