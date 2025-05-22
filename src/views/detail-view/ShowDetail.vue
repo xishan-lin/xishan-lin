@@ -99,7 +99,7 @@ function goBack() {
 
 <style lang="scss" scoped>
 .article-detail {
-  max-width: 800px;
+  max-width: 1200px;
   margin: 40px auto;
   padding: 32px;
   background: #fff;
