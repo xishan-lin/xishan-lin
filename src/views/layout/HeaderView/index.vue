@@ -129,7 +129,8 @@ const handleDialogConfirm = () => {
     </div>
     <div class="right-view">
 
-      <el-button type="primary" @click="router.push('/show-md/1')"> Markdown </el-button>
+      <!-- test -->
+      <!-- <el-button type="primary" @click="router.push('/article/1')"> Markdown </el-button> -->
 
       <el-button type="primary" @click="handleFamilyTreeClick"> 家谱 </el-button>
 

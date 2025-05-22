@@ -8,7 +8,7 @@
     </div>
     <div class="content">
       <MarkdownComp
-        v-if="curArticleInfo?.fileType === ArticleFileType.MD"
+        v-if="curArticleInfo?.fileSuffix === ArticleFileSuffix.MD"
         :markdownFilePath="curArticleInfo?.fileSrc"
       />
       <div v-else v-html="htmlContent"></div>
@@ -35,7 +35,7 @@ import { useRoute, useRouter } from 'vue-router'
 import MarkdownComp from '@/components/MarkdownComp/MarkdownComp.vue'
 // 文章类型
 import type { ArticleListItemType } from '@/assets/articles-list-data/ArticleListItemType'
-import { ArticleFileType } from '@/assets/articles-list-data/ArticleListItemType'
+import { ArticleFileSuffix } from '@/assets/articles-list-data/ArticleListItemType'
 // 文章列表数据
 import { articlesListData } from '@/assets/articles-list-data/articles-list-data'
 // 获取当前文章信息
@@ -59,7 +59,7 @@ watch(id, (newId) => {
   } else {
     is404.value = false
   }
-  if (curArticleInfo.value?.fileType === ArticleFileType.HTML) {
+  if (curArticleInfo.value?.fileSuffix === ArticleFileSuffix.HTML) {
     loadArticle_Html()
   } else {
     htmlContent.value = null
@@ -162,7 +162,8 @@ function goBack() {
     }
     :deep(p) {
       margin: 16px 0;
-      color: red;
+      // 首行缩进
+      text-indent: 2em;
     }
 
   }

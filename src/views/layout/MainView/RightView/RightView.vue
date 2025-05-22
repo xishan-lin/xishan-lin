@@ -24,7 +24,7 @@ const handleItemClick = (item: ArticleListItemType) => {
 
 // 分页相关
 const currentPage = ref(1)
-const pageSize = 5
+const pageSize = 10
 
 const pagedArticles = computed(() => {
   const start = (currentPage.value - 1) * pageSize
