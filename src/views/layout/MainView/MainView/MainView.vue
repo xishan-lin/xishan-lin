@@ -12,6 +12,7 @@ import { useRouter } from 'vue-router'
 // 文章列表数据
 import { articlesListData } from '@/assets/articles-list-data/articles-list-data'
 import type { ArticleListItemType } from '@/assets/articles-list-data/ArticleListItemType'
+import { ArticleType } from '@/assets/articles-list-data/ArticleListItemType'
 // 轮播图数据id
 const carouselData_Ids = [1, 2, 3, 4]
 // 从文章列表数据中筛选出轮播图数据
@@ -30,9 +31,16 @@ const handleCarouselClick = (item: ArticleListItemType) => {
 
 <template>
   <div style="width: 100%; padding: 0 20px; margin-top: 20px">
-    <el-carousel :interval="4000" type="card" height="200px">
+    <el-carousel :interval="2000" type="card" height="200px">
       <el-carousel-item v-for="item in carouselData" :key="item" @click="handleCarouselClick(item)">
-        <div class="carousel-item-div">
+        <div class="carousel-item-div" style="position: relative;">
+          <!-- 斜横幅标记文章类型 -->
+          <div
+            class="ribbon"
+            :class="item.articleType === ArticleType.INFORM ? 'inform' : 'article'"
+          >
+            {{ item.articleType === ArticleType.INFORM ? '通知' : '文章' }}
+          </div>
           <img :src="item.avatar" alt="" />
           <div class="title-div">
             <div class="title">{{ item.title }}</div>
@@ -63,11 +71,34 @@ const handleCarouselClick = (item: ArticleListItemType) => {
 .carousel-item-div {
   width: 100%;
   height: 100%;
+  position: relative;
 
   img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+  }
+
+  .ribbon {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 2;
+    width: 100px;
+    height: 24px;
+    line-height: 24px;
+    color: #fff;
+    font-size: 12px;
+    text-align: center;
+    transform: rotate(-45deg) translate(-28px, -20px);
+    background: #409eff;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    &.inform {
+      background: #e67e22;
+    }
+    &.article {
+      background: #409eff;
+    }
   }
 
   .title-div {

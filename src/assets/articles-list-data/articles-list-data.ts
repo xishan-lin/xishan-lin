@@ -5,7 +5,7 @@ import { ArticleFileSuffix, ArticleType } from './ArticleListItemType'
 export const articlesListData: ArticleListItemType[] = [
   {
     id: 1, // 文章id
-    title: '《陈集旧德祠》', // 文章标题
+    title: '陈集旧德祠', // 文章标题
     desc: '本文介绍修建于陈集镇的旧德祠。', // 文章描述
     articleType: ArticleType.ARTICLE, // 文章类型
     createdAt: '2025-05-22', // 创建时间
