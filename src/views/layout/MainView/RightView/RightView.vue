@@ -13,7 +13,7 @@ import { articlesListData } from '@/assets/articles-list-data/articles-list-data
 import type { ArticleListItemType } from '@/assets/articles-list-data/ArticleListItemType'
 import { ArticleType } from '@/assets/articles-list-data/ArticleListItemType'
 
-const showFilter = ref(true)
+const showFilter = ref(false)
 const isReverse = ref(false)
 const sortField = ref('id')
 
@@ -143,7 +143,7 @@ const sortedArticles = computed(() => {
           <el-switch
             v-model="isReverse"
             active-text="逆序"
-            inactive-text="倒序"
+            inactive-text="顺序"
             style="margin-left: 16px"
           />
 
