@@ -40,7 +40,7 @@ watch(currentLocale, (newValue: any) => {
 
 onMounted(() => {
   //
-  console.log('currentIndex', currentLocale.value)
+  // console.log('currentIndex', currentLocale.value)
 })
 
 const openPDFViewr = (command: string) => {

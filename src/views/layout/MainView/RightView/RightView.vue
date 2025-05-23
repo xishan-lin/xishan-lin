@@ -57,7 +57,7 @@ function handleCheckAllChange(val: boolean) {
 
 function handleTypeChange(val: string[]) {
   // 这里可以根据需要处理筛选逻辑
-  console.log('handleTypeChange ====>', val);
+  // console.log('handleTypeChange ====>', val);
 }
 
 
@@ -75,7 +75,7 @@ const filteredArticles = computed(() => {
   if (selectedTags.value.length > 0) {
     filtered = filtered.filter(item => item.tags.some(tag => selectedTags.value.includes(tag)))
   }
-  console.log('filteredArticles =====>', filtered);
+  // console.log('filteredArticles =====>', filtered);
   return filtered
 })
 
@@ -94,7 +94,7 @@ const sortedArticles = computed(() => {
     }
     return reverse ? -result : result
   })
-  console.log('sortedArticles =====>', arr, currentPage.value);
+  // console.log('sortedArticles =====>', arr, currentPage.value);
   return arr
 })
 

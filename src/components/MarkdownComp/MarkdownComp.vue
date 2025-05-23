@@ -1,6 +1,8 @@
 <script setup lang="ts">
-import { ref, watch, onMounted, onUnmounted } from "vue";
+import { ref, watch, onMounted, onUnmounted, nextTick } from "vue";
 import { renderMarkdown } from './markedConfig'
+
+const emit = defineEmits(['loaded'])
 
 const props = defineProps<{
   markdownFilePath: string;
@@ -41,7 +43,7 @@ const loadMarkdown = async () => {
       const text = await response.text();
       // 在markdown内容后面添加一个高度为80px的div，用于占位
       markdownContent.value = await renderMarkdown(text) + '<div style="height: 80px; background-color: transparent;"></div>';
-      console.log("markdownContent.value = ", markdownContent.value);
+      // console.log("markdownContent.value = ", markdownContent.value);
     } else {
       console.error("Failed to load markdown file:", response.status);
     }
@@ -52,14 +54,13 @@ const loadMarkdown = async () => {
 
 watch(() => props.markdownFilePath, async (newFile) => {
   if (newFile && newFile !== '') {
-    // 重置标题列表
     headings.value = [];
-    // 加载Markdown文件
     await loadMarkdown();
-    // 在渲染完成后再获取标题
-    setTimeout(() => {
-      getTitle();
-    }, 100);
+    await nextTick();
+    getTitle();
+
+    console.log('MarkdownComp - loaded');
+    emit('loaded');
   }
 });
 
@@ -83,7 +84,7 @@ function getTitle() {
         level
       });
     });
-    console.log('MarkdownComp - Title目录已更新:', headings.value);
+    // console.log('MarkdownComp - Title目录已更新:', headings.value);
   }
 }
 
@@ -96,9 +97,12 @@ function scrollToHeading(id: string) {
 }
 
 onMounted(async () => {
-  // 初始加载
+  console.log('MarkdownComp - onMounted');
   await loadMarkdown();
+  await nextTick();
   getTitle();
+  console.log('MarkdownComp - loaded');
+  emit('loaded');
 });
 </script>
 

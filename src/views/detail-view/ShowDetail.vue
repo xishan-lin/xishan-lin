@@ -1,31 +1,33 @@
 <template>
+  <div v-if="loading" class="loading-mask">
+    <div class="loading-spinner"></div>
+    <span>加载中...</span>
+  </div>
   <div class="article-detail" v-if="!is404">
-    <h1 class="title">{{ curArticleInfo?.title }}</h1>
+    <!-- <h1 class="title">{{ curArticleInfo?.title }}</h1>
     <div class="meta">
       <span class="author">作者：{{ curArticleInfo?.author }}</span>
       <span class="date">发布时间：{{ curArticleInfo?.createdAt }}</span>
       <span class="date">更新时间：{{ curArticleInfo?.updatedAt }}</span>
-    </div>
+    </div> -->
     <div class="content">
       <MarkdownComp
         v-if="curArticleInfo?.fileSuffix === ArticleFileSuffix.MD"
         :markdownFilePath="curArticleInfo?.fileSrc"
+        @loaded="loading = false"
       />
       <div v-else v-html="htmlContent"></div>
     </div>
-    <div
-      class="article-nav"
-      style="display: flex; justify-content: space-between; margin-top: 40px"
-    >
-      <button :disabled="id <= 1" @click="goToArticle(id - 1)">上一篇</button>
-      <button :disabled="id >= 10" @click="goToArticle(id + 1)">下一篇</button>
+    <div class="article-nav">
+      <el-button :disabled="id <= 1" @click="goToArticle(id - 1)">上一篇</el-button>
+      <el-button :disabled="id >= maxId" @click="goToArticle(id + 1)">下一篇</el-button>
     </div>
   </div>
-  <div v-else class="not-found">
+  <div v-else-if="is404" class="not-found">
     <img src="@/assets/images/common/404.svg" alt="404" />
     <p>很抱歉，未找到对应的文章。</p>
     <button @click="goHome">返回首页</button>
-    <button @click="goBack" style="margin-left:12px;">返回上一页</button>
+    <button @click="goBack" style="margin-left: 12px">返回上一页</button>
   </div>
 </template>
 
@@ -42,6 +44,7 @@ import { articlesListData } from '@/assets/articles-list-data/articles-list-data
 const curArticleInfo = ref<ArticleListItemType | null>(null)
 
 const htmlContent = ref<any>(null)
+const loading = ref(false)
 
 // 获取路由参数query
 const route = useRoute()
@@ -50,21 +53,33 @@ const id = computed(() => Number(route.params.id))
 
 const is404 = ref(false)
 
-watch(id, (newId) => {
-  curArticleInfo.value = articlesListData.filter((item) => item.id === newId)[0]
-  // 如果当前文章信息为空，则设置404
-  if (!curArticleInfo.value) {
-    is404.value = true
-    return
-  } else {
-    is404.value = false
-  }
-  if (curArticleInfo.value?.fileSuffix === ArticleFileSuffix.HTML) {
-    loadArticle_Html()
-  } else {
-    htmlContent.value = null
-  }
-}, { immediate: true })
+const maxId = computed(() => Math.max(...articlesListData.map(item => item.id)))
+
+watch(
+  id,
+  (newId) => {
+    curArticleInfo.value = articlesListData.filter((item) => item.id === newId)[0]
+    // 如果当前文章信息为空，则设置404
+    if (!curArticleInfo.value) {
+      is404.value = true
+      loading.value = false
+      return
+    } else {
+      is404.value = false
+    }
+    if (curArticleInfo.value?.fileSuffix === ArticleFileSuffix.HTML) {
+      loading.value = true
+      loadArticle_Html()
+    } else if (curArticleInfo.value?.fileSuffix === ArticleFileSuffix.MD) {
+      loading.value = true
+      htmlContent.value = null
+    } else {
+      htmlContent.value = null
+      loading.value = false
+    }
+  },
+  { immediate: true }
+)
 
 function goToArticle(newId: number) {
   if (newId < 1 || newId > 10) return
@@ -76,15 +91,18 @@ function goToArticle(newId: number) {
 // 获取html类型的文章内容
 async function loadArticle_Html() {
   if (!curArticleInfo.value?.fileSrc) return
+  loading.value = true
   try {
     const response = await fetch(curArticleInfo.value.fileSrc)
     if (!response.ok) {
       throw new Error('Failed to fetch article')
     }
-    const text = await response.text();
-    htmlContent.value = text;
+    const text = await response.text()
+    htmlContent.value = text
   } catch (e) {
     htmlContent.value = '未找到对应文章'
+  } finally {
+    loading.value = false
   }
 }
 
@@ -145,7 +163,7 @@ function goBack() {
     :deep(h1) {
       font-size: 2.4rem;
       font-weight: bold;
-      color: red;
+      color: black;
       margin-bottom: 16px;
     }
     :deep(h2) {
@@ -165,7 +183,14 @@ function goBack() {
       // 首行缩进
       text-indent: 2em;
     }
+  }
 
+  .article-nav {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+    margin-left: 40px;
+    margin-right: 40px;
   }
 }
 
@@ -193,6 +218,34 @@ function goBack() {
     &:hover {
       background: #3076c9;
     }
+  }
+}
+
+.loading-mask {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.7);
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.loading-spinner {
+  width: 48px;
+  height: 48px;
+  border: 5px solid #409eff;
+  border-top: 5px solid transparent; // #fff;
+  border-radius: 50%;
+  animation: spin 1.5s linear infinite;
+  margin-bottom: 16px;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
   }
 }
 </style>
