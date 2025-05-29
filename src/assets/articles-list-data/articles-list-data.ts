@@ -37,7 +37,7 @@ export const articlesListData: ArticleListItemType[] = [
     desc: '本文介绍修建于陈集镇的天后宫。',
     articleType: ArticleType.ARTICLE, // 文章类型
     createdAt: '2024-05-22',
-    updatedAt: '2025-04-22',
+    updatedAt: '2025-05-22',
     author: '林',
     category: '祠堂',
     tags: ['陈集', '天后宫'],
@@ -57,7 +57,7 @@ export const articlesListData: ArticleListItemType[] = [
     tags: ['林溥'],
     fileSrc: '/articles/article-list/林溥.md',
     fileSuffix: ArticleFileSuffix.MD,
-    avatar: 'https://cdn.jsdelivr.net/gh/xishan-lin/resourcesRepo@main/image-demos/003.jpg',
+    avatar: 'https://cdn.jsdelivr.net/gh/xishan-lin/resourcesRepo@main/article-images/《西山小志》诗.jpg',
   },
   {
     id: 5,
@@ -65,7 +65,7 @@ export const articlesListData: ArticleListItemType[] = [
     desc: '本文介绍林述曾生平传记。',
     articleType: ArticleType.ARTICLE, // 文章类型
     createdAt: '2024-05-22',
-    updatedAt: '2025-04-22',
+    updatedAt: '2025-05-22',
     author: '林',
     category: '人物',
     tags: ['林述曾'],
@@ -75,7 +75,7 @@ export const articlesListData: ArticleListItemType[] = [
   },
   {
     id: 6,
-    title: '阮元诗集',
+    title: '阮元诗集-安徽高考作文题',
     desc: '本文介绍阮元诗集。',
     articleType: ArticleType.ARTICLE, // 文章类型
     createdAt: '2024-05-22',
@@ -128,5 +128,33 @@ export const articlesListData: ArticleListItemType[] = [
     fileSrc: '/articles/inform-list/2023家谱会圆满结束.md',
     fileSuffix: ArticleFileSuffix.MD,
     avatar: 'https://cdn.jsdelivr.net/gh/xishan-lin/resourcesRepo@main/family-party/2023/001.jpeg',
+  },
+  {
+    id: 10,
+    title: '《菽勤堂》',
+    desc: '本文介绍《菽勤堂》',
+    articleType: ArticleType.ARTICLE, // 文章类型
+    createdAt: '2025-05-29',
+    updatedAt: '2025-05-29',
+    author: '林',
+    category: '私塾',
+    tags: ['菽勤堂', '私塾', '阮元'],
+    fileSrc: '/articles/article-list/菽勤堂.md',
+    fileSuffix: ArticleFileSuffix.MD,
+    avatar: 'https://cdn.jsdelivr.net/gh/xishan-lin/resourcesRepo@main/image-demos/007.jpg',
+  },
+  {
+    id: 11,
+    title: '西山小扬州 - 陈集镇',
+    desc: '本文介绍陈集镇',
+    articleType: ArticleType.ARTICLE, // 文章类型
+    createdAt: '2025-05-29',
+    updatedAt: '2025-05-29',
+    author: '林',
+    category: '陈集镇',
+    tags: ['陈集镇', '林溥'],
+    fileSrc: '/articles/article-list/陈集镇.md',
+    fileSuffix: ArticleFileSuffix.MD,
+    avatar: 'https://cdn.jsdelivr.net/gh/xishan-lin/resourcesRepo@main/image-demos/008.jpg',
   },
 ]
