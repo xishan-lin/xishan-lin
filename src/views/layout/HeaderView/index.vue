@@ -124,7 +124,7 @@ const handleDialogConfirm = () => {
     <div class="left-view">
       <img src="@/assets/images/common/icon.jpg" alt="" />
       <div class="title">
-        {{ $t('title') }}
+        {{ $t('title') }}（清华堂）
       </div>
     </div>
     <div class="right-view">
