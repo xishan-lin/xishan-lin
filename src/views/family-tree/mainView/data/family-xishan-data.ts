@@ -1,3 +1,5 @@
+import { id } from "element-plus/es/locales.mjs";
+
 export const familyXishanData = [
   {
     id: 10000000, // 编号
@@ -141,6 +143,7 @@ export const familyXishanData = [
         son: '', // 亲生子嗣
         daughter: '', // 亲生女嗣
         children: [
+          // =========》 第 《========
           {
             id: 10000004, // 编号
             name: '林兴第', // 姓名
@@ -161,8 +164,8 @@ export const familyXishanData = [
             generationInQueXia: '60', // 代数 阙下
             generationInHanJiang: '36', // 代数 涵江
             generationInXiShan: '15', // 代数 西山
-            rankingChar: '', // 家族排行字
-            rankingCall: '第', // 家庭排行
+            rankingChar: '第', // 家族排行字
+            rankingCall: '', // 家庭排行
             isAlive: false, // 是否健在
             bornDate: '', // 出生日期
             deathDate: '', // 死亡日期
@@ -197,8 +200,8 @@ export const familyXishanData = [
             generationInQueXia: '60', // 代数 阙下
             generationInHanJiang: '36', // 代数 涵江
             generationInXiShan: '15', // 代数 西山
-            rankingChar: '', // 家族排行字
-            rankingCall: '第', // 家庭排行
+            rankingChar: '第', // 家族排行字
+            rankingCall: '', // 家庭排行
             isAlive: false, // 是否健在
             bornDate: '', // 出生日期
             deathDate: '', // 死亡日期
@@ -240,8 +243,8 @@ export const familyXishanData = [
             generationInQueXia: '60', // 代数 阙下
             generationInHanJiang: '36', // 代数 涵江
             generationInXiShan: '15', // 代数 西山
-            rankingChar: '', // 家族排行字
-            rankingCall: '第', // 家庭排行
+            rankingChar: '第', // 家族排行字
+            rankingCall: '', // 家庭排行
             isAlive: false, // 是否健在
             bornDate: '', // 出生日期
             deathDate: '', // 死亡日期
@@ -276,8 +279,8 @@ export const familyXishanData = [
             generationInQueXia: '60', // 代数 阙下
             generationInHanJiang: '36', // 代数 涵江
             generationInXiShan: '15', // 代数 西山
-            rankingChar: '', // 家族排行字
-            rankingCall: '第', // 家庭排行
+            rankingChar: '第', // 家族排行字
+            rankingCall: '', // 家庭排行
             isAlive: false, // 是否健在
             bornDate: '', // 出生日期
             deathDate: '', // 死亡日期
@@ -319,8 +322,8 @@ export const familyXishanData = [
             generationInQueXia: '60', // 代数 阙下
             generationInHanJiang: '36', // 代数 涵江
             generationInXiShan: '15', // 代数 西山
-            rankingChar: '', // 家族排行字
-            rankingCall: '第', // 家庭排行
+            rankingChar: '第', // 家族排行字
+            rankingCall: '', // 家庭排行
             isAlive: false, // 是否健在
             bornDate: '', // 出生日期
             deathDate: '', // 死亡日期
@@ -341,7 +344,253 @@ export const familyXishanData = [
             son: '', // 亲生子嗣
             daughter: '', // 亲生女嗣
             children: [] // 子孙
-          }
+          },
+          {
+            id: 10000011, // 编号
+            name: '临时挂靠节点', // 姓名
+            formerName: '', // 曾用名
+            alias: '', // 别名
+            zi: '', // 字
+            hao: '', // 号
+            gender: '男', // 性别
+            isMaster: false, // 是否为户主，必须要在世
+            phone: [], // 电话
+            address: '', // 地址
+            birthplace: '', // 出生地
+            nativePlace: '', // 籍贯（祖籍）
+            avatar: 'https://cdn.jsdelivr.net/gh/xishan-lin/resourcesRepo@main/avatar/lin-2.jpg', // 头像
+            generationInAll: '166', // 代数 总代数
+            generationInFuJian: '77', // 代数 入闽
+            generationInPuTian: '67', // 代数 入莆田
+            generationInQueXia: '60', // 代数 阙下
+            generationInHanJiang: '36', // 代数 涵江
+            generationInXiShan: '15', // 代数 西山
+            rankingChar: '第', // 家族排行字
+            rankingCall: '', // 家庭排行
+            isAlive: false, // 是否健在
+            bornDate: '', // 出生日期
+            deathDate: '', // 死亡日期
+            school: '', // 学校
+            degree: '', // 学历
+            position: '', // 职位
+            achievements: [], // 主要成就
+            desc: '', // 描述
+            isSpouse: false, // 是否为配偶
+            spouse: [], // 配偶
+            son: '', // 亲生子嗣
+            daughter: '', // 亲生女嗣
+            children: [
+              // =========》 壮 《========
+              {
+                id: 10000012, // 编号
+                name: '林登壮', // 姓名
+                formerName: '', // 曾用名
+                alias: '', // 别名
+                zi: '', // 字
+                hao: '', // 号
+                gender: '男', // 性别
+                isMaster: false, // 是否为户主，必须要在世
+                phone: [], // 电话
+                address: '', // 地址
+                birthplace: '', // 出生地
+                nativePlace: '', // 籍贯（祖籍）
+                avatar: 'https://cdn.jsdelivr.net/gh/xishan-lin/resourcesRepo@main/avatar/lin-2.jpg', // 头像
+                generationInAll: '167', // 代数 总代数
+                generationInFuJian: '78', // 代数 入闽
+                generationInPuTian: '68', // 代数 入莆田
+                generationInQueXia: '61', // 代数 阙下
+                generationInHanJiang: '37', // 代数 涵江
+                generationInXiShan: '16', // 代数 西山
+                rankingChar: '壮', // 家族排行字
+                rankingCall: '', // 家庭排行
+                isAlive: false, // 是否健在
+                bornDate: '', // 出生日期
+                deathDate: '', // 死亡日期
+                school: '', // 学校
+                degree: '', // 学历
+                position: '', // 职位
+                achievements: [], // 主要成就
+                desc: '', // 描述
+                isSpouse: false, // 是否为配偶
+                spouse: [], // 配偶
+                son: '', // 亲生子嗣
+                daughter: '', // 亲生女嗣
+                children: [] // 子孙
+              },
+              {
+                id: 10000013, // 编号
+                name: '林稳壮', // 姓名
+                formerName: '', // 曾用名
+                alias: '', // 别名
+                zi: '', // 字
+                hao: '', // 号
+                gender: '男', // 性别
+                isMaster: false, // 是否为户主，必须要在世
+                phone: [], // 电话
+                address: '', // 地址
+                birthplace: '', // 出生地
+                nativePlace: '', // 籍贯（祖籍）
+                avatar: 'https://cdn.jsdelivr.net/gh/xishan-lin/resourcesRepo@main/avatar/lin-2.jpg', // 头像
+                generationInAll: '167', // 代数 总代数
+                generationInFuJian: '78', // 代数 入闽
+                generationInPuTian: '68', // 代数 入莆田
+                generationInQueXia: '61', // 代数 阙下
+                generationInHanJiang: '37', // 代数 涵江
+                generationInXiShan: '16', // 代数 西山
+                rankingChar: '壮', // 家族排行字
+                rankingCall: '', // 家庭排行
+                isAlive: false, // 是否健在
+                bornDate: '', // 出生日期
+                deathDate: '', // 死亡日期
+                school: '', // 学校
+                degree: '', // 学历
+                position: '', // 职位
+                achievements: [], // 主要成就
+                desc: '', // 描述
+                isSpouse: false, // 是否为配偶
+                spouse: [
+                  {
+                    id: 10000014, // 编号
+                    name: '陈氏', // 姓名
+                    gender: '女', // 性别
+                    isSpouse: true, // 是否为配偶
+                  }
+                ], // 配偶
+                son: '', // 亲生子嗣
+                daughter: '', // 亲生女嗣
+                children: [] // 子孙
+              },
+              {
+                id: 10000015, // 编号
+                name: '林海壮', // 姓名
+                formerName: '', // 曾用名
+                alias: '', // 别名
+                zi: '', // 字
+                hao: '', // 号
+                gender: '男', // 性别
+                isMaster: false, // 是否为户主，必须要在世
+                phone: [], // 电话
+                address: '', // 地址
+                birthplace: '', // 出生地
+                nativePlace: '', // 籍贯（祖籍）
+                avatar: 'https://cdn.jsdelivr.net/gh/xishan-lin/resourcesRepo@main/avatar/lin-2.jpg', // 头像
+                generationInAll: '167', // 代数 总代数
+                generationInFuJian: '78', // 代数 入闽
+                generationInPuTian: '68', // 代数 入莆田
+                generationInQueXia: '61', // 代数 阙下
+                generationInHanJiang: '37', // 代数 涵江
+                generationInXiShan: '16', // 代数 西山
+                rankingChar: '壮', // 家族排行字
+                rankingCall: '', // 家庭排行
+                isAlive: false, // 是否健在
+                bornDate: '', // 出生日期
+                deathDate: '', // 死亡日期
+                school: '', // 学校
+                degree: '', // 学历
+                position: '', // 职位
+                achievements: [], // 主要成就
+                desc: '', // 描述
+                isSpouse: false, // 是否为配偶
+                spouse: [
+                  {
+                    id: 10000016, // 编号
+                    name: '胡氏', // 姓名
+                    gender: '女', // 性别
+                    isSpouse: true, // 是否为配偶
+                  }
+                ], // 配偶
+                son: '', // 亲生子嗣
+                daughter: '', // 亲生女嗣
+                children: [] // 子孙
+              },
+              {
+                id: 10000017,
+                name: '林恩壮',
+                formerName: '', // 曾用名
+                alias: '', // 别名
+                zi: '', // 字
+                hao: '', // 号
+                gender: '男', // 性别
+                isMaster: false, // 是否为户主，必须要在世
+                phone: [], // 电话
+                address: '', // 地址
+                birthplace: '', // 出生地
+                nativePlace: '', // 籍贯（祖籍）
+                avatar: 'https://cdn.jsdelivr.net/gh/xishan-lin/resourcesRepo@main/avatar/lin-2.jpg', // 头像
+                generationInAll: '167', // 代数 总代数
+                generationInFuJian: '78', // 代数 入闽
+                generationInPuTian: '68', // 代数 入莆田
+                generationInQueXia: '61', // 代数 阙下
+                generationInHanJiang: '37', // 代数 涵江
+                generationInXiShan: '16', // 代数 西山
+                rankingChar: '壮', // 家族排行字
+                rankingCall: '', // 家庭排行
+                isAlive: false, // 是否健在
+                bornDate: '', // 出生日期
+                deathDate: '', // 死亡日期
+                school: '', // 学校
+                degree: '', // 学历
+                position: '', // 职位
+                achievements: [], // 主要成就
+                desc: '', // 描述
+                isSpouse: false, // 是否为配偶
+                spouse: [
+                  {
+                    id: 10000018, // 编号
+                    name: '胡氏', // 姓名
+                    gender: '女', // 性别
+                    isSpouse: true, // 是否为配偶
+                  }
+                ], // 配偶
+                son: '', // 亲生子嗣
+                daughter: '', // 亲生女嗣
+                children: [] // 子孙
+              },
+              {
+                id: 10000019,
+                name: '林文壮',
+                formerName: '', // 曾用名
+                alias: '', // 别名
+                zi: '', // 字
+                hao: '', // 号
+                gender: '男', // 性别
+                isMaster: false, // 是否为户主，必须要在世
+                phone: [], // 电话
+                address: '', // 地址
+                birthplace: '', // 出生地
+                nativePlace: '', // 籍贯（祖籍）
+                avatar: 'https://cdn.jsdelivr.net/gh/xishan-lin/resourcesRepo@main/avatar/lin-2.jpg', // 头像
+                generationInAll: '167', // 代数 总代数
+                generationInFuJian: '78', // 代数 入闽
+                generationInPuTian: '68', // 代数 入莆田
+                generationInQueXia: '61', // 代数 阙下
+                generationInHanJiang: '37', // 代数 涵江
+                generationInXiShan: '16', // 代数 西山
+                rankingChar: '壮', // 家族排行字
+                rankingCall: '', // 家庭排行
+                isAlive: false, // 是否健在
+                bornDate: '', // 出生日期
+                deathDate: '', // 死亡日期
+                school: '', // 学校
+                degree: '', // 学历
+                position: '', // 职位
+                achievements: [], // 主要成就
+                desc: '', // 描述
+                isSpouse: false, // 是否为配偶
+                spouse: [
+                  {
+                    id: 10000020, // 编号
+                    name: '朱氏', // 姓名
+                    gender: '女', // 性别
+                    isSpouse: true, // 是否为配偶
+                  }
+                ], // 配偶
+                son: '', // 亲生子嗣
+                daughter: '', // 亲生女嗣
+                children: [] // 子孙
+              }
+            ] // 子孙
+          },
         ] // 子孙：可能有间隔几代人的情况
       }
     ] // 子孙、可能有间隔几代人的情况

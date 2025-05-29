@@ -17,31 +17,33 @@ import MainView from './layout/MainView/MainView/MainView.vue'
 </script>
 
 <template>
-  <el-container>
-    <!-- header -->
-    <el-header>
-      <header-view class="header-cls" />
-    </el-header>
+  <el-watermark :content="['忠孝有声天地壮，古今无数子孙贤。','莆田世纪千秋业，寒水家乡万年基。']" :zIndex="-1" :gap="[0, 0]" :width="300" :height="80" :font="{ fontSize: 16, color: 'rgba(0, 0, 0, 0.4)' }">
+    <el-container>
+      <!-- header -->
+      <el-header>
+        <header-view class="header-cls" />
+      </el-header>
 
-    <!-- main -->
-    <el-scrollbar max-height="calc(100vh - var(--header-height))">
-      <!-- 回到顶部 -->
-      <el-backtop target=".el-scrollbar__wrap" :right="50" :bottom="50" />
+      <!-- main -->
+      <el-scrollbar max-height="calc(100vh - var(--header-height))">
+        <!-- 回到顶部 -->
+        <el-backtop target=".el-scrollbar__wrap" :right="50" :bottom="50" />
 
-      <!-- main-center -->
-      <el-container class="main-center-cls">
-        <el-main>
-          <!-- 主内容 -->
-          <MainView />
-        </el-main>
-      </el-container>
+        <!-- main-center -->
+        <el-container class="main-center-cls">
+          <el-main>
+            <!-- 主内容 -->
+            <MainView />
+          </el-main>
+        </el-container>
 
-      <!-- footer -->
-      <el-footer>
-        <footer-view />
-      </el-footer>
-    </el-scrollbar>
-  </el-container>
+        <!-- footer -->
+        <el-footer>
+          <footer-view />
+        </el-footer>
+      </el-scrollbar>
+    </el-container>
+  </el-watermark>
 </template>
 
 <style scoped lang="scss">
