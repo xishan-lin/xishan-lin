@@ -216,6 +216,7 @@ export const familyXishanData = [
                 id: 10000006, // 编号
                 name: '丁氏', // 姓名
                 gender: '女', // 性别
+                isAlive: false,
                 isSpouse: true, // 是否为配偶
               }
             ], // 配偶
@@ -295,6 +296,7 @@ export const familyXishanData = [
                 id: 10000009, // 编号
                 name: '瞿氏', // 姓名
                 gender: '女', // 性别
+                isAlive: false,
                 isSpouse: true, // 是否为配偶
               }
             ], // 配偶
@@ -338,6 +340,7 @@ export const familyXishanData = [
                 id: 10000011, // 编号
                 name: '赵氏', // 姓名
                 gender: '女', // 性别
+                isAlive: false,
                 isSpouse: true, // 是否为配偶
               }
             ], // 配偶
@@ -453,6 +456,7 @@ export const familyXishanData = [
                     id: 10000014, // 编号
                     name: '陈氏', // 姓名
                     gender: '女', // 性别
+                    isAlive: false,
                     isSpouse: true, // 是否为配偶
                   }
                 ], // 配偶
@@ -496,6 +500,7 @@ export const familyXishanData = [
                     id: 10000016, // 编号
                     name: '胡氏', // 姓名
                     gender: '女', // 性别
+                    isAlive: false,
                     isSpouse: true, // 是否为配偶
                   }
                 ], // 配偶
@@ -539,6 +544,7 @@ export const familyXishanData = [
                     id: 10000018, // 编号
                     name: '胡氏', // 姓名
                     gender: '女', // 性别
+                    isAlive: false,
                     isSpouse: true, // 是否为配偶
                   }
                 ], // 配偶
@@ -582,6 +588,7 @@ export const familyXishanData = [
                     id: 10000020, // 编号
                     name: '朱氏', // 姓名
                     gender: '女', // 性别
+                    isAlive: false,
                     isSpouse: true, // 是否为配偶
                   }
                 ], // 配偶

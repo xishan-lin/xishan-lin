@@ -192,8 +192,7 @@ function countStats(data: any[]) {
       total++
       if (node.gender === '男') male++
       if (node.gender === '女') female++
-      if (node.isAlive === true) alive++
-      if (node.isAlive === false) dead++
+      node.isAlive ? alive++ : dead++
       if (node.children && node.children.length) walk(node.children)
       if (node.spouse && node.spouse.length) walk(node.spouse)
     }
