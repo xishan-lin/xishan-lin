@@ -17,7 +17,7 @@ import MainView from './layout/MainView/MainView/MainView.vue'
 </script>
 
 <template>
-  <el-watermark :content="['忠孝有声天地壮，古今无数子孙贤。','莆田世纪千秋业，寒水家乡万年基。']" :zIndex="-1" :gap="[0, 0]" :width="300" :height="80" :font="{ fontSize: 16, color: 'rgba(0, 0, 0, 0.4)' }">
+  <el-watermark :content="['忠孝有声天地壮，古今无数子孙贤。','莆田世纪千秋业，寒水家乡万年基。']" :zIndex="-1" :gap="[0, 0]" :width="300" :height="80" :font="{ fontSize: 16, color: 'rgba(0, 0, 0, 0.1)' }">
     <el-container>
       <!-- header -->
       <el-header>

@@ -227,7 +227,7 @@ function goBack() {
   top: 0;
   right: 0;
   bottom: 0;
-  background: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 1);
   z-index: 9999;
   display: flex;
   flex-direction: column;
