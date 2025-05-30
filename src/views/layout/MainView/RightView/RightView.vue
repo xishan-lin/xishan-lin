@@ -27,7 +27,6 @@ const handleItemClick = (item: ArticleListItemType) => {
   })
 }
 
-
 // 分页相关
 const currentPage = ref(1)
 const pageSize = ref(10)
@@ -49,17 +48,18 @@ const filterOptions = [
 const selectedTypes = ref([ArticleType.INFORM, ArticleType.ARTICLE])
 
 const isAllChecked = computed(() => selectedTypes.value.length === filterOptions.length)
-const isIndeterminate = computed(() => selectedTypes.value.length > 0 && selectedTypes.value.length < filterOptions.length)
+const isIndeterminate = computed(
+  () => selectedTypes.value.length > 0 && selectedTypes.value.length < filterOptions.length
+)
 
 function handleCheckAllChange(val: boolean) {
-  selectedTypes.value = val ? filterOptions.map(opt => opt.value) : []
+  selectedTypes.value = val ? filterOptions.map((opt) => opt.value) : []
 }
 
 function handleTypeChange(val: string[]) {
   // 这里可以根据需要处理筛选逻辑
   // console.log('handleTypeChange ====>', val);
 }
-
 
 // 数据筛选 + 过滤
 const selectedTags = ref<string[]>([])
@@ -73,7 +73,7 @@ const filteredArticles = computed(() => {
   let filtered = articlesListData.filter((item) => selectedTypes.value.includes(item.articleType))
   // 标签过滤
   if (selectedTags.value.length > 0) {
-    filtered = filtered.filter(item => item.tags.some(tag => selectedTags.value.includes(tag)))
+    filtered = filtered.filter((item) => item.tags.some((tag) => selectedTags.value.includes(tag)))
   }
   // console.log('filteredArticles =====>', filtered);
   return filtered
@@ -97,7 +97,6 @@ const sortedArticles = computed(() => {
   // console.log('sortedArticles =====>', arr, currentPage.value);
   return arr
 })
-
 </script>
 
 <template>
@@ -116,13 +115,12 @@ const sortedArticles = computed(() => {
           :indeterminate="isIndeterminate"
           v-model="isAllChecked"
           @change="handleCheckAllChange"
-        >全部</el-checkbox>
+          >全部</el-checkbox
+        >
         <el-checkbox-group v-model="selectedTypes" @change="handleTypeChange">
-          <el-checkbox
-            v-for="opt in filterOptions"
-            :key="opt.value"
-            :value="opt.value"
-          >{{ opt.label }}</el-checkbox>
+          <el-checkbox v-for="opt in filterOptions" :key="opt.value" :value="opt.value">{{
+            opt.label
+          }}</el-checkbox>
         </el-checkbox-group>
       </div>
 
@@ -158,7 +156,6 @@ const sortedArticles = computed(() => {
           </el-select>
         </div>
       </div>
-
     </div>
 
     <el-divider />
@@ -174,7 +171,7 @@ const sortedArticles = computed(() => {
         <div class="card-content">
           <div class="id-div">
             <!-- <span class="id-text">{{ item.id }}</span> -->
-            <span class="id-text">{{ (index + 1) + (currentPage - 1) * pageSize }}</span>
+            <span class="id-text">{{ index + 1 + (currentPage - 1) * pageSize }}</span>
           </div>
           <div class="card-image">
             <div
@@ -190,16 +187,6 @@ const sortedArticles = computed(() => {
             <p class="card-desc">{{ item.desc }}</p>
             <div class="card-meta">
               <span class="meta-item">
-                <el-icon><Calendar /></el-icon>
-                <p>创建时间：</p>
-                {{ item.createdAt }}
-              </span>
-              <span class="meta-item">
-                <el-icon><Calendar /></el-icon>
-                <p>更新时间：</p >
-                {{ item.updatedAt }}
-              </span>
-              <span class="meta-item">
                 <el-icon><User /></el-icon>
                 {{ item.author }}
               </span>
@@ -212,6 +199,18 @@ const sortedArticles = computed(() => {
                 <template v-for="tag in item.tags" :key="tag">
                   <el-tag size="small" style="margin-right: 4px">{{ tag }}</el-tag>
                 </template>
+              </span>
+            </div>
+            <div class="card-meta">
+              <span class="meta-item">
+                <el-icon><Calendar /></el-icon>
+                <p>创建时间：</p>
+                {{ item.createdAt }}
+              </span>
+              <span class="meta-item">
+                <el-icon><Calendar /></el-icon>
+                <p>更新时间：</p>
+                {{ item.updatedAt }}
               </span>
             </div>
           </div>
@@ -227,7 +226,12 @@ const sortedArticles = computed(() => {
         style="width: 100px"
         @change="currentPage = 1"
       >
-        <el-option v-for="size in [2,5,10,15,20]" :key="size" :label="size + ' 条/页'" :value="size" />
+        <el-option
+          v-for="size in [2, 5, 10, 15, 20]"
+          :key="size"
+          :label="size + ' 条/页'"
+          :value="size"
+        />
       </el-select>
       <el-pagination
         v-model:current-page="currentPage"
@@ -237,7 +241,6 @@ const sortedArticles = computed(() => {
         @current-change="handlePageChange"
       />
     </div>
-    
   </div>
 </template>
 
@@ -263,9 +266,9 @@ const sortedArticles = computed(() => {
   }
 
   .filter-section-1 {
-    display: flex; 
-    align-items: center; 
-    gap: 0px; 
+    display: flex;
+    align-items: center;
+    gap: 0px;
     margin-top: 10px;
 
     :deep(.el-checkbox) {
@@ -288,6 +291,10 @@ const sortedArticles = computed(() => {
   gap: 16px;
 }
 
+:deep(.el-card__body) {
+  padding: 16px 20px ;
+}
+
 .entry-card {
   cursor: pointer;
   transition: transform 0.3s ease;
@@ -304,10 +311,12 @@ const sortedArticles = computed(() => {
 }
 
 .card-image {
+  align-self: center;
+  // margin: auto;
   position: relative;
   flex-shrink: 0;
   width: 120px;
-  height: 80px;
+  height: 90px;
   overflow: hidden;
   border-radius: 4px;
 
@@ -351,7 +360,7 @@ const sortedArticles = computed(() => {
 }
 
 .card-desc {
-  margin: 0 0 12px 0;
+  margin: 0 0 8px 0;
   font-size: 14px;
   color: #606266;
   line-height: 1.5;
@@ -397,11 +406,10 @@ const sortedArticles = computed(() => {
 }
 
 .pagination-section {
-  display: flex; 
-  align-items: center; 
-  justify-content: center; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
   gap: 16px;
   margin-top: 24px;
 }
-
 </style>
