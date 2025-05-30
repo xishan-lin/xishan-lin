@@ -14,8 +14,8 @@ import type { ArticleListItemType } from '@/assets/articles-list-data/ArticleLis
 import { ArticleType } from '@/assets/articles-list-data/ArticleListItemType'
 
 const showFilter = ref(false)
-const isReverse = ref(false)
-const sortField = ref('id')
+const isReverse = ref(true)
+const sortField = ref('updatedAt')
 
 // 路由
 const router = useRouter()
@@ -165,7 +165,7 @@ const sortedArticles = computed(() => {
 
     <div class="page-entries">
       <el-card
-        v-for="item in pagedArticles"
+        v-for="(item, index) in pagedArticles"
         :key="item.id"
         class="entry-card"
         shadow="hover"
@@ -173,7 +173,8 @@ const sortedArticles = computed(() => {
       >
         <div class="card-content">
           <div class="id-div">
-            <span class="id-text">{{ item.id }}</span>
+            <!-- <span class="id-text">{{ item.id }}</span> -->
+            <span class="id-text">{{ (index + 1) + (currentPage - 1) * pageSize }}</span>
           </div>
           <div class="card-image">
             <div
@@ -190,7 +191,13 @@ const sortedArticles = computed(() => {
             <div class="card-meta">
               <span class="meta-item">
                 <el-icon><Calendar /></el-icon>
+                <p>创建时间：</p>
                 {{ item.createdAt }}
+              </span>
+              <span class="meta-item">
+                <el-icon><Calendar /></el-icon>
+                <p>更新时间：</p >
+                {{ item.updatedAt }}
               </span>
               <span class="meta-item">
                 <el-icon><User /></el-icon>
